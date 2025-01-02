@@ -1734,16 +1734,19 @@
                 // Get the current user's name
                 var currentUser = user.profile.name; // Assuming you get the user name from this variable                
                 var currentUserEmail = user.profile.unique_name;
-                var currentUserPhone = user.profile.phone;
+                
 
                 // Log user's email and phone number to the console
                 console.log("User Name: " + user.profile.name);
                 console.log("User Email: " + user.profile.unique_name);
-                console.log("User Phone: " + user.profile.phone);
+                
 
                 var req = new XMLHttpRequest();
 
-                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUserEmail}'`;
+                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out,&$expand=izx_contact($select=emailaddress1)&$filter=izx_contact/emailaddress1 eq '${currentUserEmail}'`;
+
+
+                //var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUserEmail}'`;   //filter=izx_email
                 req.open("GET", encodeURI(organizationURI + query), true);
 
                 //req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out"), true);
