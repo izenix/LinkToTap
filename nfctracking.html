@@ -529,17 +529,19 @@
                 margin-bottom: 40px;
             }
 
-                /* Heading Styling */
-                #monthSection h1 {
-                    font-size: 28px;
-                    font-weight: 600;
-                    color: #333;
-                    margin-bottom: 10px;
-                    border-bottom: 2px solid #C8A165;
-                    padding-bottom: 10px;
-                    width: 100%;
-                    box-sizing: border-box;
-                }
+        
+
+        /* Heading Styling */
+        #monthSection h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #C8A165;
+            padding-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
 
                 /* Container for label, input, and button in one row */
                 #monthSection div {
@@ -1295,6 +1297,7 @@
             }
         }
 
+
         // Logout function
         function logout() {
             authContext.logOut();
@@ -1729,18 +1732,18 @@
 
                 debugger;
                 // Get the current user's name
-                var currentUser = user.profile.name; // Assuming you get the user name from this variable
-                var currentUserEmail = user.profile.email;
+                var currentUser = user.profile.name; // Assuming you get the user name from this variable                
+                var currentUserEmail = user.profile.unique_name;
                 var currentUserPhone = user.profile.phone;
 
                 // Log user's email and phone number to the console
                 console.log("User Name: " + user.profile.name);
-                console.log("User Email: " + user.profile.email);
+                console.log("User Email: " + user.profile.unique_name);
                 console.log("User Phone: " + user.profile.phone);
 
                 var req = new XMLHttpRequest();
 
-                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUser}'`;
+                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUserEmail}'`;
                 req.open("GET", encodeURI(organizationURI + query), true);
 
                 //req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out"), true);
@@ -2050,6 +2053,8 @@
                     var startDate = new Date(year, month - 1, 1); // First day of the month
                     var endDate = new Date(year, month, 0); // last day of the month
 
+                    // Set the endDate time to 23:59:59 to ensure we capture data up until the end of the day
+                    endDate.setHours(23, 59, 59, 999);  //(hour, minute, second, millisecond)
 
                     // Example function to format the date (you might have a custom implementation)
                     function formatDate(date) {
