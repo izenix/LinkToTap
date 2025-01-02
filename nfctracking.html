@@ -1276,8 +1276,14 @@
                     return;
                 }
 
+                // Get the current user's name
+                var currentUser = user.profile.name; // Assuming you get the user name from this variable
+
                 var req = new XMLHttpRequest();
-                req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=fullname,emailaddress1,mobilephone,izx_tagid,izx_nfccounter&$filter=izx_tagid ne null"), true);
+                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUser}'`;
+                req.open("GET", encodeURI(organizationURI + query), true); 
+
+                //req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=fullname,emailaddress1,mobilephone,izx_tagid,izx_nfccounter&$filter=izx_tagid ne null"), true);
                 req.setRequestHeader("Authorization", "Bearer " + token1);
                 req.setRequestHeader("Accept", "application/json");
                 req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -1946,10 +1952,7 @@
                     // Calculate the start and end of the selected month
                     var startDate = new Date(year, month - 1, 1); // First day of the month
                     var endDate = new Date(year, month, 0); // last day of the month
-
-                    // Get the formatted date without time
-                    var formattedStartDate = formatDate(startDate);
-                    var formattedEndDate = formatDate(endDate);
+                                       
 
                     // Example function to format the date (you might have a custom implementation)
                     function formatDate(date) {
@@ -1959,6 +1962,12 @@
                         return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
                     }
 
+                    // Get the formatted date without time
+                    var formattedStartDate = formatDate(startDate);
+                    var formattedEndDate = formatDate(endDate);
+
+                    console.log("Start Date: ", formattedStartDate); // First day of the month
+                    console.log("End Date: ", formattedEndDate); // Last day of the month
 
                     var req = new XMLHttpRequest();
 
