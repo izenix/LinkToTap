@@ -1007,7 +1007,7 @@
 
 
         function getTokenFromPowerAutomate() {
-            debugger;
+            
             const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
             let responseData;
             var token;
@@ -1188,6 +1188,7 @@
 
         async function retrieveNFCTrackingData() {
             try {
+                debugger;
                 // Retrieve the token from Power Automate
                 const token1 = await getTokenFromPowerAutomate();
 

@@ -11,413 +11,614 @@
     </style>
 
     <style>
-        /* Header Style */
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            /* Header Style */
+            /* General Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
-            background-color: #f4f4f9;
-            padding-top: 80px;
-        }
+            body {
+                font-family: 'Roboto', sans-serif;
+                color: #333;
+                background-color: #f4f4f9;
+                padding-top: 80px;
+            }
 
-        header {
-            background-color: #ffffff;
-            border-bottom: 2px solid #e0e0e0;
-            padding: 15px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            left: 0;
-            width: 100%;
-            transition: top 0.3s ease-in-out;
-        }
-
-        /* Navigation Bar */
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* Logo Styling */
-        .nav-left .logo {
-            max-height: 60px;
-            width: auto;
-        }
-
-
-        /* Button Styling */
-        .dropbtn {
-            background-color: #fff;
-            color: #6a6a6a;
-            font-size: 18px;
-            font-weight: 500;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease-in-out;
-            text-decoration: none;
-        }
-
-            /* Underline with color #C8A165 */
-            .dropbtn::after {
-                content: "";
-                position: absolute;
-                bottom: 0;
+            header {
+                background-color: #ffffff;
+                border-bottom: 2px solid #e0e0e0;
+                padding: 15px 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                position: fixed;
+                z-index: 1000;
+                top: 0;
                 left: 0;
-                right: 0;
-                height: 2px;
-                background-color: #C8A165;
-                transition: opacity 0.3s ease-in-out;
-                opacity: 1;
+                width: 100%;
+                transition: top 0.3s ease-in-out;
             }
 
-            /* On hover - change text color, background and hide underline */
-            .dropbtn:hover {
-                background-color: #C8A165;
-                color: #fff;
+            /* Navigation Bar */
+            nav {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
 
-                .dropbtn:hover::after {
-                    opacity: 0;
-                }
+            /* Logo Styling */
+            .nav-left .logo {
+                max-height: 60px;
+                width: auto;
+            }
 
-        /* NFC Dropdown Menu */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
 
-            .dropdown .dropbtn {
-                background: none;
-                border: none;
+            /* Button Styling */
+            .dropbtn {
+                background-color: #fff;
+                color: #6a6a6a;
                 font-size: 18px;
                 font-weight: 500;
-                cursor: pointer;
                 padding: 10px 20px;
-                color: #6a6a6a;
-                transition: color 0.3s ease-in-out;
-            }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ffffff;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            z-index: 1;
-            min-width: 200px;
-        }
-
-            .dropdown-content button {
-                padding: 12px 16px;
-                background: none;
                 border: none;
-                text-align: left;
-                width: 100%;
-                font-size: 16px;
-                color: #6a6a6a;
                 cursor: pointer;
-                transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+                position: relative;
+                transition: all 0.3s ease-in-out;
+                text-decoration: none;
             }
 
-                /* Change only text color on hover */
-                .dropdown-content button:hover {
-                    color: #C8A165;
+                /* Underline with color #C8A165 */
+                .dropbtn::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 2px;
+                    background-color: #C8A165;
+                    transition: opacity 0.3s ease-in-out;
+                    opacity: 1;
                 }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-
-        /* Authentication Buttons  */
-        .auth-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-            .auth-buttons span {
-                font-size: 16px;
-                color: #999;
-                margin-right: 20px;
-            }
-
-            .auth-buttons button {
-                background-color: #fff;
-                border: 2px solid #C8A165;
-                color: #C8A165;
-                padding: 10px 20px;
-                font-size: 16px;
-                font-weight: 500;
-                border-radius: 6px;
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-            }
-
-                .auth-buttons button:hover {
+                /* On hover - change text color, background and hide underline */
+                .dropbtn:hover {
                     background-color: #C8A165;
                     color: #fff;
-                    border-color: #C8A165;
                 }
 
-            /* Hide logout button by default */
-            .auth-buttons .hidden {
+                    .dropbtn:hover::after {
+                        opacity: 0;
+                    }
+
+            /* NFC Dropdown Menu */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+                .dropdown .dropbtn {
+                    background: none;
+                    border: none;
+                    font-size: 18px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    padding: 10px 20px;
+                    color: #6a6a6a;
+                    transition: color 0.3s ease-in-out;
+                }
+
+            .dropdown-content {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: #ffffff;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                overflow: hidden;
+                z-index: 1;
+                min-width: 200px;
             }
 
-            .auth-buttons #logout {
-                margin-left: 10px;
+                .dropdown-content button {
+                    padding: 12px 16px;
+                    background: none;
+                    border: none;
+                    text-align: left;
+                    width: 100%;
+                    font-size: 16px;
+                    color: #6a6a6a;
+                    cursor: pointer;
+                    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+                }
+
+                    /* Change only text color on hover */
+                    .dropdown-content button:hover {
+                        color: #C8A165;
+                    }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
             }
 
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                align-items: flex-start;
-            }
 
-            .dropdown .dropbtn {
-                font-size: 16px;
-                padding: 10px 0;
-            }
 
+            /* Authentication Buttons  */
             .auth-buttons {
-                margin-top: 10px;
-            }
-        }
-
-
-
-
-
-
-
-
-        /* NFC Tracking Container Styling */
-        #nfcTrackingSection {
-            padding: 15px;
-            background-color: #f4f4f9;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            margin-top: 20px;
-        }
-
-        #nfcTrackingContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-            /* Header Styling */
-            #nfcTrackingContainer h1 {
-                font-size: 28px;
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 0;
-                border-bottom: 2px solid #C8A165;
-                padding-bottom: 10px;
-            }
-
-            /* Button and Input Row Styling */
-            #nfcTrackingContainer .button-input-row {
                 display: flex;
+                align-items: center;
+            }
+
+                .auth-buttons span {
+                    font-size: 16px;
+                    color: #999;
+                    margin-right: 20px;
+                }
+
+                .auth-buttons button {
+                    background-color: #fff;
+                    border: 2px solid #C8A165;
+                    color: #C8A165;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                    .auth-buttons button:hover {
+                        background-color: #C8A165;
+                        color: #fff;
+                        border-color: #C8A165;
+                    }
+
+                /* Hide logout button by default */
+                .auth-buttons .hidden {
+                    display: none;
+                }
+
+                .auth-buttons #logout {
+                    margin-left: 10px;
+                }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                nav {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .dropdown .dropbtn {
+                    font-size: 16px;
+                    padding: 10px 0;
+                }
+
+                .auth-buttons {
+                    margin-top: 10px;
+                }
+            }
+
+
+
+
+
+
+
+
+            /* NFC Tracking Container Styling */
+            #nfcTrackingSection {
+                padding: 15px;
+                background-color: #f4f4f9;
+                border-radius: 12px;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                margin-bottom: 40px;
+                margin-top: 20px;
+            }
+
+            #nfcTrackingContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+                /* Header Styling */
+                #nfcTrackingContainer h1 {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: #333;
+                    margin-bottom: 0;
+                    border-bottom: 2px solid #C8A165;
+                    padding-bottom: 10px;
+                }
+
+                /* Button and Input Row Styling */
+                #nfcTrackingContainer .button-input-row {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
+                /* Button Styling */
+                #nfcTrackingContainer button {
+                    background-color: #C8A165;
+                    color: #fff;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                    #nfcTrackingContainer button:hover {
+                        background-color: #a57b45;
+                        transform: translateY(-2px);
+                    }
+
+                /* Input Field Styling */
+                #nfcTrackingContainer input[type="text"] {
+                    padding: 10px 15px;
+                    width: 300px;
+                    border: 2px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    transition: border-color 0.3s ease;
+                }
+
+                    #nfcTrackingContainer input[type="text"]:focus {
+                        border-color: #C8A165;
+                        outline: none;
+                    }
+
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                #nfcTrackingContainer .button-input-row {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                #nfcTrackingContainer button,
+                #nfcTrackingContainer input[type="text"] {
+                    width: 100%;
+                }
+            }
+
+
+            /* User Section Container Styling */
+            #usersSection {
+                padding: 15px;
+                background-color: #f4f4f9;
+                border-radius: 12px;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                margin-bottom: 40px;
+                margin-top: 20px;
+            }
+
+
+            #userContainer {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                margin-top: 20px;
+                align-items: center;
                 justify-content: space-between;
                 width: 100%;
             }
 
-            /* Button Styling */
-            #nfcTrackingContainer button {
-                background-color: #C8A165;
-                color: #fff;
-                border: none;
-                border-radius: 8px;
-                padding: 12px 20px;
-                font-size: 16px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-                #nfcTrackingContainer button:hover {
-                    background-color: #a57b45;
-                    transform: translateY(-2px);
+                /* Header Styling */
+                #userContainer h1 {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: #333;
+                    margin-bottom: 0;
+                    border-bottom: 2px solid #C8A165;
+                    padding-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
                 }
 
-            /* Input Field Styling */
-            #nfcTrackingContainer input[type="text"] {
-                padding: 10px 15px;
-                width: 300px;
-                border: 2px solid #ddd;
-                border-radius: 6px;
-                font-size: 16px;
-                transition: border-color 0.3s ease;
-            }
-
-                #nfcTrackingContainer input[type="text"]:focus {
-                    border-color: #C8A165;
-                    outline: none;
+                /* Button Styling */
+                #userContainer button {
+                    background-color: #C8A165;
+                    color: #fff;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 12px 30px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    align-self: flex-start;
                 }
 
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            #nfcTrackingContainer .button-input-row {
-                flex-direction: column;
-                gap: 10px;
+                    #userContainer button:hover {
+                        background-color: #a57b45;
+                        transform: translateY(-2px);
+                    }
+
+                /* Table Styling */
+                #userContainer table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                    font-size: 16px;
+                    border: 1px solid #ddd;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                }
+
+                    /* Table Caption Styling */
+                    #userContainer table caption {
+                        font-size: 20px;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                        color: #333;
+                    }
+
+                    /* Table Header Styling */
+                    #userContainer table th {
+                        background-color: #C8A165;
+                        color: #fff;
+                        padding: 12px;
+                        text-align: left;
+                    }
+
+                    /* Table Row Styling */
+                    #userContainer table td {
+                        padding: 12px;
+                        border-top: 1px solid #ddd;
+                        text-align: left;
+                    }
+
+                    /* Table Row Hover Effect */
+                    #userContainer table tr:hover {
+                        background-color: #f5f5f5;
+                    }
+
+            /* Error Message Styling */
+            #userErrorMessage {
+                color: red;
+                font-size: 14px;
+                margin-bottom: 10px;
             }
 
-            #nfcTrackingContainer button,
-            #nfcTrackingContainer input[type="text"] {
-                width: 100%;
+            /* Responsive adjustments */
+            @media screen and (max-width: 768px) {
+                #userContainer {
+                    gap: 15px;
+                }
+
+                    #userContainer button {
+                        width: 100%;
+                    }
+
+                    #userContainer table {
+                        font-size: 14px;
+                    }
+
+                        #userContainer table th,
+                        #userContainer table td {
+                            padding: 10px;
+                        }
             }
-        }
 
-
-        /* User Section Container Styling */
-        #usersSection {
-            padding: 15px;
-            background-color: #f4f4f9;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            margin-top: 20px;
-        }
-
-
-        #userContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 20px;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-            /* Header Styling */
-            #userContainer h1 {
-                font-size: 28px;
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 0;
-                border-bottom: 2px solid #C8A165;
-                padding-bottom: 10px;
+            /* Styling for the container */
+            #userButtons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 width: 100%;
                 box-sizing: border-box;
             }
 
-            /* Button Styling */
-            #userContainer button {
-                background-color: #C8A165;
-                color: #fff;
-                border: none;
-                border-radius: 8px;
-                padding: 12px 30px;
-                font-size: 16px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                align-self: flex-start;
-            }
-
-                #userContainer button:hover {
-                    background-color: #a57b45;
-                    transform: translateY(-2px);
+                /* Button Styling */
+                #userButtons button {
+                    background-color: #C8A165;
+                    color: white;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 12px 30px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
                 }
 
-            /* Table Styling */
-            #userContainer table {
+                    #userButtons button:hover {
+                        background-color: #a57b45;
+                        transform: translateY(-2px);
+                    }
+
+
+            /* User Modal Styling */
+            #tagDetailsModal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                left: 0;
+                top: 0;
                 width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-                font-size: 16px;
-                border: 1px solid #ddd;
-                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                overflow: auto;
+                padding-top: 60px;
+                transition: all 0.3s ease-in-out;
             }
 
-                /* Table Caption Styling */
-                #userContainer table caption {
-                    font-size: 20px;
-                    font-weight: 600;
-                    margin-bottom: 10px;
+            /* Modal Content Styling */
+            .modal-content {
+                background-color: #fff;
+                margin: 5% auto;
+                padding: 20px;
+                border: 2px solid #C8A165;
+                border-radius: 10px;
+                width: 80%;
+                box-sizing: border-box;
+                transition: transform 0.3s ease-in-out;
+            }
+
+                /* Close Button Styling */
+                .modal-content .close {
                     color: #333;
+                    font-size: 30px;
+                    font-weight: 700;
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    cursor: pointer;
+                    transition: color 0.3s ease;
                 }
 
-                /* Table Header Styling */
-                #userContainer table th {
+                    .modal-content .close:hover {
+                        color: #C8A165;
+                    }
+
+                /* Heading Styling inside Modal */
+                .modal-content h2 {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: #333;
+                    margin-bottom: 10px;
+                    border-bottom: 2px solid #C8A165;
+                    padding-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                /* Table Styling inside Modal */
+                .modal-content table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+
+                .modal-content th, .modal-content td {
+                    padding: 10px;
+                    text-align: left;
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .modal-content th {
+                    background-color: #C8A165;
+                    font-weight: 600;
+                }
+
+                .modal-content tbody tr:hover {
+                    background-color: #f9f3e5;
+                }
+
+            /* Responsive Styling for Modal */
+            @media screen and (max-width: 768px) {
+                .modal-content {
+                    width: 90%;
+                }
+            }
+
+            /* Month Section Styling */
+            #monthSection {
+                margin-top: 20px;
+                padding: 30px;
+                background-color: #f4f4f9;
+                border-radius: 12px;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+                margin-bottom: 40px;
+            }
+
+                /* Heading Styling */
+                #monthSection h1 {
+                    font-size: 28px;
+                    font-weight: 600;
+                    color: #333;
+                    margin-bottom: 10px;
+                    border-bottom: 2px solid #C8A165;
+                    padding-bottom: 10px;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                /* Container for label, input, and button in one row */
+                #monthSection div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+
+                /* Label Styling */
+                #monthSection label {
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: #333;
+                    margin-right: 10px;
+                }
+
+                /* Input Styling */
+                #monthSection input[type="month"] {
+                    padding: 10px 15px;
+                    width: 300px;
+                    border: 2px solid #ddd;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    transition: border-color 0.3s ease;
+                    margin-right: 20px;
+                }
+
+                    #monthSection input[type="month"]:focus {
+                        border-color: #C8A165;
+                        outline: none;
+                    }
+
+                /* Button Styling */
+                #monthSection button {
                     background-color: #C8A165;
                     color: #fff;
-                    padding: 12px;
-                    text-align: left;
+                    border: none;
+                    border-radius: 8px;
+                    padding: 12px 20px;
+                    font-size: 16px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
                 }
 
-                /* Table Row Styling */
-                #userContainer table td {
-                    padding: 12px;
-                    border-top: 1px solid #ddd;
-                    text-align: left;
-                }
+                    #monthSection button:hover {
+                        background-color: #a57b45;
+                        transform: translateY(-2px);
+                    }
 
-                /* Table Row Hover Effect */
-                #userContainer table tr:hover {
-                    background-color: #f5f5f5;
-                }
 
-        /* Error Message Styling */
-        #userErrorMessage {
-            color: red;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            #userContainer {
-                gap: 15px;
+            /* Container styling for the buttons and inputs */
+            #monthButtons {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                box-sizing: border-box;
             }
 
-                #userContainer button {
-                    width: 100%;
+            /* Left section styling (label, input, and button without gap) */
+            .left-section {
+                display: flex;
+                align-items: center;
+            }
+
+                /* Remove any gap between the label, input, and button */
+                .left-section label,
+                .left-section input,
+                .left-section button {
+                    margin-right: 0;
                 }
 
-                #userContainer table {
-                    font-size: 14px;
-                }
+            /* Download button styling on the right */
+            .right-section {
+                margin-left: auto;
+            }
 
-                    #userContainer table th,
-                    #userContainer table td {
-                        padding: 10px;
-                    }
-        }
-
-        /* Styling for the container */
-        #userButtons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-            /* Button Styling */
-            #userButtons button {
+            #downloadExcel {
                 background-color: #C8A165;
                 color: white;
                 border: none;
@@ -429,418 +630,263 @@
                 transition: all 0.3s ease;
             }
 
-                #userButtons button:hover {
+                #downloadExcel:hover {
                     background-color: #a57b45;
                     transform: translateY(-2px);
                 }
 
-
-        /* User Modal Styling */
-        #tagDetailsModal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: auto;
-            padding-top: 60px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Modal Content Styling */
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 20px;
-            border: 2px solid #C8A165;
-            border-radius: 10px;
-            width: 80%;
-            box-sizing: border-box;
-            transition: transform 0.3s ease-in-out;
-        }
-
-            /* Close Button Styling */
-            .modal-content .close {
-                color: #333;
-                font-size: 30px;
-                font-weight: 700;
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                cursor: pointer;
-                transition: color 0.3s ease;
-            }
-
-                .modal-content .close:hover {
-                    color: #C8A165;
-                }
-
-            /* Heading Styling inside Modal */
-            .modal-content h2 {
-                font-size: 28px;
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #C8A165;
-                padding-bottom: 10px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            /* Table Styling inside Modal */
-            .modal-content table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-            }
-
-            .modal-content th, .modal-content td {
-                padding: 10px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
-
-            .modal-content th {
-                background-color: #C8A165;
-                font-weight: 600;
-            }
-
-            .modal-content tbody tr:hover {
-                background-color: #f9f3e5;
-            }
-
-        /* Responsive Styling for Modal */
-        @media screen and (max-width: 768px) {
-            .modal-content {
-                width: 90%;
-            }
-        }
-
-        /* Month Section Styling */
-        #monthSection {
-            margin-top: 20px;
-            padding: 30px;
-            background-color: #f4f4f9;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-        }
-
-            /* Heading Styling */
-            #monthSection h1 {
-                font-size: 28px;
-                font-weight: 600;
-                color: #333;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #C8A165;
-                padding-bottom: 10px;
-                width: 100%;
-                box-sizing: border-box;
-            }
-
-            /* Container for label, input, and button in one row */
-            #monthSection div {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            /* Label Styling */
-            #monthSection label {
-                font-size: 16px;
-                font-weight: 500;
-                color: #333;
-                margin-right: 10px;
-            }
-
-            /* Input Styling */
-            #monthSection input[type="month"] {
+            /* Input Field Styling */
+            #monthSection input[type="text"] {
                 padding: 10px 15px;
+                padding-left: 10px;
                 width: 300px;
                 border: 2px solid #ddd;
                 border-radius: 6px;
                 font-size: 16px;
                 transition: border-color 0.3s ease;
-                margin-right: 20px;
             }
 
-                #monthSection input[type="month"]:focus {
-                    border-color: #C8A165;
+                #monthSection input[type="text"]:focus {
+                    border-color: #C8A165; /* Border color changes on focus */
                     outline: none;
                 }
 
-            /* Button Styling */
-            #monthSection button {
+
+            /* Table Styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: #fff;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Table Head Styling */
+            thead {
                 background-color: #C8A165;
                 color: #fff;
-                border: none;
-                border-radius: 8px;
-                padding: 12px 20px;
-                font-size: 16px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.3s ease;
             }
 
-                #monthSection button:hover {
-                    background-color: #a57b45;
-                    transform: translateY(-2px);
+            th, td {
+                padding: 16px 20px;
+                text-align: left;
+                font-size: 16px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                font-weight: 600;
+            }
+
+            tbody tr:hover {
+                background-color: #f9f3e5;
+            }
+
+            /* Message Section Styling */
+            #message {
+                margin-top: 15px;
+                font-size: 16px;
+                color: #666;
+            }
+
+            /* Mobile Responsive Design */
+            @media (max-width: 768px) {
+                #nfcTrackingContainer {
+                    flex-direction: column;
+                    align-items: flex-start;
                 }
 
+                    #nfcTrackingContainer button {
+                        width: 100%;
+                        margin-top: 15px;
+                    }
 
-        /* Container styling for the buttons and inputs */
-        #monthButtons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
+                    #nfcTrackingContainer input[type="text"] {
+                        width: 100%;
+                        margin-top: 15px;
+                    }
 
-        /* Left section styling (label, input, and button without gap) */
-        .left-section {
-            display: flex;
-            align-items: center;
-        }
+                th, td {
+                    padding: 12px;
+                }
 
-            /* Remove any gap between the label, input, and button */
-            .left-section label,
-            .left-section input,
-            .left-section button {
-                margin-right: 0;
+                h1 {
+                    font-size: 22px;
+                }
             }
 
-        /* Download button styling on the right */
-        .right-section {
-            margin-left: auto;
-        }
-
-        #downloadExcel {
-            background-color: #C8A165;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-            #downloadExcel:hover {
-                background-color: #a57b45;
-                transform: translateY(-2px);
-            }
-
-        /* Input Field Styling */
-        #monthSection input[type="text"] {
-            padding: 10px 15px;
-            padding-left: 10px;
-            width: 300px;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-            #monthSection input[type="text"]:focus {
-                border-color: #C8A165; /* Border color changes on focus */
-                outline: none;
+            /* Make sure the nav uses flexbox for layout */
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 20px;
             }
 
 
-        /* Table Styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+            /* Center the NFC text */
+            .nav-center {
+                display: flex;
+                justify-content: center;
+                flex-grow: 1;
+            }
 
-        /* Table Head Styling */
-        thead {
-            background-color: #C8A165;
-            color: #fff;
-        }
 
-        th, td {
-            padding: 16px 20px;
-            text-align: left;
-            font-size: 16px;
-            border-bottom: 1px solid #ddd;
-        }
+            .nfc-title {
+                font-size: 24px;
+                font-weight: bold;
+                color: black;
+            }
 
-        th {
-            font-weight: 600;
-        }
 
-        tbody tr:hover {
-            background-color: #f9f3e5;
-        }
+            /* Buttons container in the middle side by side */
+            .button-container {
+                display: flex;
+                gap: 15px;
+            }
 
-        /* Message Section Styling */
-        #message {
-            margin-top: 15px;
-            font-size: 16px;
-            color: #666;
-        }
 
-        /* Mobile Responsive Design */
-        @media (max-width: 768px) {
-            #nfcTrackingContainer {
-                flex-direction: column;
+            /* Style the buttons */
+            button {
+                color: #C8A165;
+                padding: 10px 20px;
+                font-size: 14px;
+                cursor: pointer;
+                border: 1px solid #C8A165;
+                background-color: white;
+                /*border-radius: 6px;*/
+            }
+
+
+                button:hover {
+                    background-color: #C8A165;
+                    color: #ffffff;
+                }
+
+            /* Right-side authentication buttons */
+            .auth-buttons {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+            }
+
+
+            /* Hide the logout button initially */
+            .hidden {
+                display: none;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+
+
+
+            /*Contact or Tag ID Selection Dropdown*/
+
+
+
+            .leftSectionSelect {
+                /* Vertically center items */
+                padding-bottom: 20px;
+                /*margin-left: 20px;*/
+                font-family: "Roboto", sans-serif, "Raleway"; /* Font family */
+                position: relative;
+                display: block;
+                flex-direction: row; /* Align elements in a row (side by side) */
                 align-items: flex-start;
             }
 
-                #nfcTrackingContainer button {
-                    width: 100%;
-                    margin-top: 15px;
+                .leftSectionSelect label {
+                    margin-right: 15px; /* Add spacing between label and select */
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #333;
                 }
 
-                #nfcTrackingContainer input[type="text"] {
-                    width: 100%;
-                    margin-top: 15px;
+                .leftSectionSelect select {
+                    padding: 10px;
+                    font-size: 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    background-color: white; /* Background color */
+                    color: #333;
+                    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+                    transition: border-color 0.2s ease-in-out;
+                    cursor: pointer;
+                    appearance: none; /* Removes default browser styling of the dropdown */
+                    /*background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
+        */ background-repeat: no-repeat;
+                    background-position: right 10px center;
+                    background-size: 12px;
+                    width: 200px; /* Optional: set a width for the select dropdown */
                 }
 
-            th, td {
-                padding: 12px;
+
+
+                    .leftSectionSelect select:hover,
+                    .leftSectionSelect select:focus {
+                        border-color: #C8A165; /*#007bff*/
+                        outline: none;
+                    }
+
+            .left {
+                align-items: flex-start
             }
-
-            h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Make sure the nav uses flexbox for layout */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-
-        /* Center the NFC text */
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
-
-        .nfc-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: black;
-        }
-
-
-        /* Buttons container in the middle side by side */
-        .button-container {
-            display: flex;
-            gap: 15px;
-        }
-
-
-        /* Style the buttons */
-        button {
-            color: #C8A165;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-            border: 1px solid #C8A165;
-            background-color: white;
-            /*border-radius: 6px;*/
-        }
-
-
-            button:hover {
-                background-color: #C8A165;
-                color: #ffffff;
-            }
-
-        /* Right-side authentication buttons */
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-
-        /* Hide the logout button initially */
-        .hidden {
-            display: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-
-
-
-        /*Contact or Tag ID Selection Dropdown*/
-
-
-
-        .leftSectionSelect {
-            /* Vertically center items */
-            padding-bottom: 20px;
-            /*margin-left: 20px;*/
-            font-family: "Roboto", sans-serif, "Raleway"; /* Font family */
-            position: relative;
-            display: block;
-            flex-direction: row; /* Align elements in a row (side by side) */
-            align-items: flex-start;
-        }
-
-            .leftSectionSelect label {
-                margin-right: 15px; /* Add spacing between label and select */
-                font-size: 16px;
-                font-weight: bold;
-                color: #333;
-            }
-
-            .leftSectionSelect select {
-                padding: 10px;
-                font-size: 16px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: white; /* Background color */
-                color: #333;
-                box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-                transition: border-color 0.2s ease-in-out;
-                cursor: pointer;
-                appearance: none; /* Removes default browser styling of the dropdown */
-                /*background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
-*/                background-repeat: no-repeat;
-                background-position: right 10px center;
-                background-size: 12px;
-                width: 200px; /* Optional: set a width for the select dropdown */
-            }
-
-
-
-                .leftSectionSelect select:hover,
-                .leftSectionSelect select:focus {
-                    border-color: #C8A165; /*#007bff*/
-                    outline: none;
-                }
-
-        .left {
-            align-items: flex-start
-        }
     </style>
 
     <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.17/js/adal.min.js"></script>
     <script src="https://alcdn.msauth.net/browser/2.29.0/js/msal-browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Linktotap || Index </title>
+    <meta name="description" content="Hurst – Furniture Store eCommerce HTML Template is a clean and elegant design – suitable for selling flower, cookery, accessories, fashion, high fashion, accessories, digital, kids, watches, jewelries, shoes, kids, furniture, sports….. It has a fully responsive width adjusts automatically to any screen size or resolution.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" href="lib/css/nivo-slider.css">
+    <link rel="stylesheet" href="lib/css/preview.css">
+    <!-- slick css -->
+    <link rel="stylesheet" href="css/slick.min.css">
+    <!-- lightbox css -->
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <!-- material-design-iconic-font css -->
+    <link rel="stylesheet" href="css/material-design-iconic-font.css">
+    <!-- All common css of theme -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="style.min.css">
+    <!-- shortcode css -->
+    <link rel="stylesheet" href="css/shortcode.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- modernizr css -->
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+
+
 
 
 </head>
@@ -849,9 +895,49 @@
     <!-- Buttons to toggle between NFC Tracking Data and Get Users -->
     <header class="bg-white">
         <nav>
+
+            <!-- MAIN-MENU START -->
+            <div class="menu-toggle hamburger hamburger--emphatic d-none d-md-block">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+            <div class="main-menu  d-none d-md-block">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">home</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Products</a>
+                            <div class="sub-menu menu-scroll">
+                                <ul>
+                                    <li class="menu-title">best brands</li>
+                                    <li><a href="#">Doctors</a></li>
+                                    <li><a href="#">Lawyers</a></li>
+                                    <li><a href="#">Influencers</a></li>
+                                    <li><a href="#">Accountants</a></li>
+                                    <li><a href="#">Business Owners</a></li>
+                                    <li><a href="#">Others</a></li>
+                                    <li><a href="#">Custom Design</a></li>
+                                    <li><a href="#">Premium Metal Black Cards</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">accesories</a></li>
+                        <li><a href="#">blog</a></li>
+                        <li><a href="nfctracking.html">NFC Tracking</a>
+
+                        <li><a href="about.html">about us</a></li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- MAIN-MENU END -->
             <!-- NFC Text in the center -->
             <div class="nav-left">
-                <!--nav-center-->
+
                 <span class="nfc-title dropbtn text-light-black">NFC</span>
             </div>
 
@@ -868,7 +954,9 @@
                 <button id="login" class="text-tan">Login</button>
                 <button id="logout" class="hidden">Logout</button>
             </div>
+
         </nav>
+
     </header>
 
 
@@ -971,7 +1059,7 @@
         <div id="monthButtons">
             <div class="left-section" id="monthYearDataSection">
                 <label for="monthYearInput">Select Date Month and Year: </label>
-                <input type="month" id="monthYearInput" required>     
+                <input type="month" id="monthYearInput" required>
                 <button id="getMonthData" onclick="getMonthData()">Get Data</button>
                 <!--<input type="text" id="searchBarMonth" placeholder="Search by Tag ID...">-->
             </div>
@@ -1146,7 +1234,7 @@
                     monthdownloadExcelButton.style.display = "block";
 
                     dropDownSelect.style.display = "block";
-                   /* monthYearInput.style.display = "block";*/
+                    /* monthYearInput.style.display = "block";*/
                     monthYearDataSection.style.display = "block";
 
                 } else {
@@ -1236,7 +1324,7 @@
         }
 
         function getTokenFromPowerAutomate() {
-            debugger;
+
             const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
             let responseData;
             var token;
@@ -1267,7 +1355,9 @@
 
         /* 1 - Function to retrieve users after obtaining the token*/
         async function retrieveUsers() {
+           
             try {
+                debugger;
                 const token1 = await getTokenFromPowerAutomate();  // Wait for the token asynchronously
 
                 if (!token1) {
@@ -1281,7 +1371,7 @@
 
                 var req = new XMLHttpRequest();
                 var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUser}'`;
-                req.open("GET", encodeURI(organizationURI + query), true); 
+                req.open("GET", encodeURI(organizationURI + query), true);
 
                 //req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=fullname,emailaddress1,mobilephone,izx_tagid,izx_nfccounter&$filter=izx_tagid ne null"), true);
                 req.setRequestHeader("Authorization", "Bearer " + token1);
@@ -1852,7 +1942,7 @@
         window.onload = function () {
             populateContactDropdown();
         };
-       
+
         async function populateContactDropdown() {
             try {
                 // Retrieve the token from Power Automate
@@ -1952,7 +2042,7 @@
                     // Calculate the start and end of the selected month
                     var startDate = new Date(year, month - 1, 1); // First day of the month
                     var endDate = new Date(year, month, 0); // last day of the month
-                                       
+
 
                     // Example function to format the date (you might have a custom implementation)
                     function formatDate(date) {
@@ -2093,5 +2183,37 @@
 
 
     </script>
+
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- jquery.meanmenu js -->
+    <script src="js/jquery.meanmenu.js"></script>
+    <!-- slick.min js -->
+    <script src="js/slick.min.js"></script>
+    <!-- jquery.treeview js -->
+    <script src="js/jquery.treeview.js"></script>
+    <!-- lightbox.min js -->
+    <script src="js/lightbox.min.js"></script>
+    <!-- jquery-ui js -->
+    <script src="js/jquery-ui.min.js"></script>
+    <!-- jquery.nivo.slider js -->
+    <script src="lib/js/jquery.nivo.slider.js"></script>
+    <script src="lib/home.js"></script>
+    <!-- jquery.nicescroll.min js -->
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <!-- countdon.min js -->
+    <script src="js/countdon.min.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- main js -->
+    <script src="js/main.min.js"></script>
+
+
 </body>
 </html>
