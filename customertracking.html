@@ -1,3 +1,4 @@
+<!-- Customer Tracking  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -819,7 +820,7 @@
                 cursor: pointer;
                 appearance: none; /* Removes default browser styling of the dropdown */
                 /*background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
-*/                background-repeat: no-repeat;
+        */ background-repeat: no-repeat;
                 background-position: right 10px center;
                 background-size: 12px;
                 width: 200px; /* Optional: set a width for the select dropdown */
@@ -857,7 +858,6 @@
 
             <!-- Buttons in the center side by side -->
             <div class="button-container">
-                <button id="showUsersButton" class="text-black">Users</button>
                 <button id="showNFCButton" class="text-black">NFC Tracking Data</button>
                 <button id="showMonthWiseDataButton" class="text-black">Month Wise Data</button>
             </div>
@@ -871,62 +871,10 @@
         </nav>
     </header>
 
-
-
-    <!-- Get Users Section -->
-    <div id="usersSection" class="hidden">
-        <div id="userContainer">
-            <h1>Get Users from Dynamics 365</h1>
-            <div id="userButtons">
-                <button id="getUsers">Get Users</button>
-                <button id="userdownloadExcelButton">Download as Excel</button>
-            </div>
-        </div>
-        <div id="message"></div>
-        <table id="usersTable">
-            <thead>
-                <tr>
-                    <th>TagID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>NFC Counter</th>
-                    <th>NFC</th>
-                </tr>
-            </thead>
-            <tbody id="usersTableBody"></tbody>
-        </table>
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="tagDetailsModal" class="modal hidden">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Tag Details</h2>
-            <button id="downloadExcelButton">Download as Excel</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tag ID</th>
-                        <th>Timestamp</th>
-                        <th>Time IN</th>
-                        <th>Time Out</th>
-                        <th>Duration</th>
-                        <th>In/Out</th>
-                    </tr>
-                </thead>
-                <tbody id="modalTagDetailsTableBody"></tbody>
-            </table>
-        </div>
-    </div>
-
-
-
     <!-- NFC Tracking Data Section -->
     <div id="nfcTrackingSection" class="hidden">
         <div id="nfcTrackingContainer">
             <h1>NFC Tracking Data</h1>
-
             <div class="button-input-row">
                 <button id="getNFCTrackingData">NFC Tracking Data</button>
                 <input type="text" id="searchBar" placeholder="Search by Tag ID...">
@@ -935,7 +883,6 @@
         </div>
         <div id="message"></div>
         <table id="nfctrackingsTable">
-            <!--<caption></caption>-->
             <thead>
                 <tr>
                     <th>Name</th>
@@ -950,8 +897,6 @@
             <tbody id="nfctrackingsTableBody"></tbody>
         </table>
     </div>
-
-
 
     <!--Month Wise Data Table-->
     <div class="container hidden" id="monthSection">
@@ -971,7 +916,7 @@
         <div id="monthButtons">
             <div class="left-section" id="monthYearDataSection">
                 <label for="monthYearInput">Select Date Month and Year: </label>
-                <input type="month" id="monthYearInput" required>     
+                <input type="month" id="monthYearInput" required>
                 <button id="getMonthData" onclick="getMonthData()">Get Data</button>
                 <!--<input type="text" id="searchBarMonth" placeholder="Search by Tag ID...">-->
             </div>
@@ -1000,20 +945,16 @@
         "use strict";
         // Variables for buttons and sections
         var showNFCButton = document.getElementById("showNFCButton");
-        var showUsersButton = document.getElementById("showUsersButton");
+        /* var showUsersButton = document.getElementById("showUsersButton");*/
         var showMonthButton = document.getElementById("showMonthWiseDataButton");
 
         var nfcTrackingSection = document.getElementById("nfcTrackingSection");
-        var usersSection = document.getElementById("usersSection");
+        /*var usersSection = document.getElementById("usersSection");*/
         var monthSection = document.getElementById("monthSection");
 
         // Add event listeners to toggle between sections
         showNFCButton.addEventListener("click", function () {
             toggleVisibility('nfc');
-        });
-
-        showUsersButton.addEventListener("click", function () {
-            toggleVisibility('users');
         });
 
         showMonthButton.addEventListener("click", function () {
@@ -1024,16 +965,10 @@
         function toggleVisibility(section) {
             if (section === 'nfc') {
                 nfcTrackingSection.classList.remove('hidden');
-                usersSection.classList.add('hidden');
-                monthSection.classList.add('hidden');
-            } else if (section === 'users') {
-                usersSection.classList.remove('hidden');
-                nfcTrackingSection.classList.add('hidden');
                 monthSection.classList.add('hidden');
             } else if (section === 'month') {
                 monthSection.classList.remove('hidden');
                 nfcTrackingSection.classList.add('hidden');
-                usersSection.classList.add('hidden');
             }
         }
 
@@ -1050,9 +985,9 @@
 
         // Your existing NFC Tracking Data and Get Users code goes here
         var organizationURI = "https://izenixlearn.api.crm.dynamics.com";      // CRM URL
-        var tenant = "izenixlearn.onmicrosoft.com";                            // Azure AD tenant
-        var clientId = "78d9abf2-52c4-4f68-a69d-dfab8a564eab";                 // Client ID from Azure app registration
-        var pageUrl = "https://izenix.com/NFC/nfctracking.html";                // Redirect URL
+        //var tenant = "izenixlearn.onmicrosoft.com";                            // Azure AD tenant
+        //var clientId = "78d9abf2-52c4-4f68-a69d-dfab8a564eab";                 // Client ID from Azure app registration
+        //var pageUrl = "https://izenix.com/NFC/nfctracking.html";                // Redirect URL
 
         var authContext, user, loginButton, logoutButton, getMonthButton, monthTable, monthTableBody, contactSelectDropdown, userLoginButton, userLogoutButton, getUsersButton, usersTable, getNFCTrackingDataButton, searchBar, searchBarMonth, nfctrackingsTable, nfctrackingsTableBody, usersTableBody, message, errorMessage;
 
@@ -1062,12 +997,42 @@
         };
 
         window.config = {
-            tenant: tenant,
-            clientId: clientId,
-            postLogoutRedirectUri: pageUrl,
+            //tenant: tenant,
+            //clientId: clientId,
+            //postLogoutRedirectUri: pageUrl,
             endpoints: endpoints,
             cacheLocation: 'localStorage' // Store tokens in localStorage
         };
+
+
+
+        function getTokenFromPowerAutomate() {
+            debugger;
+            const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
+            let responseData;
+            var token;
+            return fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json(); // Parse the response as JSON
+                })
+                .then(data => {
+                    const token = data.token;
+                    return token;
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    return null;
+                });
+
+        }
 
         document.onreadystatechange = function () {
             if (document.readyState === "complete") {
@@ -1085,11 +1050,6 @@
                 nfctrackingsTable = document.getElementById("nfctrackingsTable");
                 nfctrackingsTableBody = document.getElementById("nfctrackingsTableBody");
 
-                // Users-related elements
-                getUsersButton = document.getElementById("getUsers");
-                usersTable = document.getElementById("usersTable");
-                usersTableBody = document.getElementById("usersTableBody");
-
                 //Month Related elements
                 getMonthButton = document.getElementById("getMonthData");
                 monthTable = document.getElementById("monthWiseTable");
@@ -1104,24 +1064,16 @@
 
                 // Add event listeners for data retrieval and search
                 getNFCTrackingDataButton.addEventListener("click", getNFCTrackingData);
-                getUsersButton.addEventListener("click", getUsers);
                 getMonthButton.addEventListener("click", getMonthData);
                 contactSelectDropdown.addEventListener("click", contactSelectDropdown);
 
                 // Add event listener for search functionality
                 searchBar.addEventListener("input", searchByTagID);
-                /*searchBarMonth.addEventListener("input", searchByTagIDMonth);*/
-
-
-                authenticate();
 
                 if (user) {
                     // Hide login button and show logout button when the user is logged in
                     loginButton.style.display = "none";
                     logoutButton.style.display = "block";
-
-                    // Show the Get Users button
-                    getUsersButton.style.display = "block";
 
                     // Show the NFC tracking data button and search bar by removing "none" class
                     getNFCTrackingDataButton.style.display = "block";
@@ -1141,21 +1093,16 @@
                     helloMessage.style.marginLeft = "10px";
                     helloMessage.style.fontWeight = "bold";
 
-                    userdownloadExcelButton.style.display = "block";
                     nfcdownloadExcelButton.style.display = "block";
                     monthdownloadExcelButton.style.display = "block";
 
                     dropDownSelect.style.display = "block";
-                   /* monthYearInput.style.display = "block";*/
                     monthYearDataSection.style.display = "block";
 
                 } else {
                     // Show login button and hide logout button when the user is logged out
                     loginButton.style.display = "block";
                     logoutButton.style.display = "none";
-
-                    // Hide the Get Users button
-                    getUsersButton.style.display = "none";
 
                     // Hide the NFC tracking data button, search bar, and table by adding "none" class
                     getNFCTrackingDataButton.style.display = "none";
@@ -1164,14 +1111,13 @@
                     getMonthButton.style.display = "none";
                     contactSelectDropdown.style.disabled = "none";
 
-                    userdownloadExcelButton.style.display = "none";
                     nfcdownloadExcelButton.style.display = "none";
                     monthdownloadExcelButton.style.display = "none";
 
                     dropDownSelect.style.display = "none";
-                    /*monthYearInput.style.display = "none";*/
                     monthYearDataSection.style.display = "none";
                 }
+                authenticate();
             }
         };
 
@@ -1197,378 +1143,7 @@
             }
         }
 
-        // Login function
-        function login() {
-            try {
-                authContext.login();
-            } catch (e) {
-                console.error("Login error:", e);
-                errorMessage.textContent = "Login failed.";
-            }
-        }
-
-        // Logout function
-        function logout() {
-            authContext.logOut();
-
-            // Hide NFC Tracking Data section
-            nfctrackingsTableBody.innerHTML = "";
-            nfctrackingsTable.style.display = "none";
-
-            // Hide Month Wise Data section
-            monthWiseTableBody.innerHTML = "";
-            monthTable.style.display = "none";
-
-            // Hide Users section
-            usersTable.style.display = "none";
-            usersTableBody.innerHTML = "";
-
-            // Call function to handle other logout tasks like hiding buttons or UI elements
-            toggleLoggedInState(false);
-        }
-
-
-        // Function to get users
-        function getUsers() {
-            getUsersButton.disabled = true;
-            message.textContent = "Retrieving users...";
-            authContext.acquireToken(organizationURI, retrieveUsers);
-        }
-
-        function getTokenFromPowerAutomate() {
-            debugger;
-            const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
-            let responseData;
-            var token;
-            return fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json(); // Parse the response as JSON
-                })
-                .then(data => {
-                    const token = data.token;
-                    /*console.log("Token retrieved:", token);*/
-                    return token;
-                })
-                .catch(error => {
-                    console.error("Error fetching data:", error);
-                    return null;
-                    /*document.getElementById("responseContainer").innerHTML = `<p>Error fetching data: ${error.message}</p>`;*/
-                });
-
-        }
-
-        /* 1 - Function to retrieve users after obtaining the token*/
-        async function retrieveUsers() {
-            try {
-                const token1 = await getTokenFromPowerAutomate();  // Wait for the token asynchronously
-
-                if (!token1) {
-                    console.error("Token error: null");
-                    errorMessage.textContent = "Token retrieval failed!";
-                    return;
-                }
-
-                var req = new XMLHttpRequest();
-                req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=fullname,emailaddress1,mobilephone,izx_tagid,izx_nfccounter&$filter=izx_tagid ne null"), true);
-                req.setRequestHeader("Authorization", "Bearer " + token1);
-                req.setRequestHeader("Accept", "application/json");
-                req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                req.setRequestHeader("OData-MaxVersion", "4.0");
-                req.setRequestHeader("OData-Version", "4.0");
-
-                req.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                        req.onreadystatechange = null;
-                        if (this.status === 200) {
-                            var users = JSON.parse(this.response).value;
-                            renderUsers(users);
-                        } else {
-                            var error = JSON.parse(this.response).error;
-                            console.error("Error retrieving users:", error.message);
-                            errorMessage.textContent = error.message;
-                        }
-                    }
-                };
-                req.send();
-            } catch (error) {
-                console.error("Error in retrieveUsers:", error);
-                errorMessage.textContent = "An unexpected error occurred!";
-            }
-        }
-
-
-        // Function to render users into the table
-        function renderUsers(users) {
-            usersTableBody.innerHTML = ''; // Clear previous results
-            users.forEach(function (user) {
-                var row = document.createElement("tr");
-
-                var tagId = document.createElement("td");
-                tagId.textContent = user.izx_tagid;
-
-                var nameCell = document.createElement("td");
-                nameCell.textContent = user.fullname;
-
-                var emailCell = document.createElement("td");
-                emailCell.textContent = user.emailaddress1;
-
-                var mobilePhone = document.createElement("td");
-                mobilePhone.textContent = user.mobilephone;
-
-                var nfcCounterCell = document.createElement("tb");
-                nfcCounterCell.textContent = user.izx_nfccounter;
-
-                var tagIdCell = document.createElement("td");
-                var tagIdButton = document.createElement("button");
-                tagIdButton.textContent = "Show";
-
-                // Add inline styles directly
-                tagIdButton.style.fontSize = "12px";
-                tagIdButton.style.padding = "5px 10px";
-                tagIdButton.style.borderRadius = "4px";
-                tagIdButton.style.backgroundColor = "#C8A165";
-                tagIdButton.style.color = "white";
-                tagIdButton.style.border = "none";
-                tagIdButton.style.cursor = "pointer";
-
-
-                tagIdButton.addEventListener("click", function () {
-                    showTagIdData(user.izx_tagid); // Call function to show data user.izx_tagid
-                });
-                tagIdCell.appendChild(tagIdButton);
-
-                row.appendChild(tagId);
-                row.appendChild(nameCell);
-                row.appendChild(emailCell);
-                row.appendChild(mobilePhone);
-                row.appendChild(nfcCounterCell);
-                row.appendChild(tagIdCell);
-                usersTableBody.appendChild(row);
-            });
-            usersTable.style.display = 'table';
-            getUsersButton.disabled = false;
-            message.textContent = '';
-        }
-        // Excel download functionality using SheetJS User Tracking Data
-        document.getElementById('userdownloadExcelButton').addEventListener('click', function () {
-            var tableBody = document.getElementById('usersTableBody');
-            var rows = tableBody.getElementsByTagName('tr');
-            var data = [];
-
-            // Add header row
-            data.push(["Tag ID", "Name", "Email", "Mobile", "NFC Counter"]);
-
-            // Loop through the rows and collect data
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName('td');
-                var rowArray = [];
-                for (var j = 0; j < cells.length; j++) {
-                    rowArray.push(cells[j].textContent);
-                }
-                data.push(rowArray);
-            }
-
-            // Create new workbook and worksheet using SheetJS
-            var wb = XLSX.utils.book_new();
-            var ws = XLSX.utils.aoa_to_sheet(data);
-
-            // Append worksheet to workbook
-            XLSX.utils.book_append_sheet(wb, ws, "Users Details");
-
-            // Export workbook as Excel file
-            XLSX.writeFile(wb, "user_data.xlsx");
-        });
-
-
-        async function showTagIdData(tagId) {
-            try {
-                // Retrieve the token from Power Automate
-                const token1 = await getTokenFromPowerAutomate();
-
-                if (!token1) {
-                    console.error("Token error: null or undefined");
-                    errorMessage.textContent = 'Token retrieval failed!';
-                    return;
-                }
-
-                var req = new XMLHttpRequest();
-                // Ensure proper concatenation of $select and $filter
-                var filterQuery = `$filter=izx_tagid eq '${tagId}'`;
-                var selectQuery = `$select=izx_tagid,izx_timein,izx_timeout,izx_duration,izx_in_out,izx_timestamp`;
-                var apiUrl = encodeURI(organizationURI + "/api/data/v9.2/izx_nfctrackings?" + selectQuery + "&" + filterQuery);
-                req.open("GET", apiUrl, true);
-                req.setRequestHeader("Authorization", "Bearer " + token1);
-                req.setRequestHeader("Accept", "application/json");
-                req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                req.setRequestHeader("OData-MaxVersion", "4.0");
-                req.setRequestHeader("OData-Version", "4.0");
-
-                req.onreadystatechange = function () {
-                    if (this.readyState === 4) {
-                        req.onreadystatechange = null;
-                        if (this.status === 200) {
-                            var tagDetails = JSON.parse(this.response).value;
-
-                            // Check if records were returned for the tagId
-                            if (tagDetails.length > 0) {
-                                // Clear any existing rows in the modal table
-                                var modalTableBody = document.getElementById("modalTagDetailsTableBody");
-                                modalTableBody.innerHTML = "";
-
-                                // Loop through each record and append it to the modal table
-                                tagDetails.forEach(function (record) {
-                                    var row = document.createElement("tr");
-
-                                    // Helper function to format date (YYYY-MM-DD)
-                                    function formatDate(dateString) {
-                                        // Check if dateString is valid
-                                        if (!dateString) {
-                                            return 'N/A';
-                                        }
-
-                                        var date = new Date(dateString);
-                                        // Check if the date is valid
-                                        if (isNaN(date.getTime())) {
-                                            return 'Invalid Date';
-                                        }
-                                        return date.toISOString().split('T')[0]; // Returns 'YYYY-MM-DD'
-                                    }
-
-                                    // Helper function to format time (HH:MM:SS)
-                                    function formatTime(dateString) {
-                                        // Check if dateString is valid
-                                        if (!dateString) {
-                                            return 'N/A';
-                                        }
-
-                                        var date = new Date(dateString);
-                                        // Check if the date is valid
-                                        if (isNaN(date.getTime())) {
-                                            return 'Invalid Time';
-                                        }
-                                        return date.toISOString().split('T')[1].split('Z')[0]; // Returns 'HH:MM:SS'
-                                    }
-
-                                    // Create and append table cells for each field
-                                    var tagIdCell = document.createElement("td");
-                                    tagIdCell.textContent = record.izx_tagid || 'N/A';
-                                    row.appendChild(tagIdCell);
-
-                                    var timestampCell = document.createElement("td");
-                                    timestampCell.textContent = formatDate(record.izx_timestamp) || 'N/A';
-                                    row.appendChild(timestampCell);
-
-                                    var timeInCell = document.createElement("td");
-                                    timeInCell.textContent = formatTime(record.izx_timein) || 'N/A';
-                                    row.appendChild(timeInCell);
-
-                                    var timeOut = document.createElement("td");
-                                    timeOut.textContent = formatTime(record.izx_timeout) || 'N/A';
-                                    row.appendChild(timeOut);
-
-                                    var durationCell = document.createElement("td");
-                                    durationCell.textContent = record.izx_duration || 'N/A';
-                                    row.appendChild(durationCell);
-
-                                    var inOutCell = document.createElement("td");
-                                    inOutCell.textContent = (record.izx_in_out === 1) ? "In" : (record.izx_in_out === 2 ? "Out" : "Unknown");
-                                    row.appendChild(inOutCell);
-
-                                    // Append the row to the modal table body
-                                    modalTableBody.appendChild(row);
-                                });
-
-                                // Open the modal to display the data
-                                var modal = document.getElementById("tagDetailsModal");
-                                modal.style.display = "block";
-
-                            } else {
-                                alert("No records found for the provided tag ID.");
-                            }
-                        } else {
-                            var error = JSON.parse(this.response).error;
-                            console.error("Error retrieving tag details:", error.message);
-                            errorMessage.textContent = error.message;
-                        }
-                    }
-                };
-                req.send();
-            } catch (error) {
-                console.error("Error fetching tag data:", error);
-                errorMessage.textContent = "An unexpected error occurred!";
-            }
-        }
-
-        // Excel download functionality using SheetJS
-        document.getElementById('downloadExcelButton').addEventListener('click', function () {
-            var tableBody = document.getElementById('modalTagDetailsTableBody');
-            var rows = tableBody.getElementsByTagName('tr');
-            var data = [];
-
-            // Add header row
-            data.push(["Tag ID", "Timestamp", "Time IN", "Time Out", "Duration", "In/Out"]);
-
-            // Loop through the rows and collect data
-            for (var i = 0; i < rows.length; i++) {
-                var cells = rows[i].getElementsByTagName('td');
-                var rowArray = [];
-                for (var j = 0; j < cells.length; j++) {
-                    rowArray.push(cells[j].textContent);
-                }
-                data.push(rowArray);
-            }
-
-            // Create new workbook and worksheet using SheetJS
-            var wb = XLSX.utils.book_new();
-            var ws = XLSX.utils.aoa_to_sheet(data);
-
-            // Append worksheet to workbook
-            XLSX.utils.book_append_sheet(wb, ws, "User Tracking Details");
-
-            // Export workbook as Excel file
-            XLSX.writeFile(wb, "user_nfc_tracking_data.xlsx");
-        });
-
-        // When the user clicks on the close button, close the modal
-        var closeModal = document.querySelector(".close");
-        closeModal.onclick = function () {
-            var modal = document.getElementById("tagDetailsModal");
-            modal.style.display = "none";
-        };
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            var modal = document.getElementById("tagDetailsModal");
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        };
-
-
-
-        // 2 - Existing NFC Tracking Data code goes here
-
-
-        var authContext, user, loginButton, logoutButton, getMonthButton, monthTable, monthTableBody, contactSelectDropdown, userLoginButton, userLogoutButton, getUsersButton, usersTable, getNFCTrackingDataButton, searchBar, nfctrackingsTable, nfctrackingsTableBody, usersTableBody, message, errorMessage;
-
-        var endpoints = { orgUri: organizationURI };
-
-        window.config = {
-            tenant: tenant,
-            clientId: clientId,
-            postLogoutRedirectUri: pageUrl,
-            endpoints: endpoints,
-            cacheLocation: 'localStorage',
-        };
-
+        // 1 - Existing NFC Tracking Data code goes here
 
         function toggleLoggedInState(isLoggedIn) {
             if (isLoggedIn) {
@@ -1587,28 +1162,13 @@
         }
 
         function login() {
-            authContext.login();
+            try {
+                authContext.login();
+            } catch (e) {
+                console.error("Login error:", e);
+                errorMessage.textContent = "Login failed.";
+            }
         }
-
-        function logout() {
-            authContext.logOut();
-
-            // Hide NFC Tracking Data section
-            nfctrackingsTableBody.innerHTML = "";
-            nfctrackingsTable.style.display = "none";
-
-            // Hide Month Wise Data section
-            monthWiseTableBody.innerHTML = "";
-            monthTable.style.display = "none";
-
-            // Hide Users section
-            usersTable.style.display = "none";
-            usersTableBody.innerHTML = "";
-
-            // Call function to handle other logout tasks like hiding buttons or UI elements
-            toggleLoggedInState(false);
-        }
-
 
         function logout() {
             authContext.logOut();
@@ -1639,8 +1199,12 @@
                     return;
                 }
 
+                // Get the current user's name
+                var currentUser = user.profile.name; // Assuming you get the user name from this variable
+
                 var req = new XMLHttpRequest();
-                req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out"), true);
+                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUser}'`;
+                req.open("GET", encodeURI(organizationURI + query), true);
                 req.setRequestHeader("Authorization", "Bearer " + token1);
                 req.setRequestHeader("Accept", "application/json");
                 req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -1770,7 +1334,7 @@
 
 
 
-        // 3 - Existing Month Wise Data code goes here
+        // 2 - Existing Month Wise Data code goes here
 
 
         var authContext, user, loginButton, logoutButton, getMonthButton, contactSelectDropdown, monthTable, monthTableBody, userLoginButton, userLogoutButton, getUsersButton, usersTable, getNFCTrackingDataButton, searchBar, nfctrackingsTable, nfctrackingsTableBody, usersTableBody, message, errorMessage;
@@ -1824,10 +1388,6 @@
             monthWiseTableBody.innerHTML = "";
             monthTable.style.display = "none";
 
-            // Hide Users section
-            usersTable.style.display = "none";
-            usersTableBody.innerHTML = "";
-
             // Call function to handle other logout tasks like hiding buttons or UI elements
             toggleLoggedInState(false);
         }
@@ -1846,7 +1406,7 @@
         window.onload = function () {
             populateContactDropdown();
         };
-       
+
         async function populateContactDropdown() {
             try {
                 // Retrieve the token from Power Automate
@@ -1945,7 +1505,7 @@
 
                     // Calculate the start and end of the selected month
                     var startDate = new Date(year, month - 1, 1); // First day of the month
-                    var endDate = new Date(year, month, 0); // last day of the month
+                    var endDate = new Date(year, month, 0); // First day of the next month
 
                     // Get the formatted date without time
                     var formattedStartDate = formatDate(startDate);
@@ -2086,3 +1646,6 @@
     </script>
 </body>
 </html>
+
+
+
