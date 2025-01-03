@@ -520,14 +520,16 @@
             }
 
             /* Month Section Styling */
-            #monthSection {
-                margin-top: 20px;
-                padding: 30px;
-                background-color: #f4f4f9;
-                border-radius: 12px;
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-                margin-bottom: 40px;
-            }
+        #monthSection {
+            margin-top: 20px;
+            padding: 30px;
+            background-color: #f4f4f9;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            width: 100%; /* Ensure it takes the full width of the container */
+            height: auto; /* Allow height to adjust based on content */
+        }
 
         
 
@@ -861,30 +863,30 @@
 
     <!-- all css here -->
     <!-- bootstrap v3.3.6 css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <!-- animate css -->
-    <link rel="stylesheet" href="css/animate.min.css">
+    <!--<link rel="stylesheet" href="css/animate.min.css">-->
     <!-- jquery-ui.min css -->
-    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!--<link rel="stylesheet" href="css/jquery-ui.min.css">-->
     <!-- meanmenu css -->
-    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!--<link rel="stylesheet" href="css/meanmenu.min.css">-->
     <!-- nivo-slider css -->
-    <link rel="stylesheet" href="lib/css/nivo-slider.css">
-    <link rel="stylesheet" href="lib/css/preview.css">
+    <!--<link rel="stylesheet" href="lib/css/nivo-slider.css">-->
+    <!--<link rel="stylesheet" href="lib/css/preview.css">-->
     <!-- slick css -->
-    <link rel="stylesheet" href="css/slick.min.css">
+    <!--<link rel="stylesheet" href="css/slick.min.css">-->
     <!-- lightbox css -->
-    <link rel="stylesheet" href="css/lightbox.min.css">
+    <!--<link rel="stylesheet" href="css/lightbox.min.css">-->
     <!-- material-design-iconic-font css -->
-    <link rel="stylesheet" href="css/material-design-iconic-font.css">
+    <!--<link rel="stylesheet" href="css/material-design-iconic-font.css">-->
     <!-- All common css of theme -->
     <link rel="stylesheet" href="css/default.css">
     <!-- style css -->
     <link rel="stylesheet" href="style.min.css">
     <!-- shortcode css -->
-    <link rel="stylesheet" href="css/shortcode.css">
+    <!--<link rel="stylesheet" href="css/shortcode.css">-->
     <!-- responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <!--<link rel="stylesheet" href="css/responsive.css">-->
     <!-- modernizr css -->
     <script src="js/vendor/modernizr-3.11.2.min.js"></script>
 
@@ -1968,9 +1970,16 @@
                     errorMessage.textContent = 'Token retrieval failed!';
                     return;
                 }
+                debugger;
+
+                var currentUserEmail = user.profile.unique_name;
 
                 var req = new XMLHttpRequest();
-                req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=izx_tagid&$filter=izx_tagid ne null"), true);
+
+                req.open("GET", encodeURI(`${organizationURI}/api/data/v9.2/contacts?$select=izx_tagid&$filter=izx_tagid ne null and emailaddress1 eq '${currentUserEmail}'`), true);
+
+
+                //req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=izx_tagid&$filter=(izx_tagid ne null and emailaddress1 eq '${currentUserEmail}')"), true);     //?$filter=(izx_tagid eq '99999' and emailaddress1 eq 'ramesh@gmail.com'
                 req.setRequestHeader("Authorization", "Bearer " + token1);
                 req.setRequestHeader("Accept", "application/json");
                 req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -2049,12 +2058,13 @@
                 var selectedTagID = document.getElementById("contactSelectDropdown").value;
 
                 if (monthYear && selectedTagID) {
+                    debugger;
                     // Split the value into year and month
                     var [year, month] = monthYear.split('-');
 
                     // Calculate the start and end of the selected month
-                    var startDate = new Date(year, month - 1, 1); // First day of the month
-                    var endDate = new Date(year, month, 0); // last day of the month
+                    var startDate = new Date(Date.UTC(year, month - 1, 1)); // First day of the month
+                    var endDate = new Date(Date.UTC(year, month, 0)); // last day of the month
 
                     // Set the endDate time to 23:59:59 to ensure we capture data up until the end of the day
                     endDate.setHours(23, 59, 59, 999);  //(hour, minute, second, millisecond)
