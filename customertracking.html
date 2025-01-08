@@ -1,4 +1,3 @@
-<!-- Customer Tracking  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -528,6 +527,8 @@
             border-radius: 12px;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
             margin-bottom: 40px;
+            width: 100%; /* Ensure it takes the full width of the container */
+            height: auto; /* Allow height to adjust based on content */
         }
 
             /* Heading Styling */
@@ -844,20 +845,107 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 
 
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Linktotap || Index </title>
+    <meta name="description" content="Hurst – Furniture Store eCommerce HTML Template is a clean and elegant design – suitable for selling flower, cookery, accessories, fashion, high fashion, accessories, digital, kids, watches, jewelries, shoes, kids, furniture, sports….. It has a fully responsive width adjusts automatically to any screen size or resolution.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate css -->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" href="lib/css/nivo-slider.css">
+    <link rel="stylesheet" href="lib/css/preview.css">
+    <!-- slick css -->
+    <link rel="stylesheet" href="css/slick.min.css">
+    <!-- lightbox css -->
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <!-- material-design-iconic-font css -->
+    <link rel="stylesheet" href="css/material-design-iconic-font.css">
+    <!-- All common css of theme -->
+    <link rel="stylesheet" href="css/default.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="style.min.css">
+    <!-- shortcode css -->
+    <link rel="stylesheet" href="css/shortcode.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- modernizr css -->
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+
+
+
+
 </head>
 <body>
 
     <!-- Buttons to toggle between NFC Tracking Data and Get Users -->
     <header class="bg-white">
         <nav>
+
+            <!-- MAIN-MENU START -->
+            <div class="menu-toggle hamburger hamburger--emphatic d-none d-md-block">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </div>
+            <div class="main-menu  d-none d-md-block">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="index.html">home</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Products</a>
+                            <div class="sub-menu menu-scroll">
+                                <ul>
+                                    <li class="menu-title">best brands</li>
+                                    <li><a href="#">Doctors</a></li>
+                                    <li><a href="#">Lawyers</a></li>
+                                    <li><a href="#">Influencers</a></li>
+                                    <li><a href="#">Accountants</a></li>
+                                    <li><a href="#">Business Owners</a></li>
+                                    <li><a href="#">Others</a></li>
+                                    <li><a href="#">Custom Design</a></li>
+                                    <li><a href="#">Premium Metal Black Cards</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li><a href="#">accesories</a></li>
+                        <li><a href="#">blog</a></li>
+                        <li><a href="nfctracking.html">NFC Tracking</a>
+
+                        <li><a href="about.html">about us</a></li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- MAIN-MENU END -->
             <!-- NFC Text in the center -->
             <div class="nav-left">
-                <!--nav-center-->
+
                 <span class="nfc-title dropbtn text-light-black">NFC</span>
             </div>
 
             <!-- Buttons in the center side by side -->
             <div class="button-container">
+                <!--<button id="showUsersButton" class="text-black">Users</button>-->
                 <button id="showNFCButton" class="text-black">NFC Tracking Data</button>
                 <button id="showMonthWiseDataButton" class="text-black">Month Wise Data</button>
             </div>
@@ -868,13 +956,67 @@
                 <button id="login" class="text-tan">Login</button>
                 <button id="logout" class="hidden">Logout</button>
             </div>
+
         </nav>
+
     </header>
+
+
+
+    <!-- Get Users Section -->
+    <div id="usersSection" class="hidden">
+        <div id="userContainer">
+            <h1>Get Users from Dynamics 365</h1>
+            <div id="userButtons">
+                <button id="getUsers">Get Users</button>
+                <button id="userdownloadExcelButton">Download as Excel</button>
+            </div>
+        </div>
+        <div id="message"></div>
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>TagID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>NFC Counter</th>
+                    <th>NFC</th>
+                </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="tagDetailsModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Tag Details</h2>
+            <button id="downloadExcelButton">Download as Excel</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tag ID</th>
+                        <th>Timestamp</th>
+                        <th>Time IN</th>
+                        <th>Time Out</th>
+                        <th>Duration</th>
+                        <th>In/Out</th>
+                    </tr>
+                </thead>
+                <tbody id="modalTagDetailsTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+
 
     <!-- NFC Tracking Data Section -->
     <div id="nfcTrackingSection" class="hidden">
         <div id="nfcTrackingContainer">
             <h1>NFC Tracking Data</h1>
+
             <div class="button-input-row">
                 <button id="getNFCTrackingData">NFC Tracking Data</button>
                 <input type="text" id="searchBar" placeholder="Search by Tag ID...">
@@ -883,6 +1025,7 @@
         </div>
         <div id="message"></div>
         <table id="nfctrackingsTable">
+            <!--<caption></caption>-->
             <thead>
                 <tr>
                     <th>Name</th>
@@ -898,8 +1041,10 @@
         </table>
     </div>
 
+
+
     <!--Month Wise Data Table-->
-    <div class="container hidden" id="monthSection">
+    <div id="monthSection" class="hidden">
         <h1>Month-wise NFC Tracking Data</h1>
 
         <!-- Contact Selection Dropdown -->
@@ -941,21 +1086,222 @@
     </div>
 
 
+
+    <!-- SUBSCRIVE-AREA START -->
+    <div class="subscribe-area pt-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="subscribe">
+                        <form action="#">
+                            <input type="text" placeholder="Enter your email address" />
+                            <button class="submit-button submit-btn-2 button-one" data-text="subscribe" type="submit">subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SUBSCRIVE-AREA END -->
+    <!-- FOOTER START -->
+    <footer>
+        <!-- Footer-area start -->
+        <div class="footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-footer">
+                            <h3 class="footer-title  title-border">Contact Us</h3>
+                            <ul style="font-size:13px;">
+                                <li>
+                                    <i class="zmdi zmdi-pin" style="padding-right: 10px; font-size:15px;"></i>
+                                    <span>7759 Horizon St, Chino, CA 91708, USA</span>
+                                </li>
+                                <li>
+                                    <i class="zmdi zmdi-pin" style="padding-right: 10px; font-size: 15px;"></i>
+                                    <span>D.NO.23-30/2, SWATANTR NAGAR, Madhurawada, Visakhapatnam, AP, 530048</span>
+                                </li>
+                                <li>
+                                    <i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+                                    <!--<span>+1 530 500 5786</span>-->
+                                    <a href="tel:+1 530 500 5786" class="call-meta_number">+1 530 500 5786</a>
+                                </li>
+                                <li>
+                                    <i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+                                    <!--<span>+918142145757, +918142155757</span>-->
+                                    <a href="tel:+918142145757" class="call-meta_number">+918142145757</a>
+                                    <a href="tel:+918142155757" class="call-meta_number">+918142155757</a>
+                                </li>
+                                <li>
+                                    <i class="zmdi zmdi-email" style="padding-right: 10px; font-size: 15px;"></i>
+                                    <!--<span>contact@linktotap.com</span>-->
+                                    <a href="mailto:contact@linktotap.com">contact@linktotap.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="single-footer">
+                            <h3 class="footer-title  title-border">accounts</h3>
+                            <ul class="footer-menu">
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Account</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Wishlist</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Cart</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Check out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6">
+                        <div class="single-footer">
+                            <h3 class="footer-title  title-border">shipping</h3>
+                            <ul class="footer-menu">
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-footer">
+                            <h3 class="footer-title  title-border">your choice Products</h3>
+                            <div class="footer-product">
+                                <div class="row">
+                                    <div class="col-sm-6 col-12">
+                                        <div class="footer-thumb">
+                                            <a href="#"><img src="img/footer/1.png" alt="" /></a>
+                                            <div class="footer-thumb-info">
+                                                <p><a href="#">Digital Card</a></p>
+                                                <h4 class="price-3">Rs: 999/-</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-12">
+                                        <div class="footer-thumb">
+                                            <a href="#"><img src="img/footer/1.png" alt="" /></a>
+                                            <div class="footer-thumb-info">
+                                                <p><a href="#">Digital Card</a></p>
+                                                <h4 class="price-3">Rs: 999/-</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-area end -->
+        <!-- Copyright-area start -->
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copyright">
+                            <p class="mb-0">&copy; <a href="#" target="_blank"> Linktotap  </a> 2025. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="payment  text-md-end">
+                            <a href="#"><img src="img/payment/1.png" alt="" /></a>
+                            <a href="#"><img src="img/payment/2.png" alt="" /></a>
+                            <a href="#"><img src="img/payment/3.png" alt="" /></a>
+                            <a href="#"><img src="img/payment/4.png" alt="" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright-area start -->
+    </footer>
+    <!-- FOOTER END -->
+    <!-- QUICKVIEW PRODUCT -->
+    <div id="quickview-wrapper">
+        <!-- Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-product">
+                            <div class="product-images">
+                                <div class="main-image images">
+                                    <img alt="#" src="img/product/quickview-photo.jpg" />
+                                </div>
+                            </div><!-- .product-images -->
+
+                            <div class="product-info">
+                                <h1>NFC Digital Business Card</h1>
+                                <div class="price-box-3">
+                                    <hr />
+                                    <div class="s-price-box">
+                                        <span class="new-price">Price: 999/-</span>
+                                        <span class="old-price">Price: 1200/-</span>
+                                    </div>
+                                    <hr />
+                                </div>
+                                <a href="#" class="see-all">See all features</a>
+                                <div class="quick-add-to-cart">
+                                    <form method="post" class="cart">
+                                        <div class="numbers-row">
+                                            <input type="number" id="french-hens" value="3" min="1">
+                                        </div>
+                                        <button class="single_add_to_cart_button" type="submit">Add to cart</button>
+                                    </form>
+                                </div>
+                                <div class="quick-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
+                                </div>
+                                <div class="social-sharing">
+                                    <div class="widget widget_socialsharing_widget">
+                                        <h3 class="widget-title-modal">Share this product</h3>
+                                        <ul class="social-icons">
+                                            <li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="zmdi zmdi-google-plus"></i></a></li>
+                                            <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="zmdi zmdi-twitter"></i></a></li>
+                                            <li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="zmdi zmdi-facebook"></i></a></li>
+                                            <li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!-- .product-info -->
+                        </div><!-- .modal-product -->
+                    </div><!-- .modal-body -->
+                </div><!-- .modal-content -->
+            </div><!-- .modal-dialog -->
+        </div>
+        <!-- END Modal -->
+    </div>
+    <!-- END QUICKVIEW PRODUCT -->
+    <!-- WRAPPER END -->
+
+
+
+
+
     <script type="text/javascript">
         "use strict";
         // Variables for buttons and sections
         var showNFCButton = document.getElementById("showNFCButton");
-        /* var showUsersButton = document.getElementById("showUsersButton");*/
+        /*var showUsersButton = document.getElementById("showUsersButton");*/
         var showMonthButton = document.getElementById("showMonthWiseDataButton");
 
         var nfcTrackingSection = document.getElementById("nfcTrackingSection");
-        /*var usersSection = document.getElementById("usersSection");*/
+       /* var usersSection = document.getElementById("usersSection");*/
         var monthSection = document.getElementById("monthSection");
 
         // Add event listeners to toggle between sections
         showNFCButton.addEventListener("click", function () {
             toggleVisibility('nfc');
         });
+
+        //showUsersButton.addEventListener("click", function () {
+        //    toggleVisibility('users');
+        //});
 
         showMonthButton.addEventListener("click", function () {
             toggleVisibility('month');
@@ -965,10 +1311,16 @@
         function toggleVisibility(section) {
             if (section === 'nfc') {
                 nfcTrackingSection.classList.remove('hidden');
+                /*usersSection.classList.add('hidden');*/
                 monthSection.classList.add('hidden');
+            //} else if (section === 'users') {
+            //    usersSection.classList.remove('hidden');
+            //    nfcTrackingSection.classList.add('hidden');
+            //    monthSection.classList.add('hidden');
             } else if (section === 'month') {
                 monthSection.classList.remove('hidden');
                 nfcTrackingSection.classList.add('hidden');
+                /*usersSection.classList.add('hidden');*/
             }
         }
 
@@ -987,7 +1339,7 @@
         var organizationURI = "https://izenixlearn.api.crm.dynamics.com";      // CRM URL
         var tenant = "izenixlearn.onmicrosoft.com";                            // Azure AD tenant
         var clientId = "78d9abf2-52c4-4f68-a69d-dfab8a564eab";                 // Client ID from Azure app registration
-        var pageUrl = "https://linktotap.com/customertracking.html";                // Redirect URL
+        var pageUrl = "https://www.linktotap.com/customertracking.html";       // Redirect URL
 
         var authContext, user, loginButton, logoutButton, getMonthButton, monthTable, monthTableBody, contactSelectDropdown, userLoginButton, userLogoutButton, getUsersButton, usersTable, getNFCTrackingDataButton, searchBar, searchBarMonth, nfctrackingsTable, nfctrackingsTableBody, usersTableBody, message, errorMessage;
 
@@ -1003,36 +1355,6 @@
             endpoints: endpoints,
             cacheLocation: 'localStorage' // Store tokens in localStorage
         };
-
-
-
-        function getTokenFromPowerAutomate() {
-            
-            const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
-            let responseData;
-            var token;
-            return fetch(url, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json(); // Parse the response as JSON
-                })
-                .then(data => {
-                    const token = data.token;
-                    return token;
-                })
-                .catch(error => {
-                    console.error("Error fetching data:", error);
-                    return null;
-                });
-
-        }
 
         document.onreadystatechange = function () {
             if (document.readyState === "complete") {
@@ -1050,6 +1372,11 @@
                 nfctrackingsTable = document.getElementById("nfctrackingsTable");
                 nfctrackingsTableBody = document.getElementById("nfctrackingsTableBody");
 
+                // Users-related elements
+                getUsersButton = document.getElementById("getUsers");
+                usersTable = document.getElementById("usersTable");
+                usersTableBody = document.getElementById("usersTableBody");
+
                 //Month Related elements
                 getMonthButton = document.getElementById("getMonthData");
                 monthTable = document.getElementById("monthWiseTable");
@@ -1064,16 +1391,24 @@
 
                 // Add event listeners for data retrieval and search
                 getNFCTrackingDataButton.addEventListener("click", getNFCTrackingData);
+                getUsersButton.addEventListener("click", getUsers);
                 getMonthButton.addEventListener("click", getMonthData);
                 contactSelectDropdown.addEventListener("click", contactSelectDropdown);
 
                 // Add event listener for search functionality
                 searchBar.addEventListener("input", searchByTagID);
+                /*searchBarMonth.addEventListener("input", searchByTagIDMonth);*/
+
+
+                authenticate();
 
                 if (user) {
                     // Hide login button and show logout button when the user is logged in
                     loginButton.style.display = "none";
                     logoutButton.style.display = "block";
+
+                    // Show the Get Users button
+                    getUsersButton.style.display = "block";
 
                     // Show the NFC tracking data button and search bar by removing "none" class
                     getNFCTrackingDataButton.style.display = "block";
@@ -1093,16 +1428,21 @@
                     helloMessage.style.marginLeft = "10px";
                     helloMessage.style.fontWeight = "bold";
 
+                    userdownloadExcelButton.style.display = "block";
                     nfcdownloadExcelButton.style.display = "block";
                     monthdownloadExcelButton.style.display = "block";
 
                     dropDownSelect.style.display = "block";
+                    /* monthYearInput.style.display = "block";*/
                     monthYearDataSection.style.display = "block";
 
                 } else {
                     // Show login button and hide logout button when the user is logged out
                     loginButton.style.display = "block";
                     logoutButton.style.display = "none";
+
+                    // Hide the Get Users button
+                    getUsersButton.style.display = "none";
 
                     // Hide the NFC tracking data button, search bar, and table by adding "none" class
                     getNFCTrackingDataButton.style.display = "none";
@@ -1111,13 +1451,14 @@
                     getMonthButton.style.display = "none";
                     contactSelectDropdown.style.disabled = "none";
 
+                    userdownloadExcelButton.style.display = "none";
                     nfcdownloadExcelButton.style.display = "none";
                     monthdownloadExcelButton.style.display = "none";
 
                     dropDownSelect.style.display = "none";
+                    /*monthYearInput.style.display = "none";*/
                     monthYearDataSection.style.display = "none";
                 }
-                authenticate();
             }
         };
 
@@ -1143,7 +1484,40 @@
             }
         }
 
-        // 1 - Existing NFC Tracking Data code goes here
+
+
+
+
+
+        function getTokenFromPowerAutomate() {
+
+            const url = "https://prod-75.westus.logic.azure.com/workflows/e836ee072bf44696ae8b1d1bff733f2e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=bqy3dANGhz_PGKGcdB6Edr6acWE6KFMLGhoI-qzl7bM";
+            let responseData;
+            var token;
+            return fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json(); // Parse the response as JSON
+                })
+                .then(data => {
+                    const token = data.token;
+                    /*console.log("Token retrieved:", token);*/
+                    return token;
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    return null;
+                    /*document.getElementById("responseContainer").innerHTML = `<p>Error fetching data: ${error.message}</p>`;*/
+                });
+
+        }
 
         function toggleLoggedInState(isLoggedIn) {
             if (isLoggedIn) {
@@ -1161,14 +1535,30 @@
             }
         }
 
+
         function login() {
-            try {
-                authContext.login();
-            } catch (e) {
-                console.error("Login error:", e);
-                errorMessage.textContent = "Login failed.";
-            }
+            authContext.login();
         }
+
+        function logout() {
+            authContext.logOut();
+
+            // Hide NFC Tracking Data section
+            nfctrackingsTableBody.innerHTML = "";
+            nfctrackingsTable.style.display = "none";
+
+            // Hide Month Wise Data section
+            monthWiseTableBody.innerHTML = "";
+            monthTable.style.display = "none";
+
+            // Hide Users section
+            usersTable.style.display = "none";
+            usersTableBody.innerHTML = "";
+
+            // Call function to handle other logout tasks like hiding buttons or UI elements
+            toggleLoggedInState(false);
+        }
+
 
         function logout() {
             authContext.logOut();
@@ -1188,7 +1578,6 @@
 
         async function retrieveNFCTrackingData() {
             try {
-                debugger;
                 // Retrieve the token from Power Automate
                 const token1 = await getTokenFromPowerAutomate();
 
@@ -1200,12 +1589,20 @@
                     return;
                 }
 
+                debugger;
                 // Get the current user's name
                 var currentUser = user.profile.name; // Assuming you get the user name from this variable
+                var currentUserEmail = user.profile.unique_name;
+
+
+                // Log user's email and phone number to the console
+                console.log("User Name: " + user.profile.name);
+                console.log("User Email: " + user.profile.unique_name);
+
 
                 var req = new XMLHttpRequest();
-                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out&$filter=izx_name eq '${currentUser}'`;
-                req.open("GET", encodeURI(organizationURI + query), true);
+                var query = `/api/data/v9.2/izx_nfctrackings?$select=izx_name,izx_tagid,izx_status,izx_timestamp,izx_timein,izx_timeout,izx_duration,izx_in_out,&$expand=izx_contact($select=emailaddress1)&$filter=izx_contact/emailaddress1 eq '${currentUserEmail}'`;
+                req.open("GET", encodeURI(organizationURI + query), true);                                
                 req.setRequestHeader("Authorization", "Bearer " + token1);
                 req.setRequestHeader("Accept", "application/json");
                 req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -1420,9 +1817,12 @@
                     errorMessage.textContent = 'Token retrieval failed!';
                     return;
                 }
+                debugger;
+
+                var currentUserEmail = user.profile.unique_name;
 
                 var req = new XMLHttpRequest();
-                req.open("GET", encodeURI(organizationURI + "/api/data/v9.2/contacts?$select=izx_tagid&$filter=izx_tagid ne null"), true);
+                req.open("GET", encodeURI(`${organizationURI}/api/data/v9.2/contacts?$select=izx_tagid&$filter=izx_tagid ne null and emailaddress1 eq '${currentUserEmail}'`), true);
                 req.setRequestHeader("Authorization", "Bearer " + token1);
                 req.setRequestHeader("Accept", "application/json");
                 req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -1501,16 +1901,16 @@
                 var selectedTagID = document.getElementById("contactSelectDropdown").value;
 
                 if (monthYear && selectedTagID) {
+                    debugger;
                     // Split the value into year and month
                     var [year, month] = monthYear.split('-');
 
                     // Calculate the start and end of the selected month
-                    var startDate = new Date(year, month - 1, 1); // First day of the month
-                    var endDate = new Date(year, month, 0); // First day of the next month
+                    var startDate = new Date(Date.UTC(year, month - 1, 1)); // First day of the month
+                    var endDate = new Date(Date.UTC(year, month, 0)); // last day of the month
 
-                    // Get the formatted date without time
-                    var formattedStartDate = formatDate(startDate);
-                    var formattedEndDate = formatDate(endDate);
+                    // Set the endDate time to 23:59:59 to ensure we capture data up until the end of the day
+                    endDate.setHours(23, 59, 59, 999);  //(hour, minute, second, millisecond)
 
                     // Example function to format the date (you might have a custom implementation)
                     function formatDate(date) {
@@ -1520,10 +1920,16 @@
                         return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
                     }
 
+                    // Get the formatted date without time
+                    var formattedStartDate = formatDate(startDate);
+                    var formattedEndDate = formatDate(endDate);
+
+                    console.log("Start Date: ", formattedStartDate); // First day of the month
+                    console.log("End Date: ", formattedEndDate); // Last day of the month
 
                     var req = new XMLHttpRequest();
 
-                    req.open("GET", encodeURI(organizationURI + `/api/data/v9.2/izx_nfcdailyattendances?$select=izx_name,izx_contact,izx_tagid,izx_date,izx_duration&$filter=izx_tagid eq '${selectedTagID}' and izx_date ge ${formattedStartDate} and izx_date lt ${formattedEndDate}`), true);
+                    req.open("GET", encodeURI(organizationURI + `/api/data/v9.2/izx_nfcdailyattendances?$select=izx_name,izx_contact,izx_tagid,izx_date,izx_duration&$filter=izx_tagid eq '${selectedTagID}' and izx_date ge ${formattedStartDate} and izx_date le ${formattedEndDate}`), true);
                     req.setRequestHeader("Authorization", "Bearer " + token1);
                     req.setRequestHeader("Accept", "application/json");
                     req.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -1645,8 +2051,37 @@
 
 
     </script>
+
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="js/vendor/jquery-migrate-3.3.2.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- jquery.meanmenu js -->
+    <script src="js/jquery.meanmenu.js"></script>
+    <!-- slick.min js -->
+    <script src="js/slick.min.js"></script>
+    <!-- jquery.treeview js -->
+    <script src="js/jquery.treeview.js"></script>
+    <!-- lightbox.min js -->
+    <script src="js/lightbox.min.js"></script>
+    <!-- jquery-ui js -->
+    <script src="js/jquery-ui.min.js"></script>
+    <!-- jquery.nivo.slider js -->
+    <script src="lib/js/jquery.nivo.slider.js"></script>
+    <script src="lib/home.js"></script>
+    <!-- jquery.nicescroll.min js -->
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <!-- countdon.min js -->
+    <script src="js/countdon.min.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- plugins js -->
+    <script src="js/plugins.js"></script>
+    <!-- main js -->
+    <script src="js/main.min.js"></script>
+
+
 </body>
 </html>
-
-
-
