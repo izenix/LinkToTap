@@ -170,14 +170,14 @@
         <div class="iframe-container">
             <iframe src="https://www.google.com/maps/embed?pb=..."
                     allowfullscreen
-                    sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
         </div>
 
         <!-- Right: Drone Live Video (YouTube Embed) -->
         <div class="iframe-container">
             <iframe src="https://www.youtube.com/embed/VIDEO_ID"
                     allowfullscreen
-                    sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
         </div>
     </div>
 
@@ -261,6 +261,11 @@
                 });
                 contentDisplay.appendChild(docDiv);
             }
+        }
+
+        // showContent function to trigger fetchContent based on the type
+        function showContent(type) {
+            fetchContent(type);  // Calls fetchContent to get the appropriate data
         }
 
         // Logout function
