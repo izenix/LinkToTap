@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .iframe-container {
+            width: 48%;
+            height: 300px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+            .iframe-container iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: 8px;
+            }
+
+        .file-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+            .file-container button {
+                padding: 10px 20px;
+                margin: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+
+                .file-container button:hover {
+                    background-color: #45a049;
+                }
+
+            .file-container .hidden {
+                display: none;
+            }
+
+        .file-section {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .logout-button {
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            display: block;
+            margin: 20px auto;
+        }
+
+            .logout-button:hover {
+                background-color: #e53935;
+            }
+
+        /* Content styles for sample data */
+        #contentDisplay {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .photos img {
+            max-width: 200px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        .videos video {
+            width: 400px;
+            height: 250px;
+            margin: 10px;
+            border-radius: 8px;
+            border: 2px solid #ccc;
+        }
+
+        .documents a {
+            display: block;
+            margin: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            .documents a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left side: Live Drone Location -->
+        <div class="iframe-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509443!2d144.96305761550432!3d-37.81410797975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f0f1d3%3A0x5045675218ce6e0!2zVmljdG9yaWEgSGFyYm91ciwgTWVsYm91cm5lIFZJQywgQXVzdHJhbGlh!5e0!3m2!1sen!2sin!4v1632974562020!5m2!1sen!2sin" allowfullscreen=""></iframe>
+        </div>
+
+        <!-- Right side: Drone Live Video -->
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Files Button -->
+    <div class="file-container">
+        <button id="filesBtn">Files</button>
+
+        <!-- File buttons (Initially Hidden) -->
+        <div class="file-section hidden" id="fileButtons">
+            <button onclick="fetchContent('photos')">Photos</button>
+            <button onclick="fetchContent('videos')">Recorded Videos</button>
+            <button onclick="fetchContent('documents')">Documents</button>
+        </div>
+    </div>
+
+    <!-- Section for displaying content -->
+    <div class="file-container" id="contentDisplay"></div>
+
+    <!-- Logout Button -->
+    <button class="logout-button" onclick="logout()">Logout</button>
+
+    <script>
+        // Toggle file buttons visibility
+        document.getElementById('filesBtn').addEventListener('click', function () {
+            const fileButtons = document.getElementById('fileButtons');
+            fileButtons.classList.toggle('hidden');
+        });
+
+        // Fetch content based on type
+        function fetchContent(type) {
+            fetch(`/${type}`)
+                .then(response => response.json())
+                .then(data => displayContent(type, data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Display content in the contentDisplay div
+        function displayContent(type, data) {
+            const contentDisplay = document.getElementById('contentDisplay');
+            contentDisplay.innerHTML = ''; // Clear existing content
+
+            if (type === 'photos') {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photos';
+                data.forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = `/dphotos/photos/${photo}`;      //D:\ScripttSpherre\NFC Website\dphotos               
+                    img.alt = photo;
+                    photoDiv.appendChild(img);
+                });
+                contentDisplay.appendChild(photoDiv);
+            } else if (type === 'videos') {
+                const videoDiv = document.createElement('div');
+                videoDiv.className = 'videos';
+                data.forEach(video => {
+                    const videoElem = document.createElement('video');
+                    videoElem.src = `/dphotos/videos/${video}`;           //D:\ScripttSpherre\NFC Website\drecvideos
+                    videoElem.controls = true;
+                    videoDiv.appendChild(videoElem);
+                });
+                contentDisplay.appendChild(videoDiv);
+            } else if (type === 'documents') {
+                const docDiv = document.createElement('div');
+                docDiv.className = 'documents';
+                data.forEach(doc => {
+                    const link = document.createElement('a');
+                    link.href = `/dphotos/documents/${doc}`;    //D:\ScripttSpherre\NFC Website\ddoc
+                    link.textContent = doc;
+                    link.target = '_blank';
+                    docDiv.appendChild(link);
+                });
+                contentDisplay.appendChild(docDiv);
+            }
+        }
+
+        // Logout function
+        function logout() {
+            alert('Logging out...');
+        }
+    </script>
+</body>
+</html>
