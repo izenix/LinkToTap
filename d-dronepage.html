@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drone Dashboard</title>
     <style>
+        /* Header style */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 5px;
+            color: #333;
+        }
+
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .logout-button:hover {
+                background-color: #d32f2f;
+            }
+
+        /* Rest of the page content styles */
+        .content {
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+
+
+
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -16,6 +50,7 @@
             display: flex;
             justify-content: space-between;
             padding: 20px;
+            flex-wrap: wrap;
         }
 
         .iframe-container {
@@ -25,6 +60,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: white;
+            margin-bottom: 20px;
         }
 
             .iframe-container iframe {
@@ -72,16 +108,16 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            text-align: center;
-            display: block;
-            margin: 20px auto;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
 
             .logout-button:hover {
                 background-color: #e53935;
             }
 
-        /* Content styles for sample data */
+        /* Content styles */
         #contentDisplay {
             display: flex;
             flex-direction: column;
@@ -112,39 +148,61 @@
             .documents a:hover {
                 text-decoration: underline;
             }
+
+        /* Logout container styles */
+        .logout-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+            .logout-container h1 {
+                font-size: 24px;
+                margin: 0;
+            }
     </style>
 </head>
 <body>
 
+    <!-- Header with Logout Button -->
+    <div class="header">
+        <h1>Drone Dashboard</h1>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Main Content -->
     <div class="container">
-        <!-- Left side: Live Drone Location -->
+        <!-- Left: Live Drone Location -->
         <div class="iframe-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509443!2d144.96305761550432!3d-37.81410797975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43f1f0f1d3%3A0x5045675218ce6e0!2zVmljdG9yaWEgSGFyYm91ciwgTWVsYm91cm5lIFZJQywgQXVzdHJhbGlh!5e0!3m2!1sen!2sin!4v1632974562020!5m2!1sen!2sin" allowfullscreen=""></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen></iframe>
         </div>
 
-        <!-- Right side: Drone Live Video -->
+        <!-- Right: Drone Live Video -->
         <div class="iframe-container">
             <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- Files Button -->
+    <!-- File Section Toggle Button -->
     <div class="file-container">
         <button id="filesBtn">Files</button>
-
-        <!-- File buttons (Initially Hidden) -->
         <div class="file-section hidden" id="fileButtons">
-            <button onclick="fetchContent('photos')">Photos</button>
-            <button onclick="fetchContent('videos')">Recorded Videos</button>
-            <button onclick="fetchContent('documents')">Documents</button>
+            <button onclick="showContent('photos')">Photos</button>
+            <button onclick="showContent('videos')">Recorded Videos</button>
+            <button onclick="showContent('documents')">Documents</button>
         </div>
     </div>
 
     <!-- Section for displaying content -->
     <div class="file-container" id="contentDisplay"></div>
-
-    <!-- Logout Button -->
-    <button class="logout-button" onclick="logout()">Logout</button>
 
     <script>
         // Toggle file buttons visibility
@@ -153,8 +211,14 @@
             fileButtons.classList.toggle('hidden');
         });
 
+        // Show content based on the type
+        function showContent(type) {
+            fetchContent(type);  // Call the function to fetch content based on the type
+        }
+
         // Fetch content based on type
         function fetchContent(type) {
+            debugger;
             fetch(`/${type}`)
                 .then(response => response.json())
                 .then(data => displayContent(type, data))
@@ -171,7 +235,7 @@
                 photoDiv.className = 'photos';
                 data.forEach(photo => {
                     const img = document.createElement('img');
-                    img.src = `/dphotos/photos/${photo}`;      //D:\ScripttSpherre\NFC Website\dphotos               
+                    img.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/${photo}`;
                     img.alt = photo;
                     photoDiv.appendChild(img);
                 });
@@ -181,7 +245,7 @@
                 videoDiv.className = 'videos';
                 data.forEach(video => {
                     const videoElem = document.createElement('video');
-                    videoElem.src = `/dphotos/videos/${video}`;           //D:\ScripttSpherre\NFC Website\drecvideos
+                    videoElem.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/${video}`;
                     videoElem.controls = true;
                     videoDiv.appendChild(videoElem);
                 });
@@ -191,7 +255,7 @@
                 docDiv.className = 'documents';
                 data.forEach(doc => {
                     const link = document.createElement('a');
-                    link.href = `/dphotos/documents/${doc}`;    //D:\ScripttSpherre\NFC Website\ddoc
+                    link.href = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronedocs/${doc}`;
                     link.textContent = doc;
                     link.target = '_blank';
                     docDiv.appendChild(link);
@@ -202,8 +266,10 @@
 
         // Logout function
         function logout() {
-            alert('Logging out...');
+            window.location.href = 'Login_Page.html';
         }
     </script>
+
 </body>
+
 </html>
