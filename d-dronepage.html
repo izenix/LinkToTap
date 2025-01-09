@@ -28,16 +28,6 @@
                 background-color: #d32f2f;
             }
 
-        /* Rest of the page content styles */
-        .content {
-            padding: 10px;
-            margin-top: 20px;
-        }
-
-
-
-
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -115,7 +105,6 @@
                 background-color: #e53935;
             }
 
-        /* Content styles */
         #contentDisplay {
             display: flex;
             flex-direction: column;
@@ -147,7 +136,6 @@
                 text-decoration: underline;
             }
 
-        /* Logout container styles */
         .logout-container {
             display: flex;
             justify-content: space-between;
@@ -193,28 +181,85 @@
         </div>
     </div>
 
-    <!-- File Section with buttons -->
+    <!-- File Section Toggle Button -->
     <div class="file-container">
-        <button onclick="showIframe('photos')">Photos</button>
-        <button onclick="showIframe('videos')">Recorded Videos</button>
-        <button onclick="showIframe('documents')">Documents</button>
+        <button id="filesBtn">Files</button>
+        <div class="file-section hidden" id="fileButtons">
+            <button onclick="showContent('photos')">Photos</button>
+            <button onclick="showContent('videos')">Recorded Videos</button>
+            <button onclick="showContent('documents')">Documents</button>
+        </div>
     </div>
 
-    <!-- Iframe to display folder content -->
-    <div class="iframe-content" id="iframeContent">
-        <iframe id="fileIframe" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
-    </div>
+    <!-- Section for displaying content -->
+    <div class="file-container" id="contentDisplay"></div>
 
     <script>
-        // Function to show specific iframe content
-        function showIframe(type) {
-            const iframe = document.getElementById('fileIframe');
+        // Toggle file buttons visibility
+        document.getElementById('filesBtn').addEventListener('click', function () {
+            const fileButtons = document.getElementById('fileButtons');
+            fileButtons.classList.toggle('hidden');
+        });
+
+        // Fetch content based on type
+        function fetchContent(type) {
+            debugger;
+            let baseUrl = '';
             if (type === 'photos') {
-                iframe.src = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/';
+                baseUrl = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/';
             } else if (type === 'videos') {
-                iframe.src = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/';
+                baseUrl = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/';
             } else if (type === 'documents') {
-                iframe.src = 'https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/';
+                baseUrl = 'https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/';
+            }
+
+            fetch(baseUrl, { mode: 'cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => displayContent(type, data))
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Display content in the contentDisplay div
+        function displayContent(type, data) {
+            const contentDisplay = document.getElementById('contentDisplay');
+            contentDisplay.innerHTML = ''; // Clear existing content
+
+            if (type === 'photos') {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photos';
+                data.forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/${photo}`;
+                    img.alt = photo;
+                    photoDiv.appendChild(img);
+                });
+                contentDisplay.appendChild(photoDiv);
+            } else if (type === 'videos') {
+                const videoDiv = document.createElement('div');
+                videoDiv.className = 'videos';
+                data.forEach(video => {
+                    const videoElem = document.createElement('video');
+                    videoElem.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/${video}`;
+                    videoElem.controls = true;
+                    videoDiv.appendChild(videoElem);
+                });
+                contentDisplay.appendChild(videoDiv);
+            } else if (type === 'documents') {
+                const docDiv = document.createElement('div');
+                docDiv.className = 'documents';
+                data.forEach(doc => {
+                    const link = document.createElement('a');
+                    link.href = `https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/${doc}`;
+                    link.textContent = doc;
+                    link.target = '_blank';
+                    docDiv.appendChild(link);
+                });
+                contentDisplay.appendChild(docDiv);
             }
         }
 
