@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -182,12 +180,12 @@
     <div class="container">
         <!-- Left: Live Drone Location -->
         <div class="iframe-container">
-            <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
 
         <!-- Right: Drone Live Video -->
         <div class="iframe-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/watch?v=R_InO9bxuwU" allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
     </div>
 
@@ -216,13 +214,35 @@
             fetchContent(type);  // Call the function to fetch content based on the type
         }
 
-        // Fetch content based on type
+        // Fetch content based on type with better error handling
         function fetchContent(type) {
-            debugger;
-            fetch(`/${type}`)
-                .then(response => response.json())
+            const urlMap = {
+                photos: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos',
+                videos: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos',
+                documents: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronedocs'
+            };
+
+            // Ensure we have a valid URL for the given type
+            const apiUrl = urlMap[type];
+            if (!apiUrl) {
+                console.error(`Invalid content type: ${type}`);
+                return;
+            }
+
+            // Fetch the content from the correct API endpoint
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
                 .then(data => displayContent(type, data))
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                    const contentDisplay = document.getElementById('contentDisplay');
+                    contentDisplay.innerHTML = `<p>Failed to load content: ${error.message}</p>`;
+                });
         }
 
         // Display content in the contentDisplay div
