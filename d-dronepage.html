@@ -178,109 +178,43 @@
 
     <!-- Main Content -->
     <div class="container">
-        <!-- Left: Live Drone Location -->
+        <!-- Left: Live Drone Location (Google Maps Embed) -->
         <div class="iframe-container">
-            <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=..."
+                    allowfullscreen
+                    sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
         </div>
 
-        <!-- Right: Drone Live Video -->
+        <!-- Right: Drone Live Video (YouTube Embed) -->
         <div class="iframe-container">
-            <iframe src="https://www.youtube.com/watch?v=R_InO9bxuwU" allowfullscreen sandbox="allow-scripts allow-same-origin"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                    allowfullscreen
+                    sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
         </div>
     </div>
 
-    <!-- File Section Toggle Button -->
+    <!-- File Section with buttons -->
     <div class="file-container">
-        <button id="filesBtn">Files</button>
-        <div class="file-section hidden" id="fileButtons">
-            <button onclick="showContent('photos')">Photos</button>
-            <button onclick="showContent('videos')">Recorded Videos</button>
-            <button onclick="showContent('documents')">Documents</button>
-        </div>
+        <button onclick="showIframe('photos')">Photos</button>
+        <button onclick="showIframe('videos')">Recorded Videos</button>
+        <button onclick="showIframe('documents')">Documents</button>
     </div>
 
-    <!-- Section for displaying content -->
-    <div class="file-container" id="contentDisplay"></div>
+    <!-- Iframe to display folder content -->
+    <div class="iframe-content" id="iframeContent">
+        <iframe id="fileIframe" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    </div>
 
     <script>
-        // Toggle file buttons visibility
-        document.getElementById('filesBtn').addEventListener('click', function () {
-            const fileButtons = document.getElementById('fileButtons');
-            fileButtons.classList.toggle('hidden');
-        });
-
-        // Show content based on the type
-        function showContent(type) {
-            fetchContent(type);  // Call the function to fetch content based on the type
-        }
-
-        // Fetch content based on type with better error handling
-        function fetchContent(type) {
-            const urlMap = {
-                photos: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos',
-                videos: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos',
-                documents: 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronedocs'
-            };
-
-            // Ensure we have a valid URL for the given type
-            const apiUrl = urlMap[type];
-            if (!apiUrl) {
-                console.error(`Invalid content type: ${type}`);
-                return;
-            }
-
-            // Fetch the content from the correct API endpoint
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => displayContent(type, data))
-                .catch(error => {
-                    console.error('Error:', error);
-                    const contentDisplay = document.getElementById('contentDisplay');
-                    contentDisplay.innerHTML = `<p>Failed to load content: ${error.message}</p>`;
-                });
-        }
-
-        // Display content in the contentDisplay div
-        function displayContent(type, data) {
-            const contentDisplay = document.getElementById('contentDisplay');
-            contentDisplay.innerHTML = ''; // Clear existing content
-
+        // Function to show specific iframe content
+        function showIframe(type) {
+            const iframe = document.getElementById('fileIframe');
             if (type === 'photos') {
-                const photoDiv = document.createElement('div');
-                photoDiv.className = 'photos';
-                data.forEach(photo => {
-                    const img = document.createElement('img');
-                    img.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/${photo}`;
-                    img.alt = photo;
-                    photoDiv.appendChild(img);
-                });
-                contentDisplay.appendChild(photoDiv);
+                iframe.src = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/';
             } else if (type === 'videos') {
-                const videoDiv = document.createElement('div');
-                videoDiv.className = 'videos';
-                data.forEach(video => {
-                    const videoElem = document.createElement('video');
-                    videoElem.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/${video}`;
-                    videoElem.controls = true;
-                    videoDiv.appendChild(videoElem);
-                });
-                contentDisplay.appendChild(videoDiv);
+                iframe.src = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/';
             } else if (type === 'documents') {
-                const docDiv = document.createElement('div');
-                docDiv.className = 'documents';
-                data.forEach(doc => {
-                    const link = document.createElement('a');
-                    link.href = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronedocs/${doc}`;
-                    link.textContent = doc;
-                    link.target = '_blank';
-                    docDiv.appendChild(link);
-                });
-                contentDisplay.appendChild(docDiv);
+                iframe.src = 'https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/';
             }
         }
 
