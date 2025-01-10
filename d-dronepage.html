@@ -213,7 +213,7 @@
                 baseUrl = 'https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/';
             }
 
-            fetch(baseUrl, { mode: 'cors' })
+            fetch(baseUrl, { mode: 'no-cors' })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! status: ${response.status}`);
