@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\css",
+    "\\js\\vendor"
   ],
-  "SelectedNode": "\\D:\\LinkToTapWebsite",
+  "SelectedNode": "\\css\\bootstrap.min.css",
   "PreviewInSolutionExplorer": false
 }
