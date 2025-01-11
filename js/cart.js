@@ -29,6 +29,10 @@ function addToCart() {
 
     // Recalculate cart totals
     calculateCartTotals();
+
+    // Recalculate minicart totals
+    calculateminiCartTotals();
+
 }
 
 
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     populateCartTable();
     updateMiniCart();
     calculateCartTotals();
+    calculateminiCartTotals();
 });
 
 function populateCartTable() {
@@ -104,6 +109,44 @@ function updateMiniCart() {
     });
 }
 
+// Function to populate cart on the index page
+function populateMiniCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // Update mini-cart UI
+    document.getElementById("cart-count").textContent = cartCount;
+    document.getElementById("cart-item-count").textContent = `${cartCount} items`;
+    document.getElementById("cart-total").textContent = `Price : Rs. ${cartTotal.toFixed(2)}/-`;
+
+    const cartItemsList = document.getElementById("cart-items-list");
+    cartItemsList.innerHTML = ""; // Clear existing items
+
+    cart.forEach((item, index) => {
+        const miniCartItem = `
+            <div class="single-cart clearfix">
+                <div class="cart-photo">
+                    <a href="#"><img src="${item.image}" alt="${item.name}" /></a>
+                </div>
+                <div class="cart-info">
+                    <h5><a href="#">${item.name}</a></h5>
+                    <p class="mb-0">Price: Rs. ${item.price.toFixed(2)}</p>
+                    <p class="mb-0">Qty: ${item.quantity}</p>
+                    <span class="cart-delete"><a href="#" onclick="removeFromMiniCart(${index})"><i class="zmdi zmdi-close"></i></a></span>
+                </div>
+            </div>
+        `;
+        cartItemsList.insertAdjacentHTML("beforeend", miniCartItem);
+    });
+}
+
+// Ensure the cart is populated when the page loads on index.html
+document.addEventListener("DOMContentLoaded", function () {
+    populateMiniCart(); // Call this function to populate the cart
+});
+
+
 // FUNCTION TO REMOVE AN ITEM FROM THE CART
 function removeFromCart(index) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -126,6 +169,7 @@ function removeFromMiniCart(index) {
     updateMiniCart();
     removeFromCart();
     calculateCartTotals();
+    calculateminiCartTotals();
 }
 
 // Function to update quantity and recalculate totals
@@ -141,10 +185,34 @@ function updateQuantity(index, quantity) {
 
     // Recalculate the totals
     calculateCartTotals();
+    calculateminiCartTotals();
 }
 
-// Function to recalculate the cart totals
+// Function to calculate and update the cart totals
 function calculateCartTotals() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let cartSubtotal = 0;
+    let shippingCost = 15; // Fixed shipping cost, you can change based on your logic
+    let vatCost = 0; // You can apply your VAT logic here
+
+    // Calculate the subtotal of all items
+    cart.forEach(item => {
+        cartSubtotal += item.price * item.quantity;
+    });
+
+    // Calculate the order total
+    let orderTotal = cartSubtotal + shippingCost + vatCost;
+
+    // Update the UI with the new values
+    document.getElementById('cart-subtotal').textContent = `Rs. ${cartSubtotal.toFixed(2)}`;
+    document.getElementById('shipping-cost').textContent = `Rs. ${shippingCost.toFixed(2)}`;
+    document.getElementById('vat-cost').textContent = `Rs. ${vatCost.toFixed(2)}`;
+    document.getElementById('order-total').textContent = `Rs. ${orderTotal.toFixed(2)}`;
+}
+
+// Function to recalculate the mini cart totals
+function calculateminiCartTotals() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
