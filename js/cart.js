@@ -44,9 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
     calculateminiCartTotals();
 });
 
+
 function populateCartTable() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const tableBody = document.querySelector(".shop-cart-table tbody");
+    const tableBody = document.getElementById("cartpagetable"); // Use the specific ID
+    if (!tableBody) {
+        console.error("Element with ID 'cartpagetable' not found.");
+        return;
+    }
+
     tableBody.innerHTML = ""; // Clear existing content
 
     cart.forEach((item, index) => {
@@ -77,6 +83,7 @@ function populateCartTable() {
         tableBody.insertAdjacentHTML("beforeend", row);
     });
 }
+
 
 function updateMiniCart() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -193,7 +200,7 @@ function calculateCartTotals() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     let cartSubtotal = 0;
-    let shippingCost = 15; // Fixed shipping cost, you can change based on your logic
+    let shippingCost = 0; // Fixed shipping cost, you can change based on your logic
     let vatCost = 0; // You can apply your VAT logic here
 
     // Calculate the subtotal of all items
@@ -220,3 +227,51 @@ function calculateminiCartTotals() {
     const totalElement = document.getElementById("cart-total");
     totalElement.textContent = `Price: Rs. ${cartTotal.toFixed(2)}/-`;
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tableBody = document.getElementById("checkoutproductscontainer"); // Use the specific ID
+    if (!tableBody) {
+        console.error("Element with ID 'checkoutproductscontainer' not found.");
+        return;
+    }
+
+    tableBody.innerHTML = ""; // Clear existing content
+
+    let cartSubtotal = 0;
+    const shippingCost = 0; // Fixed shipping cost
+    const vat = 0.00; // VAT amount (modify if needed)
+
+    cart.forEach(item => {
+        const row = `
+            <tr>
+                <td>${item.name} x ${item.quantity}</td>
+                <td class="text-end">Rs. ${(item.price * item.quantity).toFixed(2)}</td>
+            </tr>
+        `;
+        tableBody.insertAdjacentHTML("beforeend", row);
+        cartSubtotal += item.price * item.quantity;
+    });
+
+    // Add summary rows
+    const summaryRows = `
+        <tr>
+            <td>Cart Subtotal</td>
+            <td class="text-end">Rs. ${cartSubtotal.toFixed(2)}</td>
+        </tr>
+        <tr>
+            <td>Shipping and Handling</td>
+            <td class="text-end">Rs. ${shippingCost.toFixed(2)}</td>
+        </tr>
+        <tr>
+            <td>Vat</td>
+            <td class="text-end">Rs. ${vat.toFixed(2)}</td>
+        </tr>
+        <tr>
+            <td>Order Total</td>
+            <td class="text-end">Rs. ${(cartSubtotal + shippingCost + vat).toFixed(2)}</td>
+        </tr>
+    `;
+    tableBody.insertAdjacentHTML("beforeend", summaryRows);
+});
