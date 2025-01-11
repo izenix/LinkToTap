@@ -228,7 +228,7 @@ function calculateminiCartTotals() {
     totalElement.textContent = `Price: Rs. ${cartTotal.toFixed(2)}/-`;
 }
 
-
+//onload of checkout code triggers
 document.addEventListener("DOMContentLoaded", function () {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const tableBody = document.getElementById("checkoutproductscontainer"); // Use the specific ID
