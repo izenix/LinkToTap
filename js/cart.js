@@ -488,6 +488,9 @@ function calculateCartTotals() {
 }
 
 //Checkout Start
+
+
+
 //onload of checkout code triggers
 document.addEventListener("DOMContentLoaded", function () {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -535,4 +538,3 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     tableBody.insertAdjacentHTML("beforeend", summaryRows);
 });
-//Checkout End
