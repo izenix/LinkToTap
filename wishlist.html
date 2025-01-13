@@ -44,6 +44,9 @@
 		<script src="js/vendor/modernizr-3.11.2.min.js"></script>
 	</head>
 	<body>	
+		<script src="js/cart.js"></script>
+
+
 		<!-- WRAPPER START -->
 		<div class="wrapper bg-dark-white">
 
@@ -57,7 +60,7 @@
 									<a href="index.html"><img src="img\logo\LinktoTap.png" alt="Linktotaplogo" style="width: 90px; height: auto;" /></a>
 								</div>
 							</div>
-							<div class="col-md-4 col-5">
+							<!-- <div class="col-md-4 col-5">
 								<div class="mini-cart text-end">
 									<ul>
 										<li>
@@ -104,7 +107,39 @@
 										</li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
+<!-- Mini-cart start -->
+<div class="col-md-4 col-5">
+	<div class="mini-cart text-end">
+		<ul>
+			<li>
+				<a class="cart-icon" href="#">
+					<i class="zmdi zmdi-shopping-cart"></i>
+					<span id="cart-count">0</span>
+				</a>
+				<div class="mini-cart-brief text-left">
+					<div class="cart-items">
+						<p class="mb-0">You have <span id="cart-item-count">0 items</span> in your shopping bag</p>
+					</div>
+					<div class="all-cart-product clearfix" id="cart-items-list">
+						<!-- Cart items will be dynamically added here -->
+					</div>
+					<div class="cart-totals">
+						<h5 class="mb-0">Total <span class="floatright" id="cart-total">Price : 0/-</span></h5>
+					</div>
+					<div class="cart-bottom clearfix">
+						<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+						<a href="#check-out" data-bs-toggle="tab" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- Mini-cart end -->
+
+
+
 						</div>
 					</div>
 				</div>
@@ -229,79 +264,8 @@
 																<th class="product-remove">Remove</th>
 															</tr>
 														</thead>
-														<tbody>
-															<tr>
-																<td class="product-thumbnail  text-left">
-																	<!-- Single-product start -->
-																	<div class="single-product">
-																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/2.jpg" alt="" /></a>
-																		</div>
-																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#">Digital Business Card</a></h4>
-																			<p class="mb-0">Color :  Black</p>
-
-																		</div>
-																	</div>
-																	<!-- Single-product end -->
-																</td>
-																<td class="product-price">Rs.999.001</td>
-																<td class="product-stock">Out of stock</td>
-																<td class="product-add-cart">
-																	<a class="text-light-black" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-																</td>
-																<td class="product-remove">
-																	<a href="#"><i class="zmdi zmdi-close"></i></a>
-																</td>
-															</tr>
-															<tr>
-																<td class="product-thumbnail  text-left">
-																	<!-- Single-product start -->
-																	<div class="single-product">
-																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/7.jpg" alt="" /></a>
-																		</div>
-																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#">Digital Business Card</a></h4>
-																			<p class="mb-0">Color :  Black</p>
-
-																		</div>
-																	</div>
-																	<!-- Single-product end -->
-																</td>
-																<td class="product-price">Rs.999.002</td>
-																<td class="product-stock">in stock</td>
-																<td class="product-add-cart">
-																	<a class="text-light-black" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-																</td>
-																<td class="product-remove">
-																	<a href="#"><i class="zmdi zmdi-close"></i></a>
-																</td>
-															</tr>
-															<tr>
-																<td class="product-thumbnail  text-left">
-																	<!-- Single-product start -->
-																	<div class="single-product">
-																		<div class="product-img">
-																			<a href="single-product.html"><img src="img/product/6.jpg" alt="" /></a>
-																		</div>
-																		<div class="product-info">
-																			<h4 class="post-title"><a class="text-light-black" href="#">Digital Business Card</a></h4>
-																			<p class="mb-0">Color :  Black</p>
-
-																		</div>
-																	</div>
-																	<!-- Single-product end -->
-																</td>
-																<td class="product-price">Rs.999.003</td>
-																<td class="product-stock">in stock</td>
-																<td class="product-add-cart">
-																	<a class="text-light-black" href="#"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-																</td>
-																<td class="product-remove">
-																	<a href="#"><i class="zmdi zmdi-close"></i></a>
-																</td>
-															</tr>
+														<tbody id="wishlisttable">
+															
 														</tbody>
 													</table>
 												</div>
