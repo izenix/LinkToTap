@@ -47,6 +47,8 @@
 
 </head>
 <body>
+	<script src="js/cart.js"></script>
+
 	<!-- WRAPPER START -->
 	<div class="wrapper bg-dark-white">
 
@@ -60,7 +62,36 @@
 								<a href="index.html"><img src="img\logo\LinktoTap.png" alt="Linktotaplogo" style="width: 90px; height: auto;" /></a>
 							</div>
 						</div>
-						<div class="col-md-4 col-5">
+						<!-- Mini-cart start -->
+<div class="col-md-4 col-5">
+	<div class="mini-cart text-end">
+		<ul>
+			<li>
+				<a class="cart-icon" href="#">
+					<i class="zmdi zmdi-shopping-cart"></i>
+					<span id="cart-count">0</span>
+				</a>
+				<div class="mini-cart-brief text-left">
+					<div class="cart-items">
+						<p class="mb-0">You have <span id="cart-item-count">0 items</span> in your shopping bag</p>
+					</div>
+					<div class="all-cart-product clearfix" id="cart-items-list">
+						<!-- Cart items will be dynamically added here -->
+					</div>
+					<div class="cart-totals">
+						<h5 class="mb-0">Total <span class="floatright" id="cart-total">Price : 0/-</span></h5>
+					</div>
+					<div class="cart-bottom clearfix">
+						<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+						<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- Mini-cart end -->
+						<!-- <div class="col-md-4 col-5">
 							<div class="mini-cart text-end">
 								<ul>
 									<li>
@@ -107,7 +138,7 @@
 									</li>
 								</ul>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -129,19 +160,19 @@
 							<a href="#">Products</a>
 							<div class="sub-menu menu-scroll">
 								<ul>
-									<li class="menu-title">best brands</li>
-									<li><a href="#">Doctors</a></li>
+									<!--<li class="menu-title">best brands</li>
+									 <li><a href="#">Doctors</a></li>
 									<li><a href="#">Lawyers</a></li>
 									<li><a href="#">Influencers</a></li>
 									<li><a href="#">Accountants</a></li>
 									<li><a href="#">Business Owners</a></li>
-									<li><a href="#">Others</a></li>
-									<li><a href="#">Custom Design</a></li>
-									<li><a href="#">Premium Metal Black Cards</a></li>
+									<li><a href="#">Others</a></li> 
+									<li><a href="#">Premium Metal Black Cards</a></li>-->
+									<li><a href="nfccustomcard.html">Custom Design</a></li>
 								</ul>
 							</div>
 						</li>
-						<li><a href="#">accesories</a></li>
+						<!-- <li><a href="#">accesories</a></li> -->
 						<li><a href="#">blog</a></li>
 						<li><a href="nfctracking.html">NFC Tracking</a>
 
@@ -163,14 +194,26 @@
 								<ul>
 									<li>
 										<a href="index.html">home</a>
-
 									</li>
-									<li><a href="#">products</a></li>
-									<li><a href="#">accesories</a></li>
-									<li><a href="#">blog</a></li>
-
-									<li><a href="#">accesories</a></li>
-									<li><a href="#">blog</a></li>
+									<li>
+										<a href="#">Products</a>
+										<div class="sub-menu menu-scroll">
+											<ul>
+												<!-- <li class="menu-title">best brands</li>
+												<li><a href="#">Doctors</a></li>
+												<li><a href="#">Lawyers</a></li>
+												<li><a href="#">Influencers</a></li>
+												<li><a href="#">Accountants</a></li>
+												<li><a href="#">Business Owners</a></li>
+												<li><a href="#">Others</a></li>
+												<li><a href="#">Custom Design</a></li>
+												<li><a href="#">Premium Metal Black Cards</a></li> -->
+												<li><a href="nfccustomcard.html">Custom Design</a></li>
+											</ul>
+										</div>
+									</li>
+									<!-- <li><a href="shop-sidebar.html">accesories</a></li> -->
+									<li><a href="blog.html">blog</a></li>
 									<li><a href="nfctracking.html">NFC Tracking</a>
 
 									<li><a href="about.html">about us</a></li>
@@ -231,7 +274,7 @@
 									<input type="checkbox" id="newsletter" name="newsletter" checked>
 									<label for="newsletter"><span>Sign up for our newsletter!</span></label>
 								</p>
-								<button type="submit" data-text="regiter" class="button-one submit-button mt-15">regiter</button>
+								<button type="submit" data-text="regiter" class="button-one submit-button mt-15">register</button>
 							</div>
 						</div>
 					</div>
