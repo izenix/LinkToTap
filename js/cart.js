@@ -430,9 +430,10 @@ function removeFromMiniCart(index) {
 
     // Update mini-cart and recalculate totals
     updateMiniCart();
-    removeFromCart();
     calculateCartTotals();
     calculateminiCartTotals();
+    window.location.reload();
+
 }
 
 // Function to recalculate the mini cart totals
