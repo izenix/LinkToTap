@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Customize Your Card</title>
-    <meta name="description" content="Linktotap specializes in innovative NFC card solutions, bridging the digital and physical worlds. Explore smart business cards, event solutions, cashless payments, and custom NFC technology tailored for seamless connectivity and efficiency. Discover the future with just a tap.">
+	<title>Checkout || Linktotap</title>
+	<meta name="description" content="Linktotap specializes in innovative NFC card solutions, bridging the digital and physical worlds. Explore smart business cards, event solutions, cashless payments, and custom NFC technology tailored for seamless connectivity and efficiency. Discover the future with just a tap.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -43,50 +43,33 @@
 	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
 
 	<style>
-		body {
-			font-family: Arial, sans-serif;
-			padding: 0;
-			background-color: white;
-		}
-
-		h1 {
-			text-align: center;
-			color: #333;
-			padding: 30px;
-		}
-
-		.form-container {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
+		.inline-section {
+			display: flex;
 			gap: 10px;
-			margin-bottom: 20px;
+			align-items: center;
 		}
 
-		.form-section {
+		.form-section label {
+			display: block;
 			margin-bottom: 5px;
+			font-weight: bold;
+			color: #555;
 		}
 
-			.form-section label {
-				display: block;
-				margin-bottom: 5px;
-				font-weight: bold;
-				color: #555;
-			}
+		.form-section select,
+		.form-section input {
+			width: 90%;
+			padding: 3px;
+			margin-bottom: 3px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
 
-			.form-section select,
-			.form-section input {
-				width: 100%;
-				padding: 8px;
-				margin-bottom: 5px;
-				border: 1px solid #ccc;
-				border-radius: 4px;
-				box-sizing: border-box;
+			.form-section input[type="color"] {
+				display: none;
+				margin-top: 5px;
 			}
-
-				.form-section input[type="color"] {
-					display: none;
-					margin-top: 5px;
-				}
 
 		.inline-section {
 			display: flex;
@@ -139,37 +122,24 @@
 			.card-template p {
 				margin: 5px 0;
 			}
+
+		.center-button-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+		}
 	</style>
+
 </head>
 <body>
+	<script src="js/cart.js"></script>
+
 	<!-- WRAPPER START -->
-	<div class="wrapper">
-		<!-- Mobile-header-top Start -->
-		<div class="mobile-header-top d-block d-md-none">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<!-- header-search-mobile start -->
-						<div class="header-search-mobile">
-							<div class="table">
-								<div class="table-cell">
-									<ul>
-										<li><a class="search-open" href="#"><i class="zmdi zmdi-search"></i></a></li>
-										<li><a href="login.html"><i class="zmdi zmdi-lock"></i></a></li>
-										<li><a href="my-account.html"><i class="zmdi zmdi-account"></i></a></li>
-										<li><a href="#wishlist.html"><i class="zmdi zmdi-favorite"></i></a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<!-- header-search-mobile start -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Mobile-header-top End -->
+	<div class="wrapper bg-dark-white">
+
 		<!-- HEADER-AREA START -->
-		<header id="sticky-menu" class="header">
+		<header id="sticky-menu" class="header header-2">
 			<div class="header-area">
 				<div class="container-fluid">
 					<div class="row">
@@ -199,14 +169,63 @@
 												<h5 class="mb-0">Total <span class="floatright" id="cart-total">Price : 0/-</span></h5>
 											</div>
 											<div class="cart-bottom clearfix">
-												<a href="#" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
-												<a href="#" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+												<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+												<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
 											</div>
 										</div>
 									</li>
 								</ul>
 							</div>
 						</div>
+						<!-- Mini-cart end -->
+						<!-- <div class="col-md-4 col-5">
+							<div class="mini-cart text-end">
+								<ul>
+									<li>
+										<a class="cart-icon" href="#">
+											<i class="zmdi zmdi-shopping-cart"></i>
+											<span>3</span>
+										</a>
+										<div class="mini-cart-brief text-left">
+											<div class="cart-items">
+												<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
+											</div>
+											<div class="all-cart-product clearfix">
+												<div class="single-cart clearfix">
+													<div class="cart-photo">
+														<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
+													</div>
+													<div class="cart-info">
+														<h5><a href="#">dummy product name</a></h5>
+														<p class="mb-0">Price : $ 100.00</p>
+														<p class="mb-0">Qty : 02 </p>
+														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
+													</div>
+												</div>
+												<div class="single-cart clearfix">
+													<div class="cart-photo">
+														<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
+													</div>
+													<div class="cart-info">
+														<h5><a href="#">dummy product name</a></h5>
+														<p class="mb-0">Price : $ 300.00</p>
+														<p class="mb-0">Qty : 01 </p>
+														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
+													</div>
+												</div>
+											</div>
+											<div class="cart-totals">
+												<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
+											</div>
+											<div class="cart-bottom  clearfix">
+												<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+												<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -235,23 +254,14 @@
 									<li><a href="#">Accountants</a></li>
 									<li><a href="#">Business Owners</a></li>
 									<li><a href="#">Others</a></li>
-									<li><a href="nfccustomcard.html">Custom Design</a></li>
+									<li><a href="#">Custom Design</a></li>
 									<li><a href="#">Premium Metal Black Cards</a></li>
 								</ul>
 							</div>
 						</li>
 						<li><a href="#">accesories</a></li>
 						<li><a href="#">blog</a></li>
-						<li>
-							<a href="nfctracking.html">NFC Tracking</a>
-							<div class="sub-menu menu-scroll">
-								<ul>
-									<li class="menu-title">Tracking Data</li>
-									<li><a href="nfctracking.html">Vendor Tracking</a></li>
-									<li><a href="customertracking.html">Customer Tracking</a></li>
-								</ul>
-
-							</div>
+						<li><a href="nfctracking.html">NFC Tracking</a>
 
 						<li><a href="about.html">about us</a></li>
 						<li><a href="contact.html">contact</a></li>
@@ -271,13 +281,16 @@
 								<ul>
 									<li>
 										<a href="index.html">home</a>
+
 									</li>
 									<li><a href="#">products</a></li>
 									<li><a href="#">accesories</a></li>
 									<li><a href="#">blog</a></li>
+
 									<li><a href="#">accesories</a></li>
 									<li><a href="#">blog</a></li>
 									<li><a href="nfctracking.html">NFC Tracking</a>
+
 									<li><a href="about.html">about us</a></li>
 									<li><a href="contact.html">contact</a></li>
 								</ul>
@@ -288,368 +301,327 @@
 			</div>
 		</div>
 		<!-- Mobile-menu end -->
-		<!-- SLIDER-BANNER-AREA START -->
-		<section class="slider-banner-area clearfix">
-			<!-- Sidebar-social-media start -->
-			<div class="sidebar-social d-none d-md-block">
-				<div class="table">
-					<div class="table-cell">
-						<ul>
-							<li><a href="#" target="_blank" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a></li>
-							<li><a href="#" target="_blank" title="Twitter"><i class="zmdi zmdi-twitter"></i></a></li>
-							<li><a href="#" target="_blank" title="Facebook"><i class="zmdi zmdi-facebook"></i></a></li>
-							<li><a href="#" target="_blank" title="Linkedin"><i class="zmdi zmdi-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Sidebar-social-media start -->
-			<!-- Customize Your Card start -->
-			<h1>Customize Your Card</h1>
-			<form id="customizeCardForm">
-				<div class="form-container">
-					<div class="form-section">
-						<label for="cardMaterial">Select your card material:</label>
-						<select id="cardMaterial" name="cardMaterial">
-							<option value="" disabled selected>Select card material</option>
-							<option value="PVC">PVC</option>
-							<option value="Paper">Paper</option>
-							<option value="Metal">Metal</option>
-							<option value="Wood">Wood</option>
-						</select>
-					</div>
+		<!-- HEADING-BANNER START -->
+		<div class="heading-banner-area overlay-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="heading-banner">
+							<div class="heading-banner-title">
+								<h2>Customize your Card</h2>
+							</div>
+							<div class="breadcumbs pb-15">
+								<ul>
+									<li><a href="index.html">Home</a></li>
 
-					<div class="inline-section">
-						<div class="form-section">
-							<label for="background">Upload Background Template:</label>
-							<input type="file" id="background" name="background" accept="image/*">
-						</div>
-
-						<div class="form-section">
-							<label for="cardColor">Select your card color:</label>
-							<select id="cardColor" name="cardColor">
-								<option value="" disabled selected>Select card color</option>
-								<option value="Black">Black</option>
-								<option value="White">White</option>
-								<option value="Custom">Custom</option>
-							</select>
-							<input type="color" id="customCardColorPicker" name="customCardColorPicker">
-						</div>
-					</div>
-
-					<div class="form-section">
-						<label for="textColor">Select your text color:</label>
-						<select id="textColor" name="textColor">
-							<option value="" disabled selected>Select text color</option>
-							<option value="White">White</option>
-							<option value="Grey">Grey</option>
-							<option value="Gold">Gold</option>
-							<option value="Silver">Silver</option>
-							<option value="Black">Black</option>
-							<option value="Blue">Blue</option>
-							<option value="Bronze">Bronze</option>
-							<option value="Red">Red</option>
-							<option value="Green">Green</option>
-							<option value="Purple">Purple</option>
-						</select>
-					</div>
-
-					<div class="form-section">
-						<label for="name">Name display on card:</label>
-						<input type="text" id="name" name="name">
-					</div>
-
-					<div class="form-section">
-						<label for="designation">Designation display on card:</label>
-						<input type="text" id="designation" name="designation">
-					</div>
-
-					<div class="form-section">
-						<label for="companyName">Company Name:</label>
-						<input type="text" id="companyName" name="companyName">
-					</div>
-
-					<div class="form-section">
-						<label for="slogan">Slogan:</label>
-						<input type="text" id="slogan" name="slogan">
-					</div>
-
-					<div class="form-section">
-						<label for="email">Email*:</label>
-						<input type="email" id="email" name="email" required>
-					</div>
-
-					<div class="form-section">
-						<label for="phone">Phone number*:</label>
-						<input type="tel" id="phone" name="phone" placeholder="+91-1234567890" required>
-					</div>
-
-					<div class="form-section">
-						<label for="logo">Upload Logo:</label>
-						<input type="file" id="logo" name="logo" accept="image/*">
-					</div>
-				</div>
-
-				<div class="preview">
-					<div id="cardFront" class="card-template front">
-						<img id="backgroundFrontPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
-						<img id="logoFrontPreview" class="logo-preview" src="" alt="Logo Preview" style="display: none;">
-						<p id="nameFrontPreview">[Name]</p>
-						<p id="designationFrontPreview">[Designation]</p>
-						<p id="emailFrontPreview">[Email]</p>
-						<p id="phoneFrontPreview">[Phone]</p>
-					</div>
-					<div id="cardBack" class="card-template back">
-						<img id="backgroundBackPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
-						<div class="text-right">
-							<p id="companyNameBackPreview">[Company Name]</p>
-							<p id="sloganBackPreview">[Slogan]</p>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!-- Customize Your Card end -->
-			<!-- Sidebar-social-media start -->
-			<div class="sidebar-account d-none d-md-block">
-				<div class="table">
-					<div class="table-cell">
-						<ul>
-							<li><a class="search-open" href="#" title="Search"><i class="zmdi zmdi-search"></i></a></li>
-							<li>
-								<a href="login.html" title="Login"><i class="zmdi zmdi-lock"></i></a>
-								<div class="customer-login text-left">
-									<form action="#">
-										<h4 class="title-1 title-border text-uppercase mb-30">Registered customers</h4>
-										<p class="text-gray">If you have an account with us, Please login!</p>
-										<input type="text" name="email" placeholder="Email here..." />
-										<input type="password" placeholder="Password" />
-										<p><a class="text-gray" href="#">Forget your password?</a></p>
-										<button class="button-one submit-button mt-15" data-text="login" type="submit">login</button>
-									</form>
-								</div>
-							</li>
-							<li><a href="my-account.html" title="My-Account"><i class="zmdi zmdi-account"></i></a></li>
-							<li><a href="wishlist.html" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Sidebar-social-media start -->
-		</section>
-		<!-- End Slider-section -->
-		<!-- sidebar-search Start -->
-		<div class="sidebar-search animated slideOutUp">
-			<div class="table">
-				<div class="table-cell">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-8 offset-md-2 p-0">
-								<div class="search-form-wrap">
-									<button class="close-search"><i class="zmdi zmdi-close"></i></button>
-									<form action="#">
-										<input type="text" placeholder="Search here..." />
-										<button class="search-button" type="submit">
-											<i class="zmdi zmdi-search"></i>
-										</button>
-									</form>
-								</div>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- sidebar-search End -->
-		<!-- SUBSCRIVE-AREA START -->
-		<div class="subscribe-area pt-80">
+		<!-- HEADING-BANNER END -->
+		<!-- SHOPPING-CART-AREA START -->
+		<div class="shopping-cart-area  pt-80 pb-80">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="subscribe">
-							<form action="#">
-								<input type="text" placeholder="Enter your email address" />
-								<button class="submit-button submit-btn-2 button-one" data-text="subscribe" type="submit">subscribe</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- SUBSCRIVE-AREA END -->
-		<!-- FOOTER START -->
-		<footer>
-			<!-- Footer-area start -->
-			<div class="footer-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<div class="single-footer">
-								<h3 class="footer-title  title-border">Contact Us</h3>
-								<ul style="font-size:13px;">
-									<li>
-										<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size:15px;"></i>
-										<span>7759 Horizon St, Chino, CA 91708, USA</span>
-									</li>
-									<li>
-										<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size: 15px;"></i>
-										<span>D.NO.23-30/2, SWATANTR NAGAR, Madhurawada, Visakhapatnam, AP, 530048</span>
-									</li>
-									<li>
-										<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
-										<!--<span>+1 530 500 5786</span>-->
-										<a href="tel:+1 530 500 5786" class="call-meta_number">+1 530 500 5786</a>
-									</li>
-									<li>
-										<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
-										<!--<span>+918142145757, +918142155757</span>-->
-										<a href="tel:+918142145757" class="call-meta_number">+918142145757</a>
-										<a href="tel:+918142155757" class="call-meta_number">+918142155757</a>
-									</li>
-									<li>
-										<i class="zmdi zmdi-email" style="padding-right: 10px; font-size: 15px;"></i>
-										<!--<span>contact@linktotap.com</span>-->
-										<a href="mailto:contact@linktotap.com">contact@linktotap.com</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-6">
-							<div class="single-footer">
-								<h3 class="footer-title  title-border">accounts</h3>
-								<ul class="footer-menu">
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Account</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Wishlist</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>My Cart</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Check out</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-3 col-sm-6">
-							<div class="single-footer">
-								<h3 class="footer-title  title-border">shipping</h3>
-								<ul class="footer-menu">
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
-									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="single-footer">
-								<h3 class="footer-title  title-border">your choice Products</h3>
-								<div class="footer-product">
-									<div class="row">
-										<div class="col-sm-6 col-12">
-											<div class="footer-thumb">
-												<a href="#"><img src="img/footer/1.png" alt="" /></a>
-												<div class="footer-thumb-info">
-													<p><a href="#">Digital Card</a></p>
-													<h4 class="price-3">Rs: 499/-</h4>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-6 col-12">
-											<div class="footer-thumb">
-												<a href="#"><img src="img/footer/1.png" alt="" /></a>
-												<div class="footer-thumb-info">
-													<p><a href="#">Digital Card</a></p>
-													<h4 class="price-3">Rs: 499/-</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Footer-area end -->
-			<!-- Copyright-area start -->
-			<div class="copyright-area">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="copyright">
-								<p class="mb-0">&copy; <a href="#" target="_blank"> Linktotap  </a> 2025. All Rights Reserved.</p>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="payment  text-md-end">
-								<a href="#"><img src="img/payment/1.png" alt="" /></a>
-								<a href="#"><img src="img/payment/2.png" alt="" /></a>
-								<a href="#"><img src="img/payment/3.png" alt="" /></a>
-								<a href="#"><img src="img/payment/4.png" alt="" /></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Copyright-area start -->
-		</footer>
-		<!-- FOOTER END -->
-		<!-- QUICKVIEW PRODUCT -->
-		<div id="quickview-wrapper">
-			<!-- Modal -->
-			<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						</div>
-						<div class="modal-body">
-							<div class="modal-product">
-								<div class="product-images">
-									<div class="main-image images">
-										<img alt="#" src="img/product/quickview-photo.jpg" />
-									</div>
-								</div><!-- .product-images -->
+						<div class="shopping-cart">
+							<!-- <div class="section-title text-center">
+								<h2 class="title-border">Checkout</h2>
+							</div> -->
+							<!-- Nav tabs -->
+							<ul class="cart-page-menu nav row clearfix mb-30">
+								<!-- <li><a class="active" href="#shopping-cart" data-bs-toggle="tab">shopping cart</a></li> -->
+								<!-- <li><a href="#wishlist" data-bs-toggle="tab">wishlist</a></li> -->
+								<!-- <li><a href="#check-out" data-bs-toggle="tab">check out</a></li> -->
+								<!-- <li><a href="#order-complete" data-bs-toggle="tab">order complete</a></li> -->
+							</ul>
 
-								<div class="product-info">
-									<h1>NFC Digital Business Card</h1>
-									<div class="price-box-3">
-										<hr />
-										<div class="s-price-box">
-											<span class="new-price">Price: 499/-</span>
-											<span class="old-price">Price: 1200/-</span>
-										</div>
-										<hr />
-									</div>
-									<a href="#" class="see-all">See all features</a>
-									<div class="quick-add-to-cart">
-										<form method="post" class="cart">
-											<div class="numbers-row">
-												<input type="number" id="french-hens" value="3" min="1">
+
+							<!-- check-out start -->
+							<div class="tab-pane" id="check-out">
+								<form action="#" id="customizeCardForm">
+									<div class="shop-cart-table check-out-wrap">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="billing-details pr-20">
+													<h4 class="title-1 title-border text-uppercase mb-30">details</h4>
+													<select class="custom-select mb-15">
+														<option>Select card material</option>
+														<option>PVC</option>
+														<option>Paper</option>
+														<option>Metal</option>
+														<option>Wood</option>
+													</select>
+
+													<!--<label class="custom-select mb-15" for="textColor">Select your text color:</label>-->
+													<select class="custom-select mb-15" id="textColor" name="textColor">
+														<option value="" disabled selected>Select text color</option>
+														<option value="White">White</option>
+														<option value="Grey">Grey</option>
+														<option value="Gold">Gold</option>
+														<option value="Silver">Silver</option>
+														<option value="Black">Black</option>
+														<option value="Blue">Blue</option>
+														<option value="Bronze">Bronze</option>
+														<option value="Red">Red</option>
+														<option value="Green">Green</option>
+														<option value="Purple">Purple</option>
+													</select>
+
+													<input type="text" id="designation" placeholder="Designation display on card...">
+													<input type="text" id="slogan" placeholder="Slogan...">
+													<input type="text" id="phone" placeholder="Phone number here..." required>
+
+
+
+
+
+
+
+
+												</div>
 											</div>
-											<button class="single_add_to_cart_button" type="submit">Add to cart</button>
-										</form>
-									</div>
-									<div class="quick-desc">
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
-									</div>
-									<div class="social-sharing">
-										<div class="widget widget_socialsharing_widget">
-											<h3 class="widget-title-modal">Share this product</h3>
-											<ul class="social-icons">
-												<li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="zmdi zmdi-google-plus"></i></a></li>
-												<li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="zmdi zmdi-twitter"></i></a></li>
-												<li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="zmdi zmdi-facebook"></i></a></li>
-												<li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
-											</ul>
+											<div class="col-md-6 mt-xs-30">
+												<div class="billing-details pl-20">
+													<!--<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>-->
+
+
+
+													<input type="text" id="name" placeholder="Name Display on Card...">
+													<input type="text" id="companyName" placeholder="Company name here...">
+													<input type="text" id="email" placeholder="Email address here...">
+
+
+													<div class="inline-section">
+														<div class="form-section">
+															<label for="background">Upload Background Template:</label>
+															<input type="file" id="background" name="background" accept="image/*">
+														</div>
+
+														<div class="form-section">
+															<label for="cardColor">Select your card color:</label>
+															<select id="cardColor" name="cardColor">
+																<option value="" disabled selected>Select card color</option>
+																<option value="Black">Black</option>
+																<option value="White">White</option>
+																<option value="Custom">Custom</option>
+															</select>
+															<input type="color" id="customCardColorPicker" name="customCardColorPicker">
+														</div>
+													</div>
+
+													<div class="form-section">
+														<label for="logo">Upload Logo:</label>
+														<input type="file" id="logo" name="logo" accept="image/*">
+													</div>
+
+
+
+
+
+												</div>
+											</div>
+
+											<div class="preview">
+												<div id="cardFront" class="card-template front">
+													<img id="backgroundFrontPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
+													<img id="logoFrontPreview" class="logo-preview" src="" alt="Logo Preview" style="display: none;">
+													<p id="nameFrontPreview">[Name]</p>
+													<p id="designationFrontPreview">[Designation]</p>
+													<p id="emailFrontPreview">[Email]</p>
+													<p id="phoneFrontPreview">[Phone]</p>
+												</div>
+												<div id="cardBack" class="card-template back">
+													<img id="backgroundBackPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
+													<div class="text-right">
+														<p id="companyNameBackPreview">[Company Name]</p>
+														<p id="sloganBackPreview">[Slogan]</p>
+													</div>
+												</div>
+											</div>
+
+
+											<!-- payment-method -->
+
+										</div>
+										<div class="center-button-container">
+											<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
 										</div>
 									</div>
-								</div><!-- .product-info -->
-							</div><!-- .modal-product -->
-						</div><!-- .modal-body -->
-					</div><!-- .modal-content -->
-				</div><!-- .modal-dialog -->
+								</form>
+							</div>
+							<!-- check-out end -->
+
+						</div>
+
+					</div>
+				</div>
 			</div>
-			<!-- END Modal -->
 		</div>
 	</div>
+	<!-- SHOPPING-CART-AREA END -->
+	<!-- FOOTER START -->
+	<footer>
+		<!-- Footer-area start -->
+		<div class="footer-area footer-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">Contact Us</h3>
+							<ul style="font-size:13px;">
+								<li>
+									<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size:15px;"></i>
+									<span>7759 Horizon St, Chino, CA 91708, USA</span>
+								</li>
+								<li>
+									<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size: 15px;"></i>
+									<span>D.NO.23-30/2, SWATANTR NAGAR, Madhurawada, Visakhapatnam, AP, 530048</span>
+								</li>
+								<li>
+									<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>+1 530 500 5786</span>-->
+									<a href="tel:+1 530 500 5786" class="call-meta_number">+1 530 500 5786</a>
+								</li>
+								<li>
+									<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>+918142145757, +918142155757</span>-->
+									<a href="tel:+918142145757" class="call-meta_number">+918142145757</a>
+									<a href="tel:+918142155757" class="call-meta_number">+918142155757</a>
+								</li>
+								<li>
+									<i class="zmdi zmdi-email" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>contact@linktotap.com</span>-->
+									<a href="mailto:contact@linktotap.com">contact@linktotap.com</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">accounts</h3>
+							<ul class="footer-menu">
+								<li><a href="my-account.html"><i class="zmdi zmdi-dot-circle"></i>My Account</a></li>
+								<li><a href="wishlist.html"><i class="zmdi zmdi-dot-circle"></i>My Wishlist</a></li>
+								<li><a href="cart.html"><i class="zmdi zmdi-dot-circle"></i>My Cart</a></li>
+								<li><a href="login.html"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
+								<li><a href="checkout.html"><i class="zmdi zmdi-dot-circle"></i>Check out</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">shipping</h3>
+							<ul class="footer-menu">
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-footer newsletter-item">
+							<h3 class="footer-title  title-border">Email Newsletters</h3>
+							<div class="footer-subscribe">
+								<form action="#">
+									<input type="text" name="email" placeholder="Email Address..." />
+									<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer-area end -->
+		<!-- Copyright-area start -->
+		<div class="copyright-area copyright-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="copyright">
+							<p class="mb-0">&copy; <a href="index.html" target="_blank">Linktotap </a> 2025. All Rights Reserved.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="payment  text-md-end">
+							<a href="#"><img src="img/payment/1.png" alt="" /></a>
+							<a href="#"><img src="img/payment/2.png" alt="" /></a>
+							<a href="#"><img src="img/payment/3.png" alt="" /></a>
+							<a href="#"><img src="img/payment/4.png" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Copyright-area start -->
+	</footer>
+	<!-- FOOTER END -->
+	<!-- QUICKVIEW PRODUCT -->
+	<div id="quickview-wrapper">
+		<!-- Modal -->
+		<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<div class="modal-product">
+							<div class="product-images">
+								<div class="main-image images">
+									<img alt="#" src="img/product/quickview-photo.jpg" />
+								</div>
+							</div><!-- .product-images -->
+
+							<div class="product-info">
+								<h1>Aenean eu tristique</h1>
+								<div class="price-box-3">
+									<hr />
+									<div class="s-price-box">
+										<span class="new-price">$160.00</span>
+										<span class="old-price">$190.00</span>
+									</div>
+									<hr />
+								</div>
+								<a href="shop.html" class="see-all">See all features</a>
+								<div class="quick-add-to-cart">
+									<form method="post" class="cart">
+										<div class="numbers-row">
+											<input type="number" id="french-hens" value="3" min="1">
+										</div>
+										<button class="single_add_to_cart_button" type="submit">Add to cart</button>
+									</form>
+								</div>
+								<div class="quick-desc">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
+								</div>
+								<div class="social-sharing">
+									<div class="widget widget_socialsharing_widget">
+										<h3 class="widget-title-modal">Share this product</h3>
+										<ul class="social-icons">
+											<li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="zmdi zmdi-google-plus"></i></a></li>
+											<li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="zmdi zmdi-twitter"></i></a></li>
+											<li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="zmdi zmdi-facebook"></i></a></li>
+											<li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div><!-- .product-info -->
+						</div><!-- .modal-product -->
+					</div><!-- .modal-body -->
+				</div><!-- .modal-content -->
+			</div><!-- .modal-dialog -->
+		</div>
+		<!-- END Modal -->
+	</div>
+	<!-- END QUICKVIEW PRODUCT -->
+
 
 	<script>
 		document.getElementById('customizeCardForm').addEventListener('input', function () {
@@ -709,7 +681,80 @@
 				reader.readAsDataURL(background);
 			}
 		});
+
+
+
+
+
+
+
+
+		document.getElementById("customizeCardForm").addEventListener("submit", function (event) {
+			event.preventDefault(); // Prevents traditional form submission
+
+			// Fetch form values
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var phone = document.getElementById("phone").value;
+			var cardMaterial = document.getElementById("cardMaterial").value;
+			var cardColor = document.getElementById("cardColor").value;
+			var customCardColorPicker = document.getElementById("customCardColorPicker").value;
+			var textColor = document.getElementById("textColor").value;
+			var designation = document.getElementById("designation").value;
+			var companyName = document.getElementById("companyName").value;
+			var slogan = document.getElementById("slogan").value;
+
+			// Fetch files (background and logo)
+			var background = document.getElementById("background").files[0];
+			var logo = document.getElementById("logo").files[0];
+
+			// Create a FormData object
+			var formData = new FormData();
+
+			// Append text data
+			formData.append("name", name);
+			formData.append("email", email);
+			formData.append("phone", phone);
+			formData.append("cardMaterial", cardMaterial);
+			formData.append("cardColor", cardColor);
+			formData.append("customCardColorPicker", customCardColorPicker);
+			formData.append("textColor", textColor);
+			formData.append("designation", designation);
+			formData.append("companyName", companyName);
+			formData.append("slogan", slogan);
+
+			// Append files (only if they exist)
+			//if (background) {
+			//	formData.append("background", background); // Append the actual file
+			//}
+			//if (logo) {
+			//	formData.append("logo", logo); // Append the actual file
+			//}
+
+			// Validate required fields (example: name, email, phone)
+			if (email && phone) {
+				// Call the submitTrigger function with the formData
+				submitTrigger(formData);
+			} else {
+				// Show alert to fill in the form details
+				alert("Please fill in all the required form details");
+			}
+		});
+		function submitTrigger(inputData) {
+			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+
+			var req = new XMLHttpRequest();
+			req.open("POST", flowUrl, true);
+			req.setRequestHeader('Content-Type', 'application/json');
+			req.send(inputData);
+			alert("Your information has been submitted successfully. Our team shall get back to you in 1-2 business days");
+
+			// Clear the form fields
+			document.getElementById("customizeCardForm").reset();
+		}
+
 	</script>
+
 
 
 	<!-- WRAPPER END -->
