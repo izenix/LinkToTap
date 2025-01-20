@@ -1148,6 +1148,7 @@
 								<input id="emailInput" type="text" placeholder="Enter your email address" />
 								<button class="submit-button submit-btn-2 button-one" data-text="subscribe" type="submit">subscribe</button>
 							</form>
+							<p class="text-center" id="emailresponseid"></p>
 						</div>
 					</div>
 				</div>
@@ -1323,20 +1324,74 @@
 	<script src="js/main.min.js"></script>
 	<script>
 function subscribeEmailTrigger(event) {
+    // Pause execution to debug (optional)
     debugger;
+
+    // Prevent default form submission behavior if used with a form
+    event.preventDefault();
+
+    // URL of the Power Automate Flow
     var flowUrl = "https://prod-20.centralindia.logic.azure.com:443/workflows/f3ac08eba26c44369fc6e199ccf773fc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UJYZlhWJBDaYjHMcqrOilsAiyMwePwv6aIbbGcJmLcs";
+
+    // Get email input value
     var emailInput = document.getElementById("emailInput").value.trim();
 
+    // Validate email using regular expression
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (!emailInput) {
+        document.getElementById("emailresponseid").innerText = "Please enter your email address.";
+        return;
+    }
+
+    if (!emailRegex.test(emailInput)) {
+        document.getElementById("emailresponseid").innerText = "Invalid email address.";
+        return;
+    }
+
+    // Prepare the input payload
     var input = JSON.stringify({
         "email": emailInput
-    });  
+    });
 
+    // Create an XMLHttpRequest object
     var req = new XMLHttpRequest();
+
+    // Configure the request
     req.open("POST", flowUrl, true);
-    req.setRequestHeader('Content-Type', 'application/json');
+    req.setRequestHeader("Content-Type", "application/json");
+
+    // Handle the response
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) { // Ensure the request is complete
+            var responseElement = document.getElementById("emailresponseid");
+            if (req.status === 200) { // HTTP 200 means success
+                try {
+                    // Parse and handle the JSON response
+                    var response = JSON.parse(req.responseText);
+                    
+                    if (response.status === "success") {
+                        // Display the success message
+                        responseElement.innerText = response.message;
+                    } else {
+                        // Handle unexpected statuses
+                        responseElement.innerText = "Unexpected response status: " + response.status;
+                    }
+                } catch (error) {
+                    console.error("Error parsing response:", error);
+                    responseElement.innerText = "Invalid response format.";
+                }
+            } else {
+                // Handle errors (e.g., 400, 500)
+                responseElement.innerText = "Error occurred. Status: " + req.status + " - " + req.statusText;
+            }
+        }
+    };
+
+    // Send the request with the input payload
     req.send(input);
-    alert("Subscribed to Linktotap");
 }
+
 
 	</script>
 </body>
