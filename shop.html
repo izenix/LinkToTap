@@ -868,10 +868,11 @@
                                 <div class="single-footer newsletter-item">
                                     <h3 class="footer-title  title-border">Email Newsletters</h3>
                                     <div class="footer-subscribe">
-                                        <form action="#">
-                                            <input type="text" name="email" placeholder="Email Address..." />
-                                            <button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
-                                        </form>
+                                        <form id="emailform" action="#" onsubmit="subscribeEmailTrigger(event)">
+											<input id="emailInput" type="text" name="email" placeholder="Email Address..." />
+											<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
+											<p class="text-center" id="emailresponseid"></p>
+										</form>
                                     </div>
                                 </div>
                             </div>
@@ -994,5 +995,7 @@
 		<script src="js/plugins.js"></script>
 		<!-- main js -->
 		<script src="js/main.min.js"></script>
+		<script src="js/httptriggers.js"></script>
+
 	</body>
  </html>
