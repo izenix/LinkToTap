@@ -1321,5 +1321,53 @@
 	<script src="js/plugins.js"></script>
 	<!-- main js -->
 	<script src="js/main.min.js"></script>
+	<script>
+
+function subscribeEmailTrigger(event) {
+	debugger;
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the email input value
+    var emailInput = document.getElementById("emailInput").value.trim();
+
+    if (!emailInput) {
+        alert("Please enter your email address.");
+        return;
+    }
+
+    var flowUrl = "https://prod-20.centralindia.logic.azure.com:443/workflows/f3ac08eba26c44369fc6e199ccf773fc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UJYZlhWJBDaYjHMcqrOilsAiyMwePwv6aIbbGcJmLcs";
+
+    // Prepare the data to send
+    var formData = { email: emailInput };
+    var inputData = JSON.stringify(formData);
+
+    // Make the POST request
+    var req = new XMLHttpRequest();
+    req.open("POST", flowUrl, true);
+    req.setRequestHeader('Content-Type', 'application/json');
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) { // Request is complete
+            if (req.status === 200) { // Successful response
+                try {
+                    // Parse the JSON response
+                    var response = JSON.parse(req.responseText);
+
+                    // Display the response or handle it
+                    alert("Response received: " + response.message);
+                } catch (error) {
+                    alert("Invalid response format.");
+                }
+            } else {
+                // Error response
+                alert("Subscription failed. Status: " + req.status);
+            }
+        }
+    };
+
+    req.send(inputData);
+}
+	</script>
 </body>
 </html>
