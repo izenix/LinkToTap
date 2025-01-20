@@ -129,6 +129,32 @@
 			align-items: center;
 			width: 100%;
 		}
+
+
+		.ship-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+		}
+
+		.title-1 {
+			margin: 0;
+		}
+
+		.radio-group {
+			display: flex;
+			gap: 20px;
+		}
+
+			.radio-group label {
+				display: flex;
+				align-items: center;
+			}
+
+			.radio-group input[type="radio"] {
+				margin-right: 5px;
+			}
 	</style>
 
 </head>
@@ -177,55 +203,6 @@
 								</ul>
 							</div>
 						</div>
-						<!-- Mini-cart end -->
-						<!-- <div class="col-md-4 col-5">
-							<div class="mini-cart text-end">
-								<ul>
-									<li>
-										<a class="cart-icon" href="#">
-											<i class="zmdi zmdi-shopping-cart"></i>
-											<span>3</span>
-										</a>
-										<div class="mini-cart-brief text-left">
-											<div class="cart-items">
-												<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
-											</div>
-											<div class="all-cart-product clearfix">
-												<div class="single-cart clearfix">
-													<div class="cart-photo">
-														<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
-													</div>
-													<div class="cart-info">
-														<h5><a href="#">dummy product name</a></h5>
-														<p class="mb-0">Price : $ 100.00</p>
-														<p class="mb-0">Qty : 02 </p>
-														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-													</div>
-												</div>
-												<div class="single-cart clearfix">
-													<div class="cart-photo">
-														<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
-													</div>
-													<div class="cart-info">
-														<h5><a href="#">dummy product name</a></h5>
-														<p class="mb-0">Price : $ 300.00</p>
-														<p class="mb-0">Qty : 01 </p>
-														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-													</div>
-												</div>
-											</div>
-											<div class="cart-totals">
-												<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
-											</div>
-											<div class="cart-bottom  clearfix">
-												<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
-												<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -328,15 +305,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="shopping-cart">
-							<!-- <div class="section-title text-center">
-								<h2 class="title-border">Checkout</h2>
-							</div> -->
 							<!-- Nav tabs -->
 							<ul class="cart-page-menu nav row clearfix mb-30">
-								<!-- <li><a class="active" href="#shopping-cart" data-bs-toggle="tab">shopping cart</a></li> -->
-								<!-- <li><a href="#wishlist" data-bs-toggle="tab">wishlist</a></li> -->
-								<!-- <li><a href="#check-out" data-bs-toggle="tab">check out</a></li> -->
-								<!-- <li><a href="#order-complete" data-bs-toggle="tab">order complete</a></li> -->
 							</ul>
 
 
@@ -348,10 +318,9 @@
 											<div class="col-md-6">
 												<div class="billing-details pr-20">
 													<h4 class="title-1 title-border text-uppercase mb-30">details</h4>
-													<select class="custom-select mb-15">
+													<select class="custom-select mb-15" id="cardMaterial">
 														<option>Select card material</option>
 														<option>PVC</option>
-														<option>Paper</option>
 														<option>Metal</option>
 														<option>Wood</option>
 													</select>
@@ -374,25 +343,10 @@
 													<input type="text" id="designation" placeholder="Designation display on card...">
 													<input type="text" id="slogan" placeholder="Slogan...">
 													<input type="text" id="phone" placeholder="Phone number here..." required>
-
-
-
-
-
-
-
-
-												</div>
-											</div>
-											<div class="col-md-6 mt-xs-30">
-												<div class="billing-details pl-20">
-													<!--<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>-->
-
-
-
 													<input type="text" id="name" placeholder="Name Display on Card...">
 													<input type="text" id="companyName" placeholder="Company name here...">
 													<input type="text" id="email" placeholder="Email address here...">
+													<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>
 
 
 													<div class="inline-section">
@@ -409,7 +363,7 @@
 																<option value="White">White</option>
 																<option value="Custom">Custom</option>
 															</select>
-															<input type="color" id="customCardColorPicker" name="customCardColorPicker">
+															<input type="color" id="customCardColorPicker" name="customCardColorPicker" style="display:none;">
 														</div>
 													</div>
 
@@ -419,9 +373,25 @@
 													</div>
 
 
+												</div>
+											</div>
+											<div class="col-md-6 mt-xs-30">
+												<div class="billing-details pl-20">
 
+													<div class="ship-container">
+														<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>
+														<label>
+															<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()"> Yes
+														</label>
+													</div>
+													<input type="text" id="nameGift" placeholder="Name Display on Card..." disabled>
+													<input type="text" id="phoneGift" placeholder="Phone number here..." disabled>
+													<input type="text" id="emailGift" placeholder="Email address here..." disabled>
+													<input type="text" id="companyNameGift" placeholder="Company name here..." disabled>
+													<input type="text" id="designationGift" placeholder="Designation display on card..." disabled>
+													<input type="text" id="sloganGift" placeholder="Slogan..." disabled>
 
-
+													<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..." disabled></textarea>
 												</div>
 											</div>
 
@@ -445,11 +415,88 @@
 
 
 											<!-- payment-method -->
+											<div class="col-md-6">
+												<div class="our-order payment-details mt-60 pr-20">
+													<h4 class="title-1 title-border text-uppercase mb-30">our order</h4>
+													<table>
+														<thead>
+															<tr>
+																<th><strong>Product</strong></th>
+																<th class="text-end"><strong>Total</strong></th>
+															</tr>
+														</thead>
+
+
+														<tbody id="checkoutproductscontainers">
+															<tr>
+																<td>Dummy Product Name  x 2</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Dummy Product Name  x 1</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Cart Subtotal</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Shipping and Handing</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Vat</td>
+																<td class="text-end">Rs. 00.00</td>
+															</tr>
+															<tr>
+																<td>Order Total</td>
+																<td id="totalAmount" class="text-end">Rs. 999.00</td>
+															</tr>
+														</tbody>
+
+
+													</table>
+												</div>
+											</div>
+											<!-- payment-method -->
+											<div class="col-md-6">
+												<div class="payment-method mt-60  pl-20">
+													<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
+													<div class="payment-accordion">
+														<!-- Accordion start  -->
+														<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
+														<div class="payment-content default">
+															<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
+														</div>
+														<!-- Accordion end -->
+														<!-- Accordion start -->
+														<h3 class="payment-accordion-toggle">Cheque Payment</h3>
+														<div class="payment-content">
+															<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+														</div>
+														<!-- Accordion end -->
+														<!-- Accordion start -->
+														<h3 class="payment-accordion-toggle">PayPal</h3>
+														<div class="payment-content">
+															<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+															<a href="#"><img src="img/payment/1.png" alt="" /></a>
+															<a href="#"><img src="img/payment/2.png" alt="" /></a>
+															<a href="#"><img src="img/payment/3.png" alt="" /></a>
+															<a href="#"><img src="img/payment/4.png" alt="" /></a>
+														</div>
+														<!-- Accordion end -->
+														<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
+													</div>
+												</div>
+											</div>
+
 
 										</div>
-										<div class="center-button-container">
+										<!--<div class="center-button-container">
 											<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
-										</div>
+
+										</div>-->
+										<!--<p id="orderOutput">Loading your order number...</p>--> <!-- This will display the order number -->
 									</div>
 								</form>
 							</div>
@@ -625,6 +672,7 @@
 
 	<script>
 		document.getElementById('customizeCardForm').addEventListener('input', function () {
+			debugger;
 			const name = document.getElementById('name').value;
 			const designation = document.getElementById('designation').value;
 			const email = document.getElementById('email').value;
@@ -635,6 +683,7 @@
 			const background = document.getElementById('background').files[0];
 			const textColor = document.getElementById('textColor').value;
 			const cardColor = document.getElementById('cardColor').value;
+			const cardMaterial = document.getElementById("cardMaterial").value;
 
 			document.getElementById('nameFrontPreview').textContent = name || '[Name]';
 			document.getElementById('designationFrontPreview').textContent = designation || '[Designation]';
@@ -644,8 +693,8 @@
 			document.getElementById('companyNameBackPreview').textContent = companyName || '[Company Name]';
 			document.getElementById('sloganBackPreview').textContent = slogan || '[Slogan]';
 
-			document.getElementById('cardFront').style.color = textColor;
-			document.getElementById('cardBack').style.color = textColor;
+			document.getElementById('cardFront').style.color = textColor || 'inherit';
+			document.getElementById('cardBack').style.color = textColor || 'inherit';
 
 			if (cardColor === "Custom") {
 				document.getElementById('customCardColorPicker').style.display = 'block';
@@ -666,9 +715,12 @@
 					logoFrontPreview.style.display = 'block';
 				};
 				reader.readAsDataURL(logo);
+			} else {
+				document.getElementById('logoFrontPreview').style.display = 'none';
 			}
 
 			if (background) {
+				debugger;
 				const backgroundFrontPreview = document.getElementById('backgroundFrontPreview');
 				const backgroundBackPreview = document.getElementById('backgroundBackPreview');
 				const reader = new FileReader();
@@ -679,49 +731,106 @@
 					backgroundBackPreview.style.display = 'block';
 				};
 				reader.readAsDataURL(background);
+			} else {
+				document.getElementById('backgroundFrontPreview').style.display = 'none';
+				document.getElementById('backgroundBackPreview').style.display = 'none';
 			}
 		});
 
 
 
-
-
-
-
-
 		document.getElementById("customizeCardForm").addEventListener("submit", function (event) {
+			debugger;
 			event.preventDefault(); // Prevents traditional form submission
+
+			var cardMaterialMap = {
+				"PVC": 0,
+				"Metal": 1,
+				"Wood": 2
+			};
+
+			var textColorMap = {
+				"White": 0,
+				"Grey": 1,
+				"Gold": 2,
+				"Silver": 3,
+				"Black": 4,
+				"Blue": 5,
+				"Bronze": 6,
+				"Red": 7,
+				"Green": 8,
+				"Purple": 9
+			};
+
+			var cardColorMap = {
+				"Black": 0,
+				"white": 1,
+				"Custom": 2
+			};
 
 			// Fetch form values
 			var name = document.getElementById("name").value;
 			var email = document.getElementById("email").value;
 			var phone = document.getElementById("phone").value;
-			var cardMaterial = document.getElementById("cardMaterial").value;
-			var cardColor = document.getElementById("cardColor").value;
 			var customCardColorPicker = document.getElementById("customCardColorPicker").value;
-			var textColor = document.getElementById("textColor").value;
 			var designation = document.getElementById("designation").value;
 			var companyName = document.getElementById("companyName").value;
 			var slogan = document.getElementById("slogan").value;
+			var address = document.getElementById("address").value;
+
+			// Get the selected value from the dropdowns and map them to integers
+			var cardMaterialString = document.getElementById("cardMaterial").value;
+			var cardMaterial = cardMaterialMap[cardMaterialString]; // Map the selected value to its integer
+
+			var textColorString = document.getElementById("textColor").value;
+			var textColor = textColorMap[textColorString];
+
+			var cardColorString = document.getElementById("cardColor").value;
+			var cardColor = cardColorMap[cardColorString];
 
 			// Fetch files (background and logo)
-			var background = document.getElementById("background").files[0];
-			var logo = document.getElementById("logo").files[0];
+			//var background = document.getElementById("background").files[0];
+			//var logo = document.getElementById("logo").files[0];
+
+			var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
+
+			//Gift Card Order Information
+			var nameGift = document.getElementById("nameGift").value;
+			var emailGift = document.getElementById("emailGift").value;
+			var phoneGift = document.getElementById("phoneGift").value;
+			var designationGift = document.getElementById("designationGift").value;
+			var companyNameGift = document.getElementById("companyNameGift").value;
+			var sloganGift = document.getElementById("sloganGift").value;
+			var addressGift = document.getElementById("addressGift").value;
+
+
 
 			// Create a FormData object
 			var formData = new FormData();
 
 			// Append text data
-			formData.append("name", name);
-			formData.append("email", email);
-			formData.append("phone", phone);
-			formData.append("cardMaterial", cardMaterial);
-			formData.append("cardColor", cardColor);
-			formData.append("customCardColorPicker", customCardColorPicker);
-			formData.append("textColor", textColor);
-			formData.append("designation", designation);
-			formData.append("companyName", companyName);
-			formData.append("slogan", slogan);
+			var formData = {
+				name: name,
+				email: email,
+				phone: phone,
+				cardMaterial: cardMaterial,
+				cardColor: cardColor,
+				customCardColorPicker: customCardColorPicker,
+				textColor: textColor,
+				designation: designation,
+				companyName: companyName,
+				slogan: slogan,
+				totalAmount: totalAmount,
+
+				nameGift: nameGift,
+				emailGift: emailGift,
+				phoneGift: phoneGift,
+				designationGift: designationGift,
+				companyNameGift: companyNameGift,
+				sloganGift: sloganGift,
+				addressGift: addressGift
+			};
+
 
 			// Append files (only if they exist)
 			//if (background) {
@@ -732,26 +841,61 @@
 			//}
 
 			// Validate required fields (example: name, email, phone)
-			if (email && phone) {
-				// Call the submitTrigger function with the formData
-				submitTrigger(formData);
-			} else {
-				// Show alert to fill in the form details
+			if (!name || !email || !phone) {
 				alert("Please fill in all the required form details");
-			}
+				return;
+			} // Send the data
+
+			console.log("Form Data (Minimal):", JSON.stringify(formData));
+
+			submitTrigger(JSON.stringify(formData));
 		});
+
+
 		function submitTrigger(inputData) {
+			debugger;
 			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+
 
 			var req = new XMLHttpRequest();
 			req.open("POST", flowUrl, true);
 			req.setRequestHeader('Content-Type', 'application/json');
+
+			req.onreadystatechange = function () {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						/*alert("Your information has been submitted successfully.");*/
+						document.getElementById("customizeCardForm").reset();  // Reset form after success
+					} else {
+						console.log("Error Response Body:", req.responseText);  // Log the error response for debugging
+						/*alert("Error: " + req.status + " - " + req.statusText);*/
+					}
+				}
+			};
+
 			req.send(inputData);
-			alert("Your information has been submitted successfully. Our team shall get back to you in 1-2 business days");
+			alert("Your information has been submitted successfully.");
 
 			// Clear the form fields
 			document.getElementById("customizeCardForm").reset();
 		}
+			
+
+		function toggleFields() {
+			var checkbox = document.getElementById('enableFieldsCheckbox');
+			var fields = document.querySelectorAll('.billing-details input, .billing-details textarea');
+
+			// Enable or disable fields based on checkbox state
+			fields.forEach(function (field) {
+				field.disabled = !checkbox.checked;
+
+				// If the checkbox is unchecked, clear the field's value
+				if (!checkbox.checked) {
+					field.value = ''; // Clear the value
+				}
+			});
+		}
+
 
 	</script>
 
