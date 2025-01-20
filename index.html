@@ -1336,16 +1336,21 @@ function subscribeEmailTrigger(event) {
     // Get email input value
     var emailInput = document.getElementById("emailInput").value.trim();
 
+    // Get the response element
+    var responseElement = document.getElementById("emailresponseid");
+
     // Validate email using regular expression
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!emailInput) {
-        document.getElementById("emailresponseid").innerText = "Please enter your email address.";
+        responseElement.innerText = "Please enter your email address.";
+        responseElement.style.color = "red"; // Set text color to red
         return;
     }
 
     if (!emailRegex.test(emailInput)) {
-        document.getElementById("emailresponseid").innerText = "Invalid email address.";
+        responseElement.innerText = "Invalid email address.";
+        responseElement.style.color = "red"; // Set text color to red
         return;
     }
 
@@ -1364,7 +1369,6 @@ function subscribeEmailTrigger(event) {
     // Handle the response
     req.onreadystatechange = function () {
         if (req.readyState === 4) { // Ensure the request is complete
-            var responseElement = document.getElementById("emailresponseid");
             if (req.status === 200) { // HTTP 200 means success
                 try {
                     // Parse and handle the JSON response
@@ -1373,17 +1377,21 @@ function subscribeEmailTrigger(event) {
                     if (response.status === "success") {
                         // Display the success message
                         responseElement.innerText = response.message;
+                        responseElement.style.color = "green"; // Set text color to green
                     } else {
                         // Handle unexpected statuses
                         responseElement.innerText = "Unexpected response status: " + response.status;
+                        responseElement.style.color = "red"; // Set text color to red
                     }
                 } catch (error) {
                     console.error("Error parsing response:", error);
                     responseElement.innerText = "Invalid response format.";
+                    responseElement.style.color = "red"; // Set text color to red
                 }
             } else {
                 // Handle errors (e.g., 400, 500)
                 responseElement.innerText = "Error occurred. Status: " + req.status + " - " + req.statusText;
+                responseElement.style.color = "red"; // Set text color to red
             }
         }
     };
@@ -1391,7 +1399,6 @@ function subscribeEmailTrigger(event) {
     // Send the request with the input payload
     req.send(input);
 }
-
 
 	</script>
 </body>
