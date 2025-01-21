@@ -7,7 +7,7 @@ function subscribeEmailTrigger(event) {
     event.preventDefault();
 
     // URL of the Power Automate Flow
-    var flowUrl = "https://prod-20.centralindia.logic.azure.com:443/workflows/f3ac08eba26c44369fc6e199ccf773fc/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=UJYZlhWJBDaYjHMcqrOilsAiyMwePwv6aIbbGcJmLcs";
+    var flowUrl = "https://prod-27.centralindia.logic.azure.com:443/workflows/838d81112d0e4ec4aa17c18a4b3ad6f3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kQ_CL3sbnIx_H0v_-Gj0jKxC6me615D0TcXFkIuUYL4";
 
     // Get email input value
     var emailInput = document.getElementById("emailInput").value.trim();
