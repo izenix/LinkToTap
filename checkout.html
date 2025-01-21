@@ -1,628 +1,796 @@
+
 <!doctype html>
 <html class="no-js" lang="en">
- <head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Checkout || Linktotap</title>
-		<meta name="description" content="Linktotap specializes in innovative NFC card solutions, bridging the digital and physical worlds. Explore smart business cards, event solutions, cashless payments, and custom NFC technology tailored for seamless connectivity and efficiency. Discover the future with just a tap.">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Checkout || Linktotap</title>
+	<meta name="description" content="Linktotap specializes in innovative NFC card solutions, bridging the digital and physical worlds. Explore smart business cards, event solutions, cashless payments, and custom NFC technology tailored for seamless connectivity and efficiency. Discover the future with just a tap.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-		<!-- Place favicon.ico in the root directory -->
-		
-		<!-- Google Font -->
-		<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<!-- Place favicon.ico in the root directory -->
+	<!-- Google Font -->
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 
-		<!-- all css here -->
-		<!-- bootstrap v3.3.6 css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<!-- animate css -->
-		<link rel="stylesheet" href="css/animate.min.css">
-		<!-- jquery-ui.min css -->
-		<link rel="stylesheet" href="css/jquery-ui.min.css">
-		<!-- meanmenu css -->
-		<link rel="stylesheet" href="css/meanmenu.min.css">
-		<!-- nivo-slider css -->
-		<link rel="stylesheet" href="lib/css/nivo-slider.css">
-		<link rel="stylesheet" href="lib/css/preview.css">
-		<!-- slick css -->
-		<link rel="stylesheet" href="css/slick.min.css">
-		<!-- lightbox css -->
-		<link rel="stylesheet" href="css/lightbox.min.css">
-		<!-- material-design-iconic-font css -->
-		<link rel="stylesheet" href="css/material-design-iconic-font.css">
-		<!-- All common css of theme -->
-		<link rel="stylesheet" href="css/default.css">
-		<!-- style css -->
-		<link rel="stylesheet" href="style.min.css">
-        <!-- shortcode css -->
-        <link rel="stylesheet" href="css/shortcode.css">
-		<!-- responsive css -->
-		<link rel="stylesheet" href="css/responsive.css">
-		<!-- modernizr css -->
-		<script src="js/vendor/modernizr-3.11.2.min.js"></script>
-	</head>
-	<body>	
-		<script src="js/cart.js"></script>
+	<!-- all css here -->
+	<!-- bootstrap v3.3.6 css -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="css/animate.min.css">
+	<!-- jquery-ui.min css -->
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<!-- meanmenu css -->
+	<link rel="stylesheet" href="css/meanmenu.min.css">
+	<!-- nivo-slider css -->
+	<link rel="stylesheet" href="lib/css/nivo-slider.css">
+	<link rel="stylesheet" href="lib/css/preview.css">
+	<!-- slick css -->
+	<link rel="stylesheet" href="css/slick.min.css">
+	<!-- lightbox css -->
+	<link rel="stylesheet" href="css/lightbox.min.css">
+	<!-- material-design-iconic-font css -->
+	<link rel="stylesheet" href="css/material-design-iconic-font.css">
+	<!-- All common css of theme -->
+	<link rel="stylesheet" href="css/default.css">
+	<!-- style css -->
+	<link rel="stylesheet" href="style.min.css">
+	<!-- shortcode css -->
+	<link rel="stylesheet" href="css/shortcode.css">
+	<!-- responsive css -->
+	<link rel="stylesheet" href="css/responsive.css">
+	<!-- modernizr css -->
+	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 
-		<!-- WRAPPER START -->
-		<div class="wrapper bg-dark-white">
+	<style>
+		.ship-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			padding-bottom: 20px;
+		}
 
-			<!-- HEADER-AREA START -->
-			<header id="sticky-menu" class="header header-2">
-				<div class="header-area">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-4 offset-md-4 col-7">
-								<div class="logo text-md-center">
-									<a href="index.html"><img src="img\logo\LinktoTap.png" alt="Linktotaplogo" style="width: 90px; height: auto;" /></a>
-								</div>
-							</div>
+		.title-1 {
+			margin: 0;
+		}
 
-<!-- Mini-cart start -->
-<div class="col-md-4 col-5">
-	<div class="mini-cart text-end">
-		<ul>
-			<li>
-				<a class="cart-icon" href="#">
-					<i class="zmdi zmdi-shopping-cart"></i>
-					<span id="cart-count">0</span>
-				</a>
-				<div class="mini-cart-brief text-left">
-					<div class="cart-items">
-						<p class="mb-0">You have <span id="cart-item-count">0 items</span> in your shopping bag</p>
-					</div>
-					<div class="all-cart-product clearfix" id="cart-items-list">
-						<!-- Cart items will be dynamically added here -->
-					</div>
-					<div class="cart-totals">
-						<h5 class="mb-0">Total <span class="floatright" id="cart-total">Price : 0/-</span></h5>
-					</div>
-					<div class="cart-bottom clearfix">
-						<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
-						<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
-</div>
-<!-- Mini-cart end -->
+		.radio-group {
+			display: flex;
+			gap: 20px;
+		}
 
+			.radio-group label {
+				display: flex;
+				align-items: center;
+			}
 
-							<!-- <div class="col-md-4 col-5">
-								<div class="mini-cart text-end">
-									<ul>
-										<li>
-											<a class="cart-icon" href="#">
-												<i class="zmdi zmdi-shopping-cart"></i>
-												<span>3</span>
-											</a>
-											<div class="mini-cart-brief text-left">
-												<div class="cart-items">
-													<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
-												</div>
-												<div class="all-cart-product clearfix">
-													<div class="single-cart clearfix">
-														<div class="cart-photo">
-															<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
-														</div>
-														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 100.00</p>
-															<p class="mb-0">Qty : 02 </p>
-															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-														</div>
-													</div>
-													<div class="single-cart clearfix">
-														<div class="cart-photo">
-															<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
-														</div>
-														<div class="cart-info">
-															<h5><a href="#">dummy product name</a></h5>
-															<p class="mb-0">Price : $ 300.00</p>
-															<p class="mb-0">Qty : 01 </p>
-															<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
-														</div>
-													</div>
-												</div>
-												<div class="cart-totals">
-													<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
-												</div>
-												<div class="cart-bottom  clearfix">
-													<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
-													<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<!-- MAIN-MENU START -->
-				<div class="menu-toggle hamburger hamburger--emphatic d-none d-md-block">
-					<div class="hamburger-box">
-						<div class="hamburger-inner"></div>
-					</div>
-				</div>
-				<div class="main-menu  d-none d-md-block">
-					<nav>
-						<ul>
-							<li>
-								<a href="index.html">home</a>
+			.radio-group input[type="radio"] {
+				margin-right: 5px;
+			}
+	</style>
+</head>
+<body>
+	<script src="js/cart.js"></script>
 
-							</li>
+	<!-- WRAPPER START -->
+	<div class="wrapper bg-dark-white">
 
-							<li>
-								<a href="#">Products</a>
-								<div class="sub-menu menu-scroll">
-									<ul>
-										<!--<li class="menu-title">best brands</li>
-										 <li><a href="#">Doctors</a></li>
-										<li><a href="#">Lawyers</a></li>
-										<li><a href="#">Influencers</a></li>
-										<li><a href="#">Accountants</a></li>
-										<li><a href="#">Business Owners</a></li>
-										<li><a href="#">Others</a></li> 
-								        <li><a href="#">Premium Metal Black Cards</a></li>-->
-										<li><a href="nfccustomcard.html">Custom Design</a></li>
-										<li><a href="shop.html">Our Products</a></li>
-
-									</ul>
-								</div>
-							</li>
-							<!-- <li><a href="#">accesories</a></li> -->
-							<li><a href="#">blog</a></li>
-							<li><a href="nfctracking.html">NFC Tracking</a>
-
-							<li><a href="about.html">about us</a></li>
-							<li><a href="contact.html">contact</a></li>
-						</ul>
-					</nav>
-				</div>
-				<!-- MAIN-MENU END -->
-			</header>
-			<!-- HEADER-AREA END -->
-			<!-- Mobile-menu start -->
-			<div class="mobile-menu-area">
+		<!-- HEADER-AREA START -->
+		<header id="sticky-menu" class="header header-2">
+			<div class="header-area">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-xs-12 d-block d-md-none">
-							<div class="mobile-menu">
-								<nav id="dropdown">
-									<ul>
-										<li>
-											<a href="index.html">home</a>
-										</li>
-										<li>
-											<a href="#">Products</a>
-											<div class="sub-menu menu-scroll">
-												<ul>
-													<!-- <li class="menu-title">best brands</li>
-													<li><a href="#">Doctors</a></li>
-													<li><a href="#">Lawyers</a></li>
-													<li><a href="#">Influencers</a></li>
-													<li><a href="#">Accountants</a></li>
-													<li><a href="#">Business Owners</a></li>
-													<li><a href="#">Others</a></li>
-													<li><a href="#">Custom Design</a></li>
-													<li><a href="#">Premium Metal Black Cards</a></li> -->
-													<li><a href="nfccustomcard.html">Custom Design</a></li>
-													<li><a href="shop.html">Our Products</a></li>
+						<div class="col-md-4 offset-md-4 col-7">
+							<div class="logo text-md-center">
+								<a href="index.html"><img src="img\logo\LinktoTap.png" alt="Linktotaplogo" style="width: 90px; height: auto;" /></a>
+							</div>
+						</div>
 
-												</ul>
+						<!-- Mini-cart start -->
+						<div class="col-md-4 col-5">
+							<div class="mini-cart text-end">
+								<ul>
+									<li>
+										<a class="cart-icon" href="#">
+											<i class="zmdi zmdi-shopping-cart"></i>
+											<span id="cart-count">0</span>
+										</a>
+										<div class="mini-cart-brief text-left">
+											<div class="cart-items">
+												<p class="mb-0">You have <span id="cart-item-count">0 items</span> in your shopping bag</p>
 											</div>
-										</li>
-										<!-- <li><a href="shop-sidebar.html">accesories</a></li> -->
-										<li><a href="blog.html">blog</a></li>
-										<li><a href="nfctracking.html">NFC Tracking</a>
-	
-										<li><a href="about.html">about us</a></li>
-										<li><a href="contact.html">contact</a></li>
-									</ul>
-								</nav>
+											<div class="all-cart-product clearfix" id="cart-items-list">
+												<!-- Cart items will be dynamically added here -->
+											</div>
+											<div class="cart-totals">
+												<h5 class="mb-0">Total <span class="floatright" id="cart-total">Price : 0/-</span></h5>
+											</div>
+											<div class="cart-bottom clearfix">
+												<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+												<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- Mini-cart end -->
+						<!-- <div class="col-md-4 col-5">
+							<div class="mini-cart text-end">
+								<ul>
+									<li>
+										<a class="cart-icon" href="#">
+											<i class="zmdi zmdi-shopping-cart"></i>
+											<span>3</span>
+										</a>
+										<div class="mini-cart-brief text-left">
+											<div class="cart-items">
+												<p class="mb-0">You have <span>03 items</span> in your shopping bag</p>
+											</div>
+											<div class="all-cart-product clearfix">
+												<div class="single-cart clearfix">
+													<div class="cart-photo">
+														<a href="#"><img src="img/cart/1.jpg" alt="" /></a>
+													</div>
+													<div class="cart-info">
+														<h5><a href="#">dummy product name</a></h5>
+														<p class="mb-0">Price : $ 100.00</p>
+														<p class="mb-0">Qty : 02 </p>
+														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
+													</div>
+												</div>
+												<div class="single-cart clearfix">
+													<div class="cart-photo">
+														<a href="#"><img src="img/cart/2.jpg" alt="" /></a>
+													</div>
+													<div class="cart-info">
+														<h5><a href="#">dummy product name</a></h5>
+														<p class="mb-0">Price : $ 300.00</p>
+														<p class="mb-0">Qty : 01 </p>
+														<span class="cart-delete"><a href="#"><i class="zmdi zmdi-close"></i></a></span>
+													</div>
+												</div>
+											</div>
+											<div class="cart-totals">
+												<h5 class="mb-0">Total <span class="floatright">$500.00</span></h5>
+											</div>
+											<div class="cart-bottom  clearfix">
+												<a href="cart.html" class="button-one floatleft text-uppercase" data-text="View cart">View cart</a>
+												<a href="checkout.html" class="button-one floatright text-uppercase" data-text="Check out">Check out</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<!-- MAIN-MENU START -->
+			<div class="menu-toggle hamburger hamburger--emphatic d-none d-md-block">
+				<div class="hamburger-box">
+					<div class="hamburger-inner"></div>
+				</div>
+			</div>
+			<div class="main-menu  d-none d-md-block">
+				<nav>
+					<ul>
+						<li>
+							<a href="index.html">home</a>
+
+						</li>
+
+						<li>
+							<a href="#">Products</a>
+							<div class="sub-menu menu-scroll">
+								<ul>
+									<!--<li class="menu-title">best brands</li>
+									 <li><a href="#">Doctors</a></li>
+									<li><a href="#">Lawyers</a></li>
+									<li><a href="#">Influencers</a></li>
+									<li><a href="#">Accountants</a></li>
+									<li><a href="#">Business Owners</a></li>
+									<li><a href="#">Others</a></li>
+									<li><a href="#">Premium Metal Black Cards</a></li>-->
+									<li><a href="nfccustomcard.html">Custom Design</a></li>
+									<li><a href="shop.html">Our Products</a></li>
+
+								</ul>
+							</div>
+						</li>
+						<!-- <li><a href="#">accesories</a></li> -->
+						<li><a href="#">blog</a></li>
+						<li><a href="nfctracking.html">NFC Tracking</a>
+
+						<li><a href="about.html">about us</a></li>
+						<li><a href="contact.html">contact</a></li>
+					</ul>
+				</nav>
+			</div>
+			<!-- MAIN-MENU END -->
+		</header>
+		<!-- HEADER-AREA END -->
+		<!-- Mobile-menu start -->
+		<div class="mobile-menu-area">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12 d-block d-md-none">
+						<div class="mobile-menu">
+							<nav id="dropdown">
+								<ul>
+									<li>
+										<a href="index.html">home</a>
+									</li>
+									<li>
+										<a href="#">Products</a>
+										<div class="sub-menu menu-scroll">
+											<ul>
+												<!-- <li class="menu-title">best brands</li>
+												<li><a href="#">Doctors</a></li>
+												<li><a href="#">Lawyers</a></li>
+												<li><a href="#">Influencers</a></li>
+												<li><a href="#">Accountants</a></li>
+												<li><a href="#">Business Owners</a></li>
+												<li><a href="#">Others</a></li>
+												<li><a href="#">Custom Design</a></li>
+												<li><a href="#">Premium Metal Black Cards</a></li> -->
+												<li><a href="nfccustomcard.html">Custom Design</a></li>
+												<li><a href="shop.html">Our Products</a></li>
+
+											</ul>
+										</div>
+									</li>
+									<!-- <li><a href="shop-sidebar.html">accesories</a></li> -->
+									<li><a href="blog.html">blog</a></li>
+									<li><a href="nfctracking.html">NFC Tracking</a>
+
+									<li><a href="about.html">about us</a></li>
+									<li><a href="contact.html">contact</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Mobile-menu end -->
+		<!-- HEADING-BANNER START -->
+		<div class="heading-banner-area overlay-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="heading-banner">
+							<div class="heading-banner-title">
+								<h2>Checkout</h2>
+							</div>
+							<div class="breadcumbs pb-15">
+								<ul>
+									<li><a href="index.html">Home</a></li>
+									<li>Checkout</li>
+								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Mobile-menu end -->
-			<!-- HEADING-BANNER START -->
-			<div class="heading-banner-area overlay-bg">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="heading-banner">
-								<div class="heading-banner-title">
-									<h2>Checkout</h2>
-								</div>
-								<div class="breadcumbs pb-15">
-									<ul>
-										<li><a href="index.html">Home</a></li>
-										<li>Checkout</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- HEADING-BANNER END -->
-			<!-- SHOPPING-CART-AREA START -->
-			<div class="shopping-cart-area  pt-80 pb-80">
-				<div class="container">	
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="shopping-cart">
-								<!-- <div class="section-title text-center">
+		</div>
+		<!-- HEADING-BANNER END -->
+		<!-- SHOPPING-CART-AREA START -->
+		<div class="shopping-cart-area  pt-80 pb-80">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="shopping-cart">
+							<!-- <div class="section-title text-center">
 								<h2 class="title-border">Checkout</h2>
 							</div> -->
-								<!-- Nav tabs -->
-								<ul class="cart-page-menu nav row clearfix mb-30">
-									<!-- <li><a class="active" href="#shopping-cart" data-bs-toggle="tab">shopping cart</a></li> -->
-									<!-- <li><a href="#wishlist" data-bs-toggle="tab">wishlist</a></li> -->
-									<!-- <li><a href="#check-out" data-bs-toggle="tab">check out</a></li> -->
-									<!-- <li><a href="#order-complete" data-bs-toggle="tab">order complete</a></li> -->
-								</ul>
+							<!-- Nav tabs -->
+							<ul class="cart-page-menu nav row clearfix mb-30">
+								<!-- <li><a class="active" href="#shopping-cart" data-bs-toggle="tab">shopping cart</a></li> -->
+								<!-- <li><a href="#wishlist" data-bs-toggle="tab">wishlist</a></li> -->
+								<!-- <li><a href="#check-out" data-bs-toggle="tab">check out</a></li> -->
+								<!-- <li><a href="#order-complete" data-bs-toggle="tab">order complete</a></li> -->
+							</ul>
 
-								
-									<!-- check-out start -->
-									<div class="tab-pane" id="check-out">
-										<form action="#">
-											<div class="shop-cart-table check-out-wrap">
-												<div class="row">
-													<div class="col-md-6">
-														<div class="billing-details pr-20">
+
+							<!-- check-out start -->
+							<div class="tab-pane" id="check-out">
+								<form action="#" id="customizeCardForm">
+									<div class="shop-cart-table check-out-wrap">
+										<div class="row">
+											<div class="col-md-6">
+												<div class="billing-details pr-20">
+													<fieldset id="billingDetailsFieldset">
+														<div class="ship-container">
 															<h4 class="title-1 title-border text-uppercase mb-30">billing details</h4>
-															<input type="text" placeholder="Name Display on Card...">
-															<input type="text" placeholder="Email address here...">
-															<input type="text" placeholder="Phone number here...">
-															<input type="text" placeholder="Company name here...">
-															<select class="custom-select mb-15">
-																<option>Contry</option>
-																<option>Bangladesh</option>
-																<option>United States</option>
-																<option>united Kingdom</option>
-																<option>Australia</option>
-																<option>Canada</option>
-															</select>
-															<select class="custom-select mb-15">
-																<option>State</option>
-																<option>Dhaka</option>
-																<option>New York</option>
-																<option>London</option>
-																<option>Melbourne</option>
-																<option>Ottawa</option>
-															</select>
-															<select class="custom-select mb-15">
-																<option>Town / City</option>
-																<option>Dhaka</option>
-																<option>New York</option>
-																<option>London</option>
-																<option>Melbourne</option>
-																<option>Ottawa</option>
-															</select>
-															<textarea class="custom-textarea" placeholder="Your address here..." ></textarea>
 														</div>
-													</div>
-													<div class="col-md-6 mt-xs-30">
-														<div class="billing-details pl-20">
+														<input id="name" type="text" placeholder="Name Display on Card...">
+														<input id="email" type="text" placeholder="Email address here...">
+														<input id="phone" type="text" placeholder="Phone number here...">
+														<input id="companyName" type="text" placeholder="Company name here...">
+														<input id="slogan" type="text" placeholder="Slogan here...">
+														
+														<!-- Hidden Input for Google Places Autocomplete -->
+														<input id="autocomplete" type="text" style="display:none;" />
+														<!-- Textarea for Address Input -->
+														<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>
+													</fieldset>
+
+												</div>
+											</div>
+											<div class="col-md-6 mt-xs-30">
+												<div class="billing-details pl-20">
+													<fieldset id="shippingDetailsFieldset">
+														<div class="ship-container">
 															<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>
-															<input type="text" placeholder="Your name here...">
-															<input type="text" placeholder="Email address here...">
-															<input type="text" placeholder="Phone number here...">
-															<input type="text" placeholder="Company name here...">
-															<select class="custom-select mb-15">
-																<option>Country</option>
-																<option>India</option>
-																<option>Bangladesh</option>
-																<option>United States</option>
-																<option>united Kingdom</option>
-																<option>Australia</option>
-																<option>Canada</option>
-															</select>
-															<select class="custom-select mb-15">
-																<option>State</option>
-																<option>Andhra Pradesh</option>
-																<option>Telangana</option>
-																<option>Dhaka</option>
-																<option>New York</option>
-																<option>London</option>
-																<option>Melbourne</option>
-																<option>Ottawa</option>
-															</select>
-															<select class="custom-select mb-15">
-																<option>Town / City</option>
-																<option>Kurnool</option>
-																<option>Dhaka</option>
-																<option>New York</option>
-																<option>London</option>
-																<option>Melbourne</option>
-																<option>Ottawa</option>
-															</select>
-															<textarea class="custom-textarea" placeholder="Your address here..." ></textarea>
+															<label>
+																<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()"> Yes
+															</label>
 														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="our-order payment-details mt-60 pr-20">
-															<h4 class="title-1 title-border text-uppercase mb-30">our order</h4>
-															<table>
-																<thead>
-																	<tr>
-																		<th><strong>Product</strong></th>
-																		<th class="text-end"><strong>Total</strong></th>
-																	</tr>
-																</thead>
-																<tbody id="checkoutproductscontainer">
-																	<!-- <tr>
-																		<td>Dummy Product Name  x 2</td>
-																		<td class="text-end">Rs. 999.00</td>
-																	</tr>
-																	<tr>
-																		<td>Dummy Product Name  x 1</td>
-																		<td class="text-end">Rs. 999.00</td>
-																	</tr>
-																	<tr>
-																		<td>Cart Subtotal</td>
-																		<td class="text-end">Rs. 999.00</td>
-																	</tr>
-																	<tr>
-																		<td>Shipping and Handing</td>
-																		<td class="text-end">Rs. 999.00</td>
-																	</tr>
-																	<tr>
-																		<td>Vat</td>
-																		<td class="text-end">Rs. 00.00</td>
-																	</tr>
-																	<tr>
-																		<td>Order Total</td>
-																		<td class="text-end">Rs. 999.00</td>
-																	</tr> -->
-																</tbody>
-															</table>
+
+														<!-- Container for the input fields, initially hidden -->
+														<div id="giftFieldsContainer" style="display: none;">
+															<input id="nameGift" type="text" placeholder="Your name here...">
+															<input id="emailGift" type="text" placeholder="Email address here...">
+															<input id="phoneGift" type="text" placeholder="Phone number here...">
+															<input id="companyNameGift" type="text" placeholder="Company name here...">
+															<input id="sloganGift" type="text" placeholder="Slogan here...">
+															<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..."></textarea>
 														</div>
-													</div>
-													<!-- payment-method -->
-													<div class="col-md-6">
-														<div class="payment-method mt-60  pl-20">
-															<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
-															<div class="payment-accordion">
-																<!-- Accordion start  -->
-																<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
-																<div class="payment-content default">
-																	<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
-																</div> 
-																<!-- Accordion end -->
-																<!-- Accordion start -->
-																<h3 class="payment-accordion-toggle">Cheque Payment</h3>
-																<div class="payment-content">
-																	<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-																</div>
-																<!-- Accordion end -->
-																<!-- Accordion start -->
-																<h3 class="payment-accordion-toggle">PayPal</h3>
-																<div class="payment-content">
-																	<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-																	<a href="#"><img src="img/payment/1.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/2.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/3.png" alt="" /></a>
-																	<a href="#"><img src="img/payment/4.png" alt="" /></a>
-																</div>
-																<!-- Accordion end --> 
-																<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>			
-															</div>															
+													</fieldset>
+
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="our-order payment-details mt-60 pr-20">
+													<h4 class="title-1 title-border text-uppercase mb-30">our order</h4>
+													<table>
+														<thead>
+															<tr>
+																<th><strong>Product</strong></th>
+																<th class="text-end"><strong>Total</strong></th>
+															</tr>
+														</thead>
+														<tbody id="checkoutproductscontainer">
+															<!-- <tr>
+																<td>Dummy Product Name  x 2</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Dummy Product Name  x 1</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Cart Subtotal</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Shipping and Handing</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Vat</td>
+																<td class="text-end">Rs. 00.00</td>
+															</tr>
+															<tr>
+																<td>Order Total</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr> -->
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- payment-method -->
+											<div class="col-md-6">
+												<div class="payment-method mt-60  pl-20">
+													<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
+													<div class="payment-accordion">
+														<!-- Accordion start  -->
+														<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
+														<div class="payment-content default">
+															<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
 														</div>
+														<!-- Accordion end -->
+														<!-- Accordion start -->
+														<h3 class="payment-accordion-toggle">Cheque Payment</h3>
+														<div class="payment-content">
+															<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+														</div>
+														<!-- Accordion end -->
+														<!-- Accordion start -->
+														<h3 class="payment-accordion-toggle">PayPal</h3>
+														<div class="payment-content">
+															<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+															<a href="#"><img src="img/payment/1.png" alt="" /></a>
+															<a href="#"><img src="img/payment/2.png" alt="" /></a>
+															<a href="#"><img src="img/payment/3.png" alt="" /></a>
+															<a href="#"><img src="img/payment/4.png" alt="" /></a>
+														</div>
+														<!-- Accordion end -->
+														<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
 													</div>
 												</div>
 											</div>
-										</form>											
+										</div>
 									</div>
-									<!-- check-out end -->
-									
-								</div>
-
+								</form>
 							</div>
+							<!-- check-out end -->
+
 						</div>
+
 					</div>
 				</div>
 			</div>
-			<!-- SHOPPING-CART-AREA END -->
-			<!-- FOOTER START -->
-			<footer>
-				<!-- Footer-area start -->
-				<div class="footer-area footer-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-footer">
-                                    <h3 class="footer-title  title-border">Contact Us</h3>
-									<ul style="font-size:13px;">
-										<li>
-											<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size:15px;"></i>
-											<span>7759 Horizon St, Chino, CA 91708, USA</span>
-										</li>
-										<li>
-											<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size: 15px;"></i>
-											<span>D.NO.23-30/2, SWATANTR NAGAR, Madhurawada, Visakhapatnam, AP, 530048</span>
-										</li>
-										<li>
-											<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
-											<!--<span>+1 530 500 5786</span>-->
-											<a href="tel:+1 530 500 5786" class="call-meta_number">+1 530 500 5786</a>
-										</li>
-										<li>
-											<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
-											<!--<span>+918142145757, +918142155757</span>-->
-											<a href="tel:+918142145757" class="call-meta_number">+918142145757</a>
-											<a href="tel:+918142155757" class="call-meta_number">+918142155757</a>
-										</li>
-										<li>
-											<i class="zmdi zmdi-email" style="padding-right: 10px; font-size: 15px;"></i>
-											<!--<span>contact@linktotap.com</span>-->
-											<a href="mailto:contact@linktotap.com">contact@linktotap.com</a>
-										</li>
-									</ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
-                                <div class="single-footer">
-                                    <h3 class="footer-title  title-border">accounts</h3>
-                                    <ul class="footer-menu">
-                                        <li><a href="my-account.html"><i class="zmdi zmdi-dot-circle"></i>My Account</a></li>
-                                        <li><a href="wishlist.html"><i class="zmdi zmdi-dot-circle"></i>My Wishlist</a></li>
-                                        <li><a href="cart.html"><i class="zmdi zmdi-dot-circle"></i>My Cart</a></li>
-                                        <li><a href="login.html"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
-                                        <li><a href="checkout.html"><i class="zmdi zmdi-dot-circle"></i>Check out</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-md-3 col-sm-6">
-                                <div class="single-footer">
-                                    <h3 class="footer-title  title-border">shipping</h3>
-                                    <ul class="footer-menu">
-                                        <li><a href="shop.html"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
-                                        <!-- <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
-                                        <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-footer newsletter-item">
-                                    <h3 class="footer-title  title-border">Email Newsletters</h3>
-                                    <div class="footer-subscribe">
-                                        <form id="emailform" action="#" onsubmit="subscribeEmailTrigger(event)">
-											<input id="emailInput" type="text" name="email" placeholder="Email Address..." />
-											<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
-											<p class="text-center" id="emailresponseid"></p>
-										</form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-				<!-- Footer-area end -->
-				<!-- Copyright-area start -->
-				<div class="copyright-area copyright-2">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="copyright">
-									<p class="mb-0">&copy; <a href="index.html" target="_blank">Linktotap </a> 2025. All Rights Reserved.</p>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="payment  text-md-end">
-									<a href="#"><img src="img/payment/1.png" alt="" /></a>
-									<a href="#"><img src="img/payment/2.png" alt="" /></a>
-									<a href="#"><img src="img/payment/3.png" alt="" /></a>
-									<a href="#"><img src="img/payment/4.png" alt="" /></a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Copyright-area start -->
-			</footer>
-			<!-- FOOTER END -->
-			<!-- QUICKVIEW PRODUCT -->
-			<div id="quickview-wrapper">
-			   <!-- Modal -->
-			   <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							</div>
-							<div class="modal-body">
-								<div class="modal-product">
-									<div class="product-images">
-										<div class="main-image images">
-											<img alt="#" src="img/product/quickview-photo.jpg"/>
-										</div>
-									</div><!-- .product-images -->
-
-									<div class="product-info">
-										<h1>Aenean eu tristique</h1>
-										<div class="price-box-3">
-											<hr />
-											<div class="s-price-box">
-												<span class="new-price">$160.00</span>
-												<span class="old-price">$190.00</span>
-											</div>
-											<hr />
-										</div>
-										<a href="shop.html" class="see-all">See all features</a>
-										<div class="quick-add-to-cart">
-											<form method="post" class="cart">
-												<div class="numbers-row">
-													<input type="number" id="french-hens" value="3" min="1">
-												</div>
-												<button class="single_add_to_cart_button" type="submit">Add to cart</button>
-											</form>
-										</div>
-										<div class="quick-desc">
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
-										</div>
-										<div class="social-sharing">
-											<div class="widget widget_socialsharing_widget">
-												<h3 class="widget-title-modal">Share this product</h3>
-												<ul class="social-icons">
-													<li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="zmdi zmdi-google-plus"></i></a></li>
-													<li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="zmdi zmdi-twitter"></i></a></li>
-													<li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="zmdi zmdi-facebook"></i></a></li>
-													<li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
-												</ul>
-											</div>
-										</div>
-									</div><!-- .product-info -->
-								</div><!-- .modal-product -->
-							</div><!-- .modal-body -->
-						</div><!-- .modal-content -->
-					</div><!-- .modal-dialog -->
-			   </div>
-			   <!-- END Modal -->
-			</div>
-			<!-- END QUICKVIEW PRODUCT -->	
-			
 		</div>
-		<!-- WRAPPER END -->
+	</div>
+	<!-- SHOPPING-CART-AREA END -->
+	<!-- FOOTER START -->
+	<footer>
+		<!-- Footer-area start -->
+		<div class="footer-area footer-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">Contact Us</h3>
+							<ul style="font-size:13px;">
+								<li>
+									<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size:15px;"></i>
+									<span>7759 Horizon St, Chino, CA 91708, USA</span>
+								</li>
+								<li>
+									<i class="zmdi zmdi-pin" style="padding-right: 10px; font-size: 15px;"></i>
+									<span>D.NO.23-30/2, SWATANTR NAGAR, Madhurawada, Visakhapatnam, AP, 530048</span>
+								</li>
+								<li>
+									<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>+1 530 500 5786</span>-->
+									<a href="tel:+1 530 500 5786" class="call-meta_number">+1 530 500 5786</a>
+								</li>
+								<li>
+									<i class="zmdi zmdi-phone" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>+918142145757, +918142155757</span>-->
+									<a href="tel:+918142145757" class="call-meta_number">+918142145757</a>
+									<a href="tel:+918142155757" class="call-meta_number">+918142155757</a>
+								</li>
+								<li>
+									<i class="zmdi zmdi-email" style="padding-right: 10px; font-size: 15px;"></i>
+									<!--<span>contact@linktotap.com</span>-->
+									<a href="mailto:contact@linktotap.com">contact@linktotap.com</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">accounts</h3>
+							<ul class="footer-menu">
+								<li><a href="my-account.html"><i class="zmdi zmdi-dot-circle"></i>My Account</a></li>
+								<li><a href="wishlist.html"><i class="zmdi zmdi-dot-circle"></i>My Wishlist</a></li>
+								<li><a href="cart.html"><i class="zmdi zmdi-dot-circle"></i>My Cart</a></li>
+								<li><a href="login.html"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
+								<li><a href="checkout.html"><i class="zmdi zmdi-dot-circle"></i>Check out</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-sm-6">
+						<div class="single-footer">
+							<h3 class="footer-title  title-border">shipping</h3>
+							<ul class="footer-menu">
+								<li><a href="shop.html"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
+								<!-- <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li> -->
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-6">
+						<div class="single-footer newsletter-item">
+							<h3 class="footer-title  title-border">Email Newsletters</h3>
+							<div class="footer-subscribe">
+								<form id="emailform" action="#" onsubmit="subscribeEmailTrigger(event)">
+									<input id="emailInput" type="text" name="email" placeholder="Email Address..." />
+									<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
+									<p class="text-center" id="emailresponseid"></p>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Footer-area end -->
+		<!-- Copyright-area start -->
+		<div class="copyright-area copyright-2">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="copyright">
+							<p class="mb-0">&copy; <a href="index.html" target="_blank">Linktotap </a> 2025. All Rights Reserved.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="payment  text-md-end">
+							<a href="#"><img src="img/payment/1.png" alt="" /></a>
+							<a href="#"><img src="img/payment/2.png" alt="" /></a>
+							<a href="#"><img src="img/payment/3.png" alt="" /></a>
+							<a href="#"><img src="img/payment/4.png" alt="" /></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Copyright-area start -->
+	</footer>
+	<!-- FOOTER END -->
+	<!-- QUICKVIEW PRODUCT -->
+	<div id="quickview-wrapper">
+		<!-- Modal -->
+		<div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<div class="modal-body">
+						<div class="modal-product">
+							<div class="product-images">
+								<div class="main-image images">
+									<img alt="#" src="img/product/quickview-photo.jpg" />
+								</div>
+							</div><!-- .product-images -->
 
-		<!-- all js here -->
-		<!-- jquery latest version -->
-		<script src="js/vendor/jquery-3.6.0.min.js"></script>
-		<script src="js/vendor/jquery-migrate-3.3.2.min.js"></script>
-		<!-- bootstrap js -->
-		<script src="js/bootstrap.bundle.min.js"></script>
-		<!-- jquery.meanmenu js -->
-		<script src="js/jquery.meanmenu.js"></script>
-		<!-- slick.min js -->
-		<script src="js/slick.min.js"></script>
-		<!-- jquery.treeview js -->
-		<script src="js/jquery.treeview.js"></script>
-		<!-- lightbox.min js -->
-		<script src="js/lightbox.min.js"></script>
-		<!-- jquery-ui js -->
-		<script src="js/jquery-ui.min.js"></script>
-		<!-- jquery.nivo.slider js -->
-		<script src="lib/js/jquery.nivo.slider.js"></script>
-		<script src="lib/home.js"></script>
-		<!-- jquery.nicescroll.min js -->
-		<script src="js/jquery.nicescroll.min.js"></script>
-		<!-- countdon.min js -->
-		<script src="js/countdon.min.js"></script>
-		<!-- wow js -->
-		<script src="js/wow.min.js"></script>
-		<!-- plugins js -->
-		<script src="js/plugins.js"></script>
-		<!-- main js -->
-		<script src="js/main.min.js"></script>
-		<script src="js/httptriggers.js"></script>
+							<div class="product-info">
+								<h1>Aenean eu tristique</h1>
+								<div class="price-box-3">
+									<hr />
+									<div class="s-price-box">
+										<span class="new-price">$160.00</span>
+										<span class="old-price">$190.00</span>
+									</div>
+									<hr />
+								</div>
+								<a href="shop.html" class="see-all">See all features</a>
+								<div class="quick-add-to-cart">
+									<form method="post" class="cart">
+										<div class="numbers-row">
+											<input type="number" id="french-hens" value="3" min="1">
+										</div>
+										<button class="single_add_to_cart_button" type="submit">Add to cart</button>
+									</form>
+								</div>
+								<div class="quick-desc">
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero.
+								</div>
+								<div class="social-sharing">
+									<div class="widget widget_socialsharing_widget">
+										<h3 class="widget-title-modal">Share this product</h3>
+										<ul class="social-icons">
+											<li><a target="_blank" title="Google +" href="#" class="gplus social-icon"><i class="zmdi zmdi-google-plus"></i></a></li>
+											<li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i class="zmdi zmdi-twitter"></i></a></li>
+											<li><a target="_blank" title="Facebook" href="#" class="facebook social-icon"><i class="zmdi zmdi-facebook"></i></a></li>
+											<li><a target="_blank" title="LinkedIn" href="#" class="linkedin social-icon"><i class="zmdi zmdi-linkedin"></i></a></li>
+										</ul>
+									</div>
+								</div>
+							</div><!-- .product-info -->
+						</div><!-- .modal-product -->
+					</div><!-- .modal-body -->
+				</div><!-- .modal-content -->
+			</div><!-- .modal-dialog -->
+		</div>
+		<!-- END Modal -->
+	</div>
+	<!-- END QUICKVIEW PRODUCT -->
+	</div>
+	<!-- WRAPPER END -->
 
-	</body>
- </html>
+	<script>
+
+		document.getElementById("customizeCardForm").addEventListener("submit", function (event) {
+			debugger;
+			event.preventDefault(); // Prevents traditional form submission
+
+
+
+			// Fetch form values
+			var name = document.getElementById("name").value;
+			var email = document.getElementById("email").value;
+			var phone = document.getElementById("phone").value;
+			var companyName = document.getElementById("companyName").value;
+			//var address = document.getElementById("address").value;
+
+
+
+			//Gift Card Order Information
+			var nameGift = document.getElementById("nameGift").value;
+			var emailGift = document.getElementById("emailGift").value;
+			var phoneGift = document.getElementById("phoneGift").value;
+			var companyNameGift = document.getElementById("companyNameGift").value;
+			var addressGift = document.getElementById("addressGift").value;
+
+
+
+			//var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
+
+			// Create a FormData object
+			var formData = new FormData();
+
+			// Append text data
+			var formData = {
+				name: name,
+				email: email,
+				phone: phone,
+				companyName: companyName,
+				//address: address,
+
+				nameGift: nameGift,
+				emailGift: emailGift,
+				phoneGift: phoneGift,
+				companyNameGift: companyNameGift,
+				addressGift: addressGift
+
+
+				//totalAmount: totalAmount
+			};
+
+
+			// Validate required fields (example: name, email, phone)
+			if (!name || !email || !phone) {
+				alert("Please fill in all the required form details");
+				return;
+			} // Send the data
+
+			console.log("Form Data (Minimal):", JSON.stringify(formData));
+
+			submitTrigger(JSON.stringify(formData));
+		});
+
+
+
+		function submitTrigger(inputData) {
+			debugger;
+			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+
+			var req = new XMLHttpRequest();
+			req.open("POST", flowUrl, true);
+			req.setRequestHeader('Content-Type', 'application/json');
+
+			req.onreadystatechange = function () {
+				if (req.readyState == 4) {
+					if (req.status == 200) {
+						/*alert("Your information has been submitted successfully.");*/
+						document.getElementById("customizeCardForm").reset();  // Reset form after success
+					} else {
+						console.log("Error Response Body:", req.responseText);  // Log the error response for debugging
+						/*alert("Error: " + req.status + " - " + req.statusText);*/
+					}
+				}
+			};
+
+			req.send(inputData);
+			alert("Your information has been submitted successfully.");
+
+			// Clear the form fields
+			document.getElementById("customizeCardForm").reset();
+		}
+
+
+
+
+		function initAutocomplete() {
+			// Create the autocomplete object
+			var autocomplete = new google.maps.places.Autocomplete(
+				document.getElementById('autocomplete'),
+				{ types: ['geocode'] } // Restrict to geographical location types
+			);
+
+			// Set up a listener on the autocomplete field to update the textarea
+			autocomplete.addListener('place_changed', function () {
+				var place = autocomplete.getPlace();
+
+				// If a place is selected, update the textarea with the formatted address
+				if (place && place.formatted_address) {
+					document.getElementById('address').value = place.formatted_address;
+				}
+			});
+
+			// Focus on the hidden input to trigger the address search
+			document.getElementById('address').addEventListener('focus', function () {
+				document.getElementById('autocomplete').style.display = 'block';
+				document.getElementById('autocomplete').focus();
+			});
+
+			// Hide autocomplete when the address is selected
+			document.getElementById('autocomplete').addEventListener('blur', function () {
+				document.getElementById('autocomplete').style.display = 'none';
+			});
+		}
+
+		// Initialize Google Places Autocomplete
+		google.maps.event.addDomListener(window, 'load', initAutocomplete);
+
+
+
+
+		//function toggleFields() {
+		//	debugger;
+  //          var checkbox = document.getElementById('enableFieldsCheckbox');
+
+  //          // Only target the fields in the shipping details fieldset
+  //          var fields = document.querySelectorAll('#shippingDetailsFieldset input, #shippingDetailsFieldset textarea');
+
+  //          // Enable or disable fields based on checkbox state
+  //          fields.forEach(function (field) {
+  //              field.disabled = !checkbox.checked;
+
+  //              // If the checkbox is unchecked, clear the field's value
+  //              if (!checkbox.checked) {
+  //                  field.value = ''; // Clear the value
+  //              }
+  //          });
+		//}
+
+
+        function toggleFields() {
+            debugger;
+            var checkbox = document.getElementById('enableFieldsCheckbox');
+            var giftFieldsContainer = document.getElementById('giftFieldsContainer');
+
+            // Show or hide the container with all the fields based on checkbox state
+            if (checkbox.checked) {
+                giftFieldsContainer.style.display = 'block'; // Show fields
+            } else {
+                giftFieldsContainer.style.display = 'none'; // Hide fields
+
+                // Clear the fields when hiding them
+                var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
+                fields.forEach(function (field) {
+                    field.value = ''; // Clear the value
+                });
+            }
+        }
+
+
+
+	</script>
+
+
+	<!-- all js here -->
+	<!-- jquery latest version -->
+	<script src="js/vendor/jquery-3.6.0.min.js"></script>
+	<script src="js/vendor/jquery-migrate-3.3.2.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<!-- jquery.meanmenu js -->
+	<script src="js/jquery.meanmenu.js"></script>
+	<!-- slick.min js -->
+	<script src="js/slick.min.js"></script>
+	<!-- jquery.treeview js -->
+	<script src="js/jquery.treeview.js"></script>
+	<!-- lightbox.min js -->
+	<script src="js/lightbox.min.js"></script>
+	<!-- jquery-ui js -->
+	<script src="js/jquery-ui.min.js"></script>
+	<!-- jquery.nivo.slider js -->
+	<script src="lib/js/jquery.nivo.slider.js"></script>
+	<script src="lib/home.js"></script>
+	<!-- jquery.nicescroll.min js -->
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<!-- countdon.min js -->
+	<script src="js/countdon.min.js"></script>
+	<!-- wow js -->
+	<script src="js/wow.min.js"></script>
+	<!-- plugins js -->
+	<script src="js/plugins.js"></script>
+	<!-- main js -->
+	<script src="js/main.min.js"></script>
+	<script src="js/httptriggers.js"></script>
+
+</body>
+</html>
