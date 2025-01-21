@@ -131,12 +131,13 @@
 		}
 
 
-		.ship-container {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-		}
+        .ship-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 20px;
+        }
 
 		.title-1 {
 			margin: 0;
@@ -315,180 +316,197 @@
 								<form action="#" id="customizeCardForm">
 									<div class="shop-cart-table check-out-wrap">
 										<div class="row">
-											<div class="col-md-6">
-												<div class="billing-details pr-20">
-													<h4 class="title-1 title-border text-uppercase mb-30">details</h4>
-													<select class="custom-select mb-15" id="cardMaterial">
-														<option>Select card material</option>
-														<option>PVC</option>
-														<option>Metal</option>
-														<option>Wood</option>
-													</select>
-
-													<!--<label class="custom-select mb-15" for="textColor">Select your text color:</label>-->
-													<select class="custom-select mb-15" id="textColor" name="textColor">
-														<option value="" disabled selected>Select text color</option>
-														<option value="White">White</option>
-														<option value="Grey">Grey</option>
-														<option value="Gold">Gold</option>
-														<option value="Silver">Silver</option>
-														<option value="Black">Black</option>
-														<option value="Blue">Blue</option>
-														<option value="Bronze">Bronze</option>
-														<option value="Red">Red</option>
-														<option value="Green">Green</option>
-														<option value="Purple">Purple</option>
-													</select>
-
-													<input type="text" id="designation" placeholder="Designation display on card...">
-													<input type="text" id="slogan" placeholder="Slogan...">
-													<input type="text" id="phone" placeholder="Phone number here..." required>
-													<input type="text" id="name" placeholder="Name Display on Card...">
-													<input type="text" id="companyName" placeholder="Company name here...">
-													<input type="text" id="email" placeholder="Email address here...">
-													<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>
-
-
-													<div class="inline-section">
-														<div class="form-section">
-															<label for="background">Upload Background Template:</label>
-															<input type="file" id="background" name="background" accept="image/*">
-														</div>
-
-														<div class="form-section">
-															<label for="cardColor">Select your card color:</label>
-															<select id="cardColor" name="cardColor">
-																<option value="" disabled selected>Select card color</option>
-																<option value="Black">Black</option>
-																<option value="White">White</option>
-																<option value="Custom">Custom</option>
+											
+												<div class="col-md-6">
+													<div class="billing-details pr-20">
+														<!-- First Fieldset -->
+                                                        <fieldset id="billingDetailsFieldset">
+															<div class="ship-container">
+															<h4 class="title-1 title-border text-uppercase mb-30">details</h4>
+																</div>
+															<select class="custom-select mb-15" id="cardMaterial">
+																<option>Select card material</option>
+																<option>PVC</option>
+																<option>Metal</option>
+																<option>Wood</option>
 															</select>
-															<input type="color" id="customCardColorPicker" name="customCardColorPicker" style="display:none;">
+
+															<!--<label class="custom-select mb-15" for="textColor">Select your text color:</label>-->
+															<select class="custom-select mb-15" id="textColor" name="textColor">
+																<option value="" disabled selected>Select text color</option>
+																<option value="White">White</option>
+																<option value="Grey">Grey</option>
+																<option value="Gold">Gold</option>
+																<option value="Silver">Silver</option>
+																<option value="Black">Black</option>
+																<option value="Blue">Blue</option>
+																<option value="Bronze">Bronze</option>
+																<option value="Red">Red</option>
+																<option value="Green">Green</option>
+																<option value="Purple">Purple</option>
+															</select>
+
+															<input type="text" id="name" placeholder="Name Display on Card...">
+															<input type="text" id="email" placeholder="Email address here..." required>
+															<input type="text" id="phone" placeholder="Phone number here..." required>
+															<input type="text" id="companyName" placeholder="Company name here...">
+															<input type="text" id="slogan" placeholder="Slogan...">
+															<input type="text" id="designation" placeholder="Designation display on card...">
+
+
+
+															<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>
+
+
+															<div class="inline-section">
+																<div class="form-section">
+																	<label for="background">Upload Background Template:</label>
+																	<input type="file" id="background" name="background" accept="image/*">
+																</div>
+
+																<div class="form-section">
+																	<label for="cardColor">Select your card color:</label>
+																	<select id="cardColor" name="cardColor">
+																		<option value="" disabled selected>Select card color</option>
+																		<option value="Black">Black</option>
+																		<option value="White">White</option>
+																		<option value="Custom">Custom</option>
+																	</select>
+																	<input type="color" id="customCardColorPicker" name="customCardColorPicker" style="display:none;">
+																</div>
+															</div>
+
+															<div class="form-section">
+																<label for="logo">Upload Logo:</label>
+																<input type="file" id="logo" name="logo" accept="image/*">
+															</div>
+                                                    </fieldset>
+
+													</div>
+												</div>
+											
+											
+												<div class="col-md-6 mt-xs-30">
+													<div class="billing-details pl-20">
+														<!-- Second Fieldset, initially hidden -->
+                                                        <fieldset id="shippingDetailsFieldset">
+															<div class="ship-container">
+																<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>
+																<label>
+																	<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()"> Yes
+																</label>
+															</div>
+															<!-- Container for the input fields, initially hidden -->
+															<div id="giftFieldsContainer" style="display: none;">
+																<input type="text" id="nameGift" placeholder="Name Display on Card..." disabled>
+																<input type="text" id="emailGift" placeholder="Email address here..." disabled>
+																<input type="text" id="phoneGift" placeholder="Phone number here..." disabled>
+																<input type="text" id="companyNameGift" placeholder="Company name here..." disabled>
+																<input type="text" id="sloganGift" placeholder="Slogan..." disabled>
+																<input type="text" id="designationGift" placeholder="Designation display on card..." disabled>
+
+
+																<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..." disabled></textarea>
+															</div>
+														</fieldset>
+													</div>														
+												</div>
+											
+
+												<div class="preview">
+													<div id="cardFront" class="card-template front">
+														<img id="backgroundFrontPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
+														<img id="logoFrontPreview" class="logo-preview" src="" alt="Logo Preview" style="display: none;">
+														<p id="nameFrontPreview">[Name]</p>
+														<p id="designationFrontPreview">[Designation]</p>
+														<p id="emailFrontPreview">[Email]</p>
+														<p id="phoneFrontPreview">[Phone]</p>
+													</div>
+													<div id="cardBack" class="card-template back">
+														<img id="backgroundBackPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
+														<div class="text-right">
+															<p id="companyNameBackPreview">[Company Name]</p>
+															<p id="sloganBackPreview">[Slogan]</p>
 														</div>
 													</div>
+												</div>
 
-													<div class="form-section">
-														<label for="logo">Upload Logo:</label>
-														<input type="file" id="logo" name="logo" accept="image/*">
+
+												<!-- payment-method -->
+												<div class="col-md-6">
+													<div class="our-order payment-details mt-60 pr-20">
+														<h4 class="title-1 title-border text-uppercase mb-30">our order</h4>
+														<table>
+															<thead>
+																<tr>
+																	<th><strong>Product</strong></th>
+																	<th class="text-end"><strong>Total</strong></th>
+																</tr>
+															</thead>
+
+
+															<tbody id="checkoutproductscontainers">
+																<tr>
+																	<td>Digital Business Card  x 2</td>
+																	<td class="text-end">Rs. 999.00</td>
+																</tr>
+																<!--<tr>
+							<td>Dummy Product Name  x 1</td>
+							<td class="text-end">Rs. 999.00</td>
+						</tr>-->
+																<tr>
+																	<td>Cart Subtotal</td>
+																	<td class="text-end">Rs. 00.00</td>
+																</tr>
+																<tr>
+																	<td>Shipping and Handing</td>
+																	<td class="text-end">Rs. 00.00</td>
+																</tr>
+																<tr>
+																	<td>Vat</td>
+																	<td class="text-end">Rs. 00.00</td>
+																</tr>
+																<tr>
+																	<td>Order Total</td>
+																	<td id="totalAmount" class="text-end">Rs. 999.00</td>
+																</tr>
+															</tbody>
+
+
+														</table>
 													</div>
-
-
 												</div>
-											</div>
-											<div class="col-md-6 mt-xs-30">
-												<div class="billing-details pl-20">
-
-													<div class="ship-container">
-														<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>
-														<label>
-															<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()"> Yes
-														</label>
-													</div>
-													<input type="text" id="nameGift" placeholder="Name Display on Card..." disabled>
-													<input type="text" id="phoneGift" placeholder="Phone number here..." disabled>
-													<input type="text" id="emailGift" placeholder="Email address here..." disabled>
-													<input type="text" id="companyNameGift" placeholder="Company name here..." disabled>
-													<input type="text" id="designationGift" placeholder="Designation display on card..." disabled>
-													<input type="text" id="sloganGift" placeholder="Slogan..." disabled>
-
-													<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..." disabled></textarea>
-												</div>
-											</div>
-
-											<div class="preview">
-												<div id="cardFront" class="card-template front">
-													<img id="backgroundFrontPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
-													<img id="logoFrontPreview" class="logo-preview" src="" alt="Logo Preview" style="display: none;">
-													<p id="nameFrontPreview">[Name]</p>
-													<p id="designationFrontPreview">[Designation]</p>
-													<p id="emailFrontPreview">[Email]</p>
-													<p id="phoneFrontPreview">[Phone]</p>
-												</div>
-												<div id="cardBack" class="card-template back">
-													<img id="backgroundBackPreview" class="background-preview" src="" alt="Background Preview" style="display: none;">
-													<div class="text-right">
-														<p id="companyNameBackPreview">[Company Name]</p>
-														<p id="sloganBackPreview">[Slogan]</p>
-													</div>
-												</div>
-											</div>
-
-
-											<!-- payment-method -->
-											<div class="col-md-6">
-												<div class="our-order payment-details mt-60 pr-20">
-													<h4 class="title-1 title-border text-uppercase mb-30">our order</h4>
-													<table>
-														<thead>
-															<tr>
-																<th><strong>Product</strong></th>
-																<th class="text-end"><strong>Total</strong></th>
-															</tr>
-														</thead>
-
-
-														<tbody id="checkoutproductscontainers">
-															<tr>
-																<td>Dummy Product Name  x 2</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Dummy Product Name  x 1</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Cart Subtotal</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Shipping and Handing</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Vat</td>
-																<td class="text-end">Rs. 00.00</td>
-															</tr>
-															<tr>
-																<td>Order Total</td>
-																<td id="totalAmount" class="text-end">Rs. 999.00</td>
-															</tr>
-														</tbody>
-
-
-													</table>
-												</div>
-											</div>
-											<!-- payment-method -->
-											<div class="col-md-6">
-												<div class="payment-method mt-60  pl-20">
-													<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
-													<div class="payment-accordion">
-														<!-- Accordion start  -->
-														<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
-														<div class="payment-content default">
-															<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
+												<!-- payment-method -->
+												<div class="col-md-6">
+													<div class="payment-method mt-60  pl-20">
+														<h4 class="title-1 title-border text-uppercase mb-30">payment method</h4>
+														<div class="payment-accordion">
+															<!-- Accordion start  -->
+															<h3 class="payment-accordion-toggle active">Direct Bank Transfer</h3>
+															<div class="payment-content default">
+																<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
+															</div>
+															<!-- Accordion end -->
+															<!-- Accordion start -->
+															<h3 class="payment-accordion-toggle">Cheque Payment</h3>
+															<div class="payment-content">
+																<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+															</div>
+															<!-- Accordion end -->
+															<!-- Accordion start -->
+															<h3 class="payment-accordion-toggle">PayPal</h3>
+															<div class="payment-content">
+																<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+																<a href="#"><img src="img/payment/1.png" alt="" /></a>
+																<a href="#"><img src="img/payment/2.png" alt="" /></a>
+																<a href="#"><img src="img/payment/3.png" alt="" /></a>
+																<a href="#"><img src="img/payment/4.png" alt="" /></a>
+															</div>
+															<!-- Accordion end -->
+															<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
 														</div>
-														<!-- Accordion end -->
-														<!-- Accordion start -->
-														<h3 class="payment-accordion-toggle">Cheque Payment</h3>
-														<div class="payment-content">
-															<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-														</div>
-														<!-- Accordion end -->
-														<!-- Accordion start -->
-														<h3 class="payment-accordion-toggle">PayPal</h3>
-														<div class="payment-content">
-															<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-															<a href="#"><img src="img/payment/1.png" alt="" /></a>
-															<a href="#"><img src="img/payment/2.png" alt="" /></a>
-															<a href="#"><img src="img/payment/3.png" alt="" /></a>
-															<a href="#"><img src="img/payment/4.png" alt="" /></a>
-														</div>
-														<!-- Accordion end -->
-														<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
 													</div>
 												</div>
-											</div>
 
 
 										</div>
@@ -852,6 +870,49 @@
 		});
 
 
+
+        function getCartDetails() {
+            // Retrieve the cart data from localStorage
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (cart.length === 0) {
+                console.log("Cart is empty.");
+                return;
+            }
+
+            // Loop through the cart and extract values into variables
+            for (var i = 0; i < cart.length; i++) {
+                var item = cart[i];
+                var id = item.id;
+                var name = item.name;
+                var price = item.price;
+                var image = item.image;
+                var quantity = item.quantity;
+
+                // You can use these variables as needed
+                console.log("ID:", id);
+                console.log("Name:", name);
+                console.log("Price:", price);
+                console.log("Image:", image);
+                console.log("Quantity:", quantity);
+
+                // Example: calculate subtotal for each item
+                var subtotal = price * quantity;
+                console.log("Subtotal:", subtotal);
+
+                // Perform other actions with these variables
+            }
+        }
+
+        // Call the function to execute
+        getCartDetails();
+
+
+
+
+
+
+
 		function submitTrigger(inputData) {
 			debugger;
 			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
@@ -864,6 +925,32 @@
 			req.onreadystatechange = function () {
 				if (req.readyState == 4) {
 					if (req.status == 200) {
+
+                        if (req.responseText) {
+                            try {
+                                // Parse the JSON response
+                                const response = JSON.parse(req.responseText);
+
+                                // Check if 'orderNumber' exists in the response
+                                if (response.orderNumber) {
+                                    // Display the order number in an alert
+									alert("Order Number: " + response.orderNumber);
+
+                                    // Use new Date() to get the current date in ISO format (YYYY-MM-DD)
+									const currentDate = new Date().toISOString().split('T')[0];
+
+                                    window.location.href = "order.html?ordernumber=" + response.orderNumber + "&date=" + currentDate + "&total=" + "999.00" + "&payment=OnlinePayment"
+                                } else {
+                                    alert("Order number not found in the response.");
+                                }
+                            } catch (e) {
+                                // Handle any parsing errors
+                                console.error("Error parsing JSON response:", e);
+                                alert("Failed to parse response.");
+                            }
+                        }
+
+
 						/*alert("Your information has been submitted successfully.");*/
 						document.getElementById("customizeCardForm").reset();  // Reset form after success
 					} else {
@@ -874,27 +961,56 @@
 			};
 
 			req.send(inputData);
-			alert("Your information has been submitted successfully.");
+			/*alert("Your information has been submitted successfully.");*/
 
 			// Clear the form fields
 			document.getElementById("customizeCardForm").reset();
 		}
-			
 
-		function toggleFields() {
-			var checkbox = document.getElementById('enableFieldsCheckbox');
-			var fields = document.querySelectorAll('.billing-details input, .billing-details textarea');
 
-			// Enable or disable fields based on checkbox state
-			fields.forEach(function (field) {
-				field.disabled = !checkbox.checked;
+        function toggleFields() {
+            var checkbox = document.getElementById('enableFieldsCheckbox');
+            var giftFieldsContainer = document.getElementById('giftFieldsContainer');
+            var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
 
-				// If the checkbox is unchecked, clear the field's value
-				if (!checkbox.checked) {
-					field.value = ''; // Clear the value
-				}
-			});
-		}
+            if (checkbox.checked) {
+                // Show the container with all the fields
+                giftFieldsContainer.style.display = 'block';
+
+                // Enable all the fields
+                fields.forEach(function (field) {
+                    field.disabled = false;
+                });
+            } else {
+                // Hide the container with all the fields
+                giftFieldsContainer.style.display = 'none';
+
+                // Disable and clear the fields
+                fields.forEach(function (field) {
+                    field.disabled = true;
+                    field.value = ''; // Clear the value
+                });
+            }
+        }
+
+
+
+
+
+		//function toggleFields() {
+		//	var checkbox = document.getElementById('enableFieldsCheckbox');
+		//	var fields = document.querySelectorAll('.billing-details input, .billing-details textarea');
+
+		//	// Enable or disable fields based on checkbox state
+		//	fields.forEach(function (field) {
+		//		field.disabled = !checkbox.checked;
+
+		//		// If the checkbox is unchecked, clear the field's value
+		//		if (!checkbox.checked) {
+		//			field.value = ''; // Clear the value
+		//		}
+		//	});
+		//}
 
 
 	</script>
