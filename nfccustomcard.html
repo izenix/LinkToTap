@@ -98,30 +98,34 @@
 			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		}
 
-			.card-template img.logo-preview {
-				max-width: 100px;
-				position: absolute;
-				top: 10px;
-				right: 10px;
-			}
+            .card-template img.logo-preview {
+                max-width: 100px;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 1; /* Ensure the logo is visible on top */
+            }
 
-			.card-template img.background-preview {
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				z-index: -1;
-			}
+            .card-template img.background-preview {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 0; /* Background image behind other elements */
+            }
 
 			.card-template .text-right {
 				text-align: right;
 			}
 
-			.card-template p {
-				margin: 5px 0;
-			}
+            /* To ensure the text and other elements appear on top */
+            .card-template p {
+                margin: 5px 0;
+                position: relative;
+                z-index: 1; /* Ensure these elements appear above the background */
+            }
 
 		.center-button-container {
 			display: flex;
@@ -131,6 +135,20 @@
 		}
 
 
+<<<<<<< HEAD
+       
+      
+
+
+
+        .ship-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+=======
 		.ship-container {
 			display: flex;
 			justify-content: space-between;
@@ -138,6 +156,7 @@
 			width: 100%;
 			padding-bottom: 20px;
 		}
+>>>>>>> 45657fde85a30d7bd8a5e208f231d0451645baa4
 
 		.title-1 {
 			margin: 0;
@@ -156,6 +175,8 @@
 			.radio-group input[type="radio"] {
 				margin-right: 5px;
 			}
+
+			        
 	</style>
 
 </head>
