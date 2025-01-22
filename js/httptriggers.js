@@ -75,3 +75,95 @@ function subscribeEmailTrigger(event) {
     // Send the request with the input payload
     req.send(input);
 }
+
+
+function sendMessageTrigger(event) {
+    // Pause execution to debug (optional)
+    debugger;
+
+    // Prevent default form submission behavior
+    event.preventDefault();
+
+    // URL of the Power Automate Flow
+    var flowUrl = "https://prod-19.centralindia.logic.azure.com:443/workflows/85fd7ad383f44dfc9163ff747c34b61d/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J2LS3xeYUDfuSC_Az3L1khzMD6gsTcjOMrPP_-Cf6_Y";
+
+    // Get input values
+    var nameInput = document.getElementById("nameinput").value.trim();
+    var emailInput = document.getElementById("emailinput").value.trim();
+    var messageInput = document.getElementById("messageinput").value.trim();
+
+    // Get the response message element
+    var responseElement = document.getElementById("responsemessage");
+
+    // Validate inputs
+    if (!nameInput) {
+        responseElement.innerText = "Please enter your name.";
+        responseElement.style.color = "red";
+        return;
+    }
+
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailInput) {
+        responseElement.innerText = "Please enter your email address.";
+        responseElement.style.color = "red";
+        return;
+    }
+    if (!emailRegex.test(emailInput)) {
+        responseElement.innerText = "Invalid email address.";
+        responseElement.style.color = "red";
+        return;
+    }
+
+    if (!messageInput) {
+        responseElement.innerText = "Please enter a message.";
+        responseElement.style.color = "red";
+        return;
+    }
+
+    // Prepare the input payload
+    var input = JSON.stringify({
+        "name": nameInput,
+        "email": emailInput,
+        "message": messageInput
+    });
+
+    // Create an XMLHttpRequest object
+    var req = new XMLHttpRequest();
+
+    // Configure the request
+    req.open("POST", flowUrl, true);
+    req.setRequestHeader("Content-Type", "application/json");
+
+    // Handle the response
+    req.onreadystatechange = function () {
+        if (req.readyState === 4) { // Ensure the request is complete
+            if (req.status === 200) { // HTTP 200 means success
+                try {
+                    // Parse and handle the JSON response
+                    var response = JSON.parse(req.responseText);
+
+                    if (response && response.message) {
+                        // Display the success message from the response
+                        responseElement.innerText = response.message;
+                        responseElement.style.color = "green";
+                    } else {
+                        // Handle cases where no `message` property exists
+                        responseElement.innerText = "Message sent successfully, but no response message was provided.";
+                        responseElement.style.color = "green";
+                    }
+                } catch (error) {
+                    console.error("Error parsing response:", error);
+                    responseElement.innerText = "Message sent successfully, but the response could not be processed.";
+                    responseElement.style.color = "green";
+                }
+            } else {
+                // Handle errors (e.g., 400, 500)
+                responseElement.innerText = "Error occurred. Status: " + req.status + " - " + req.statusText;
+                responseElement.style.color = "red";
+            }
+        }
+    };
+
+    // Send the request with the input payload
+    req.send(input);
+}
