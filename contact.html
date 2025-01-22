@@ -287,13 +287,13 @@
                                 </ul>
                             </div>
                             <div class="send-message mt-60">
-                                <form id="contact-form" action="">
+                                <form id="contact-form" action="" onsubmit="sendMessageTrigger(event)">
                                     <h4 class="title-1 title-border text-uppercase mb-30">send message</h4>
-                                    <input type="text" name="con_name" placeholder="Your name here..." />
-                                    <input type="text" name="con_email" placeholder="Your email here..." />
-                                    <textarea class="custom-textarea" name="con_message" placeholder="Your comment here..."></textarea>
+                                    <input id="nameinput" type="text" name="con_name" placeholder="Your name here..." />
+                                    <input id="emailinput" type="text" name="con_email" placeholder="Your email here..." />
+                                    <textarea id="messageinput" class="custom-textarea" name="con_message" placeholder="Your comment here..."></textarea>
                                     <button class="button-one submit-button mt-20" data-text="submit message" type="submit">submit message</button>
-                                    <p class="form-message"></p>
+                                    <p id="responsemessage" class="form-message"></p>
                                 </form>
                             </div>
                         </div>
