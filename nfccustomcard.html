@@ -451,9 +451,9 @@
 																<td class="text-end">Rs. 999.00</td>
 															</tr>
 															<!--<tr>
-									<td>Dummy Product Name  x 1</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr>-->
+																<td>Dummy Product Name  x 1</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>-->
 															<tr>
 																<td>Cart Subtotal</td>
 																<td class="text-end">Rs. 00.00</td>
@@ -512,13 +512,13 @@
 
 										</div>
 										<!--<div class="center-button-container">
-				<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
+											<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
 
-			</div>-->
+										</div>-->
 										<!--<p id="orderOutput">Loading your order number...</p>--> <!-- This will display the order number -->
 									</div>
 								</form>
-								<form action='https://test.payu.in/_payment' method='post'>
+								<form id="payusubmit" action='https://test.payu.in/_payment' method='post'>
 									<input type="hidden" name="key" value="JP***g" />
 									<input type="hidden" name="txnid" value="t6svtqtjRdl4ws" />
 									<input type="hidden" name="productinfo" value="iPhone" />
@@ -528,9 +528,8 @@
 									<input type="hidden" name="lastname" value="Kumar" />
 									<input type="hidden" name="surl" value="https://apiplayground-response.herokuapp.com/" />
 									<input type="hidden" name="furl" value="https://apiplayground-response.herokuapp.com/" />
-									<input type="hidden" name="phone" value="9988776655"  />
+									<input type="hidden" name="phone" value="9988776655" />
 									<input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
-									<input type="submit" value="submit">
 								</form>
 							</div>
 							<!-- check-out end -->
@@ -886,41 +885,41 @@
 
 
 
-        function getCartDetails() {
-            // Retrieve the cart data from localStorage
-            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+		function getCartDetails() {
+			// Retrieve the cart data from localStorage
+			var cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            if (cart.length === 0) {
-                console.log("Cart is empty.");
-                return;
-            }
+			if (cart.length === 0) {
+				console.log("Cart is empty.");
+				return;
+			}
 
-            // Loop through the cart and extract values into variables
-            for (var i = 0; i < cart.length; i++) {
-                var item = cart[i];
-                var id = item.id;
-                var name = item.name;
-                var price = item.price;
-                var image = item.image;
-                var quantity = item.quantity;
+			// Loop through the cart and extract values into variables
+			for (var i = 0; i < cart.length; i++) {
+				var item = cart[i];
+				var id = item.id;
+				var name = item.name;
+				var price = item.price;
+				var image = item.image;
+				var quantity = item.quantity;
 
-                // You can use these variables as needed
-                console.log("ID:", id);
-                console.log("Name:", name);
-                console.log("Price:", price);
-                console.log("Image:", image);
-                console.log("Quantity:", quantity);
+				// You can use these variables as needed
+				console.log("ID:", id);
+				console.log("Name:", name);
+				console.log("Price:", price);
+				console.log("Image:", image);
+				console.log("Quantity:", quantity);
 
-                // Example: calculate subtotal for each item
-                var subtotal = price * quantity;
-                console.log("Subtotal:", subtotal);
+				// Example: calculate subtotal for each item
+				var subtotal = price * quantity;
+				console.log("Subtotal:", subtotal);
 
-                // Perform other actions with these variables
-            }
-        }
+				// Perform other actions with these variables
+			}
+		}
 
-        // Call the function to execute
-        getCartDetails();
+		// Call the function to execute
+		getCartDetails();
 
 
 
@@ -931,7 +930,11 @@
 		function submitTrigger(inputData) {
 			debugger;
 			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+			const parsedData = JSON.parse(inputData);
 
+			const name = parsedData.name;
+			const email = parsedData.email;
+			const phone = parsedData.phone;
 
 			var req = new XMLHttpRequest();
 			req.open("POST", flowUrl, true);
@@ -941,98 +944,58 @@
 				if (req.readyState == 4) {
 					if (req.status == 200) {
 
-                        if (req.responseText) {
-                            try {
-                                // Parse the JSON response
-                                const response = JSON.parse(req.responseText);
+						if (req.responseText) {
+							try {
+								// Parse the JSON response
+								const response = JSON.parse(req.responseText);
 
-                                // Check if 'orderNumber' exists in the response
-                                if (response.orderNumber) {
-                                    // Display the order number in an alert
+								// Check if 'orderNumber' exists in the response
+								if (response.orderNumber) {
+									// Display the order number in an alert
 									alert("Order Number: " + response.orderNumber);
 
-                                    // Use new Date() to get the current date in ISO format (YYYY-MM-DD)
+									// Use new Date() to get the current date in ISO format (YYYY-MM-DD)
 									const currentDate = new Date().toISOString().split('T')[0];
 
-                                    // Example usage
-                                    const key = 'HeuOWr';
-                                    const txnid = response.orderNumber;
-                                    const amount = '1';
-                                    const productinfo = 'Digital Card 1000';
-                                    const firstname = 'Niaz';
-                                    const lastname = 'Ahmed';
-                                    const email = 'niaz.labbe@izenix.com';
-                                    const phone = '7995914300';
-                                    const salt = 'iPR07DaK0Z1tZ9vyQVtOBjO7Prl0BDLV';
+									// Example usage
+									const key = 'HeuOWr';
+									const txnid = response.orderNumber;
+									const amount = '999.00';
+									const productinfo = 'Digital Card 1000';
+									const firstname = name;
+									const lastname = '';
+									//const email = email;
+									//const phone = phone;
+									const salt = 'iPR07DaK0Z1tZ9vyQVtOBjO7Prl0BDLV';
 
-                                    const hash = generateHash(key, txnid, amount, productinfo, firstname, email, salt);
+									const hash = generateHash(key, txnid, amount, productinfo, firstname, email, salt);
 									console.log("Generated Hash:", hash);
 
-                                    document.querySelector('input[name="key"]').value = key;
-                                    document.querySelector('input[name="txnid"]').value = txnid;
-                                    document.querySelector('input[name="productinfo"]').value = productinfo;
-                                    document.querySelector('input[name="amount"]').value = amount; // Updated amount
-                                    document.querySelector('input[name="email"]').value = email;
-                                    document.querySelector('input[name="firstname"]').value = firstname;
-                                    document.querySelector('input[name="lastname"]').value = lastname;
-                                    document.querySelector('input[name="surl"]').value = "order.html ? ordernumber = " + txnid + " & date=" + currentDate + " & total=" + "999.00" + " & payment=OnlinePayment";
-                                    document.querySelector('input[name="furl"]').value = "https://new-failure-url.com/";
-                                    document.querySelector('input[name="phone"]').value = phone;
+									document.querySelector('input[name="key"]').value = key;
+									document.querySelector('input[name="txnid"]').value = txnid;
+									document.querySelector('input[name="productinfo"]').value = productinfo;
+									document.querySelector('input[name="amount"]').value = amount; // Updated amount
+									document.querySelector('input[name="email"]').value = email;
+									document.querySelector('input[name="firstname"]').value = firstname;
+									document.querySelector('input[name="lastname"]').value = lastname;
+									document.querySelector('input[name="surl"]').value = "https://linktotap.com/" + "order.html?ordernumber=" + txnid + "&date=" + currentDate + "&total=" + "999.00" + "&payment=OnlinePayment";
+									document.querySelector('input[name="furl"]').value = "https://linktotap.com/cart.html";
+									document.querySelector('input[name="phone"]').value = phone;
 									document.querySelector('input[name="hash"]').value = hash;
 
-                                    const url = "https://test.payu.in/_payment";
-                                    const headers = {
-                                        "Accept": "application/json",
-										"Content-Type": "application/x-www-form-urlencoded",
-                                        "Access-Control-Allow-Origin": "*",
-                                        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE"
-                                    };
+									const form = document.getElementById('payusubmit');
+									form.submit();
 
-                                    const data = new URLSearchParams({
-                                        key: key,
-                                        txnid: txnid,
-                                        amount: amount,
-                                        firstname: firstname,
-                                        email: email,
-                                        phone: phone,
-                                        productinfo: productinfo,
-                                        surl: "order.html ? ordernumber = " + response.orderNumber + " & date=" + currentDate + " & total=" + "999.00" + " & payment=OnlinePayment",
-                                        furl: "https://apiplayground-response.herokuapp.com/",
-                                        hash: hash
-                                    });
-
-                                    const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", url, true);
-
-                                    // Set headers
-                                    for (const key in headers) {
-										xhr.setRequestHeader(key, headers[key]);
-                                    }
-
-                                    // Handle response
-                                    xhr.onreadystatechange = function () {
-                                        if (xhr.readyState === 4) { // Completed
-                                            if (xhr.status >= 200 && xhr.status < 300) {
-                                                console.log("Response:", JSON.parse(xhr.responseText));
-                                            } else {
-                                                console.error("Error:", xhr.status, xhr.statusText);
-                                            }
-                                        }
-                                    };
-
-                                    // Send the request
-                                    xhr.send(data);
-
-                                    //window.location.href = "order.html?ordernumber=" + response.orderNumber + "&date=" + currentDate + "&total=" + "999.00" + "&payment=OnlinePayment"
-                                } else {
-                                    alert("Order number not found in the response.");
-                                }
-                            } catch (e) {
-                                // Handle any parsing errors
-                                console.error("Error parsing JSON response:", e);
-                                alert("Failed to parse response.");
-                            }
-                        }
+									//window.location.href = "order.html?ordernumber=" + response.orderNumber + "&date=" + currentDate + "&total=" + "999.00" + "&payment=OnlinePayment"
+								} else {
+									alert("Order number not found in the response.");
+								}
+							} catch (e) {
+								// Handle any parsing errors
+								console.error("Error parsing JSON response:", e);
+								alert("Failed to parse response.");
+							}
+						}
 
 
 						/*alert("Your information has been submitted successfully.");*/
@@ -1051,36 +1014,36 @@
 			document.getElementById("customizeCardForm").reset();
 		}
 
-        function generateHash(key, txnid, amount, productinfo, firstname, email, salt) {
-            const input = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|||||||||||${salt}`;
-            return CryptoJS.SHA256(input).toString();
-        }
+		function generateHash(key, txnid, amount, productinfo, firstname, email, salt) {
+			const input = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|||||||||||${salt}`;
+			return CryptoJS.SHA512(input).toString();
+		}
 
 
-        function toggleFields() {
-            var checkbox = document.getElementById('enableFieldsCheckbox');
-            var giftFieldsContainer = document.getElementById('giftFieldsContainer');
-            var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
+		function toggleFields() {
+			var checkbox = document.getElementById('enableFieldsCheckbox');
+			var giftFieldsContainer = document.getElementById('giftFieldsContainer');
+			var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
 
-            if (checkbox.checked) {
-                // Show the container with all the fields
-                giftFieldsContainer.style.display = 'block';
+			if (checkbox.checked) {
+				// Show the container with all the fields
+				giftFieldsContainer.style.display = 'block';
 
-                // Enable all the fields
-                fields.forEach(function (field) {
-                    field.disabled = false;
-                });
-            } else {
-                // Hide the container with all the fields
-                giftFieldsContainer.style.display = 'none';
+				// Enable all the fields
+				fields.forEach(function (field) {
+					field.disabled = false;
+				});
+			} else {
+				// Hide the container with all the fields
+				giftFieldsContainer.style.display = 'none';
 
-                // Disable and clear the fields
-                fields.forEach(function (field) {
-                    field.disabled = true;
-                    field.value = ''; // Clear the value
-                });
-            }
-        }
+				// Disable and clear the fields
+				fields.forEach(function (field) {
+					field.disabled = true;
+					field.value = ''; // Clear the value
+				});
+			}
+		}
 
 
 
