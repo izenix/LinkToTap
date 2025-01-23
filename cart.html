@@ -42,6 +42,37 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<!-- modernizr css -->
 	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+	<style>
+		/* Style the quantity input */
+		input[type="number"] {
+			width: 115px; /* Adjust the width */
+			padding: 1px; /* Add padding for better spacing */
+			font-size: 16px; /* Increase font size for readability */
+			text-align: center; /* Center align the text */
+			border: 1px solid #ddd; /* Add a subtle border */
+			border-radius: 4px; /* Round the corners */
+			outline: none; /* Remove focus outline */
+			transition: border-color 0.3s, box-shadow 0.3s; /* Add hover and focus effects */
+			margin: 0; /* Remove any default margin */
+			box-sizing: border-box; /* Include padding and border in width */
+		}
+	
+		/* Change border color and add shadow on focus */
+		input[type="number"]:focus {
+			border-color: #007bff; /* Highlight border on focus */
+			box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle shadow */
+		}
+	
+		/* Style the cart-plus-minus container */
+		.cart-plus-minus {
+			display: inline-flex; /* Align items in a row */
+			align-items: center; /* Vertically center align */
+			justify-content: center; /* Center the content */
+			padding: 0; /* Remove padding */
+			margin: 0; /* Remove margin */
+		}
+	</style>
+	
 </head>
 <body>
 	<script src="js/cart.js"></script>
@@ -167,7 +198,7 @@
 									<li><a href="#">Others</a></li> 
 									<li><a href="#">Premium Metal Black Cards</a></li>-->
 									<li><a href="nfccustomcard.html">Custom Design</a></li>
-									<li><a href="shop.html">Our Products</a></li>
+									<li><a href="products.html">Our Products</a></li>
 								</ul>
 							</div>
 						</li>
@@ -207,7 +238,7 @@
                                                 <li><a href="#">Custom Design</a></li>
                                                 <li><a href="#">Premium Metal Black Cards</a></li> -->
                                                 <li><a href="nfccustomcard.html">Custom Design</a></li>
-												<li><a href="shop.html">Our Products</a></li>
+												<li><a href="products.html">Our Products</a></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -383,21 +414,17 @@
 																<td class="text-left">Shipping</td>
 																<td class="text-end" id="shipping-cost">Rs. 0.00</td>
 															</tr>
-															<tr>
+															<!-- <tr>
 																<td class="text-left">VAT</td>
 																<td class="text-end" id="vat-cost">Rs. 0.00</td>
-															</tr>
+															</tr> -->
 															<tr>
 																<td class="text-left">Order Total</td>
-																<td class="text-end" id="order-total">Rs. 15.00</td>
+																<td class="text-end" id="order-total">Rs. 0.00</td>
 															</tr>
 														</tbody>
 													</table>
-													<!-- <button type="submit" data-text="checkout" class="button-one submit-button mt-15" onclick="checkout.html">Checkout</button> -->
-													<!-- <a href="checkout.html" class="button-one floatleft text-uppercase mt-10" data-text="Check out">Checkout</a> -->
-													 <button class="btn btn-primary">
-														<a href="checkout.html" style="color: white; text-decoration: none;">Go to Checkout</a>
-													</button>
+													<button type="button" data-text="go to checkout" class="button-one submit-button" onclick="window.location.href='checkout.html';">Go to Checkout</button>
 
 												</div>
 											</div>
@@ -826,7 +853,7 @@
 							<div class="single-footer">
 								<h3 class="footer-title  title-border">shipping</h3>
 								<ul class="footer-menu">
-									<li><a href="shop.html"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
+									<li><a href="products.html"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
 									<!-- <li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
 									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
 									<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
@@ -900,7 +927,7 @@
 										</div>
 										<hr />
 									</div>
-									<a href="shop.html" class="see-all">See all features</a>
+									<a href="products.html" class="see-all">See all features</a>
 									<div class="quick-add-to-cart">
 										<form method="post" class="cart">
 											<div class="numbers-row">
