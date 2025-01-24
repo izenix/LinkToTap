@@ -41,13 +41,12 @@
 	<!-- responsive css -->
 	<link rel="stylesheet" href="css/responsive.css">
 	<!-- modernizr css -->
-	<link rel="stylesheet" href="css/nfccustomcardbg.css">
-
 	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
-
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 	<!--checkout css-->
 	<link rel="stylesheet" href="css/checkout.css">
+	<!--nfccustomcardbd css-->
+	<link rel="stylesheet" href="css/nfccustomcardbg.css">
 
 </head>
 <body>
@@ -305,8 +304,9 @@
 													<fieldset id="shippingDetailsFieldset">
 														<div class="ship-container">
 															<h4 class="title-1 title-border text-uppercase mb-30">ship to different address</h4>
-															<label>
-																<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()"> Yes
+															<label class="switch">
+																<input type="checkbox" id="enableFieldsCheckbox" onclick="toggleFields()">
+																<span class="slider round"></span>
 															</label>
 														</div>
 
@@ -335,29 +335,29 @@
 														</thead>
 														<tbody id="checkoutproductscontainer">
 															<!-- <tr>
-									<td>Dummy Product Name  x 2</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr>
-								<tr>
-									<td>Dummy Product Name  x 1</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr>
-								<tr>
-									<td>Cart Subtotal</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr>
-								<tr>
-									<td>Shipping and Handing</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr>
-								<tr>
-									<td>Vat</td>
-									<td class="text-end">Rs. 00.00</td>
-								</tr>
-								<tr>
-									<td>Order Total</td>
-									<td class="text-end">Rs. 999.00</td>
-								</tr> -->
+																<td>Dummy Product Name  x 2</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Dummy Product Name  x 1</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Cart Subtotal</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Shipping and Handing</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>
+															<tr>
+																<td>Vat</td>
+																<td class="text-end">Rs. 00.00</td>
+															</tr>
+															<tr>
+																<td>Order Total</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr> -->
 														</tbody>
 													</table>
 												</div>
@@ -389,7 +389,16 @@
 															<a href="#"><img src="img/payment/4.png" alt="" /></a>
 														</div>
 														<!-- Accordion end -->
-														<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
+														<!--<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>-->
+
+														<div style="display: flex; align-items: center;">
+															<button class="button-one submit-button mt-15" data-text="place order" type="submit">place order</button>
+															<div id="loadingIndicator" style="display: none; align-items: center; margin-left: 10px;">
+																<p style="margin: 0; padding-right: 10px;">Loading... Please wait.</p>
+																<!--<div class="loader"></div>-->
+																<p class="loader"></p>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -488,11 +497,6 @@
 								<form id="emailform" action="#" onsubmit="subscribeEmailTrigger(event)">
 									<input id="emailInput" type="text" name="email" placeholder="Email Address..." />
 									<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
-									<div id="loadingIndicator" style="display: none; align-items: center; margin-left: 10px;">
-										<p style="margin: 0; padding-right: 10px;">Loading... Please wait.</p>
-										<!--<div class="loader"></div>-->
-										<p class="loader"></p>
-									</div>
 									<p class="text-center" id="emailresponseid"></p>
 								</form>
 							</div>

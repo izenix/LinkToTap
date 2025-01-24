@@ -132,8 +132,8 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 	var cardColor = cardColorMap[cardColorString];
 
 	// Fetch files (background and logo)
-	//var background = document.getElementById("background").files[0];
-	//var logo = document.getElementById("logo").files[0];
+	var background = document.getElementById("background").files[0];
+	var logo = document.getElementById("logo").files[0];
 
 	var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
 
@@ -165,6 +165,8 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 		companyName: companyName,
 		slogan: slogan,
 		totalAmount: totalAmount,
+		background: background,
+		logo: logo,
 
 		nameGift: nameGift,
 		emailGift: emailGift,
