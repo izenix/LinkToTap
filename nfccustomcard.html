@@ -49,7 +49,6 @@
 <body>
 	<script src="js/cart.js"></script>
 	<!--<script src="js/nfccustomcard.js"></script>-->
-
 	<!-- WRAPPER START -->
 	<div class="wrapper bg-dark-white">
 
@@ -114,15 +113,15 @@
 							<div class="sub-menu menu-scroll">
 								<ul>
 									<!--<li class="menu-title">best brands</li>
-								 <li><a href="#">Doctors</a></li>
-								<li><a href="#">Lawyers</a></li>
-								<li><a href="#">Influencers</a></li>
-								<li><a href="#">Accountants</a></li>
-								<li><a href="#">Business Owners</a></li>
-								<li><a href="#">Others</a></li>
-								<li><a href="#">Premium Metal Black Cards</a></li>-->
+									 <li><a href="#">Doctors</a></li>
+									<li><a href="#">Lawyers</a></li>
+									<li><a href="#">Influencers</a></li>
+									<li><a href="#">Accountants</a></li>
+									<li><a href="#">Business Owners</a></li>
+									<li><a href="#">Others</a></li>
+									<li><a href="#">Premium Metal Black Cards</a></li>-->
 									<li><a href="nfccustomcard.html">Custom Design</a></li>
-									<li><a href="shop.html">Our Products</a></li>
+									<li><a href="products.html">Our Products</a></li>
 
 								</ul>
 							</div>
@@ -155,22 +154,22 @@
 										<div class="sub-menu menu-scroll">
 											<ul>
 												<!-- <li class="menu-title">best brands</li>
-											<li><a href="#">Doctors</a></li>
-											<li><a href="#">Lawyers</a></li>
-											<li><a href="#">Influencers</a></li>
-											<li><a href="#">Accountants</a></li>
-											<li><a href="#">Business Owners</a></li>
-											<li><a href="#">Others</a></li>
-											<li><a href="#">Custom Design</a></li>
-											<li><a href="#">Premium Metal Black Cards</a></li> -->
+												<li><a href="#">Doctors</a></li>
+												<li><a href="#">Lawyers</a></li>
+												<li><a href="#">Influencers</a></li>
+												<li><a href="#">Accountants</a></li>
+												<li><a href="#">Business Owners</a></li>
+												<li><a href="#">Others</a></li>
+												<li><a href="#">Custom Design</a></li>
+												<li><a href="#">Premium Metal Black Cards</a></li> -->
 												<li><a href="nfccustomcard.html">Custom Design</a></li>
-												<li><a href="shop.html">Our Products</a></li>
+												<li><a href="products.html">Our Products</a></li>
 
 											</ul>
 										</div>
 									</li>
 									<!-- <li><a href="shop-sidebar.html">accesories</a></li> -->
-									<li><a href="blog.html">blog</a></li>
+									<li><a href="#">blog</a></li>
 									<li><a href="nfctracking.html">NFC Tracking</a>
 
 									<li><a href="about.html">about us</a></li>
@@ -357,9 +356,9 @@
 																<td class="text-end">Rs. 999.00</td>
 															</tr>
 															<!--<tr>
-															<td>Dummy Product Name  x 1</td>
-															<td class="text-end">Rs. 999.00</td>
-														</tr>-->
+																<td>Dummy Product Name  x 1</td>
+																<td class="text-end">Rs. 999.00</td>
+															</tr>-->
 															<tr>
 																<td>Cart Subtotal</td>
 																<td class="text-end">Rs. 00.00</td>
@@ -427,9 +426,9 @@
 
 										</div>
 										<!--<div class="center-button-container">
-										<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
+											<button class="button-one submit-button mt-15" data-text="Submit" type="submit">Submit</button>
 
-									</div>-->
+										</div>-->
 										<!--<p id="orderOutput">Loading your order number...</p>--> <!-- This will display the order number -->
 									</div>
 								</form>
@@ -509,10 +508,10 @@
 							<h3 class="footer-title  title-border">shipping</h3>
 							<ul class="footer-menu">
 								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>New Products</a></li>
-								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
+								<!--<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Top Sellers</a></li>
 								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Manufactirers</a></li>
 								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Suppliers</a></li>
-								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li>
+								<li><a href="#"><i class="zmdi zmdi-dot-circle"></i>Specials</a></li>-->
 							</ul>
 						</div>
 					</div>
@@ -520,9 +519,15 @@
 						<div class="single-footer newsletter-item">
 							<h3 class="footer-title  title-border">Email Newsletters</h3>
 							<div class="footer-subscribe">
-								<form action="#">
-									<input type="text" name="email" placeholder="Email Address..." />
+								<form id="emailform" action="#" onsubmit="subscribeEmailTrigger(event)">
+									<input id="emailInput" type="text" name="email" placeholder="Email Address..." />
 									<button class="button-one submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
+									<div id="nfccustomcardloadingIndicators" style="display: none; align-items: center; margin-left: 10px;">
+										<p style="margin: 0; padding-right: 10px;">Loading... Please wait.</p>
+										<!--<div class="loader"></div>-->
+										<p class="loader"></p>
+									</div>
+									<p class="text-center" id="emailresponseid"></p>
 								</form>
 							</div>
 						</div>
@@ -581,7 +586,7 @@
 									</div>
 									<hr />
 								</div>
-								<a href="shop.html" class="see-all">See all features</a>
+								<a href="products.html" class="see-all">See all features</a>
 								<div class="quick-add-to-cart">
 									<form method="post" class="cart">
 										<div class="numbers-row">
@@ -645,5 +650,7 @@
 	<script src="js/main.min.js"></script>
 	<!--NFC Custom Card JS-->
 	<script src="js/nfccustomcard.js"></script>
+	<script src="js/httptriggers.js"></script>
+
 </body>
 </html>
