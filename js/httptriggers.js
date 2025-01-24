@@ -5,6 +5,7 @@ function subscribeEmailTrigger(event) {
 
     // Prevent default form submission behavior if used with a form
     event.preventDefault();
+	showLoading(); // Show the loading indicator when form is submitted
 
     // URL of the Power Automate Flow
     var flowUrl = "https://prod-27.centralindia.logic.azure.com:443/workflows/838d81112d0e4ec4aa17c18a4b3ad6f3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kQ_CL3sbnIx_H0v_-Gj0jKxC6me615D0TcXFkIuUYL4";
@@ -19,12 +20,14 @@ function subscribeEmailTrigger(event) {
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!emailInput) {
+        hideLoading();
         responseElement.innerText = "Please enter your email address.";
         responseElement.style.color = "red"; // Set text color to red
         return;
     }
 
     if (!emailRegex.test(emailInput)) {
+        hideLoading();
         responseElement.innerText = "Invalid email address.";
         responseElement.style.color = "red"; // Set text color to red
         return;
@@ -49,7 +52,7 @@ function subscribeEmailTrigger(event) {
                 try {
                     // Parse and handle the JSON response
                     var response = JSON.parse(req.responseText);
-                    
+                    hideLoading(); // Hide the loading indicator when response is received
                     if (response.status === "success") {
                         // Display the success message
                         responseElement.innerText = response.message;
@@ -83,6 +86,7 @@ function sendMessageTrigger(event) {
 
     // Prevent default form submission behavior
     event.preventDefault();
+	showLoading(); // Show the loading indicator when form is submitted
 
     // URL of the Power Automate Flow
     var flowUrl = "https://prod-19.centralindia.logic.azure.com:443/workflows/85fd7ad383f44dfc9163ff747c34b61d/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J2LS3xeYUDfuSC_Az3L1khzMD6gsTcjOMrPP_-Cf6_Y";
@@ -104,17 +108,20 @@ function sendMessageTrigger(event) {
 
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailInput) {
+        hideLoading();
         responseElement.innerText = "Please enter your email address.";
         responseElement.style.color = "red";
         return;
     }
     if (!emailRegex.test(emailInput)) {
+        hideLoading();
         responseElement.innerText = "Invalid email address.";
         responseElement.style.color = "red";
         return;
     }
 
     if (!messageInput) {
+        hideLoading();
         responseElement.innerText = "Please enter a message.";
         responseElement.style.color = "red";
         return;
@@ -141,6 +148,7 @@ function sendMessageTrigger(event) {
                 try {
                     // Parse and handle the JSON response
                     var response = JSON.parse(req.responseText);
+                    hideLoading(); // Hide the loading indicator when response is received
 
                     if (response && response.message) {
                         // Display the success message from the response
@@ -166,4 +174,14 @@ function sendMessageTrigger(event) {
 
     // Send the request with the input payload
     req.send(input);
+}
+
+function showLoading() {
+	// Show the loading indicator
+	document.getElementById('loadingIndicator').style.display = 'block';
+}
+
+function hideLoading() {
+	// Hide the loading indicator
+	document.getElementById('loadingIndicator').style.display = 'none';
 }

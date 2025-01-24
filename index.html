@@ -40,6 +40,8 @@
 	<!-- responsive css -->
 	<link rel="stylesheet" href="css/responsive.css">
 	<!-- modernizr css -->
+	<link rel="stylesheet" href="css/nfccustomcardbg.css">
+
 	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
 
 </head>
@@ -1148,6 +1150,11 @@
 								<input id="emailInput" type="text" placeholder="Enter your email address" />
 								<button class="submit-button submit-btn-2 button-one" data-text="subscribe" type="submit">subscribe </button>
 							</form>
+							<div id="loadingIndicator" style="display: none; align-items: center; margin-left: 10px;">
+								<p style="margin: 0; padding-right: 10px;">Loading... Please wait.</p>
+								<!--<div class="loader"></div>-->
+								<p class="loader"></p>
+							</div>
 							<p class="text-center" id="emailresponseid"></p>
 						</div>
 					</div>
