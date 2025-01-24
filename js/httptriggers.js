@@ -86,7 +86,7 @@ function sendMessageTrigger(event) {
 
     // Prevent default form submission behavior
     event.preventDefault();
-	showLoading(); // Show the loading indicator when form is submitted
+	contactshowLoading(); // Show the loading indicator when form is submitted
 
     // URL of the Power Automate Flow
     var flowUrl = "https://prod-19.centralindia.logic.azure.com:443/workflows/85fd7ad383f44dfc9163ff747c34b61d/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=J2LS3xeYUDfuSC_Az3L1khzMD6gsTcjOMrPP_-Cf6_Y";
@@ -108,20 +108,20 @@ function sendMessageTrigger(event) {
 
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     if (!emailInput) {
-        hideLoading();
+        contacthideLoading();
         responseElement.innerText = "Please enter your email address.";
         responseElement.style.color = "red";
         return;
     }
     if (!emailRegex.test(emailInput)) {
-        hideLoading();
+        contacthideLoading();
         responseElement.innerText = "Invalid email address.";
         responseElement.style.color = "red";
         return;
     }
 
     if (!messageInput) {
-        hideLoading();
+        contacthideLoading();
         responseElement.innerText = "Please enter a message.";
         responseElement.style.color = "red";
         return;
@@ -148,7 +148,7 @@ function sendMessageTrigger(event) {
                 try {
                     // Parse and handle the JSON response
                     var response = JSON.parse(req.responseText);
-                    hideLoading(); // Hide the loading indicator when response is received
+                    contacthideLoading(); // Hide the loading indicator when response is received
 
                     if (response && response.message) {
                         // Display the success message from the response
@@ -184,4 +184,14 @@ function showLoading() {
 function hideLoading() {
 	// Hide the loading indicator
 	document.getElementById('loadingIndicator').style.display = 'none';
+}
+
+function contactshowLoading() {
+	// Show the loading indicator
+	document.getElementById('contactloadingIndicator').style.display = 'block';
+}
+
+function contacthideLoading() {
+	// Hide the loading indicator
+	document.getElementById('contactloadingIndicator').style.display = 'none';
 }
