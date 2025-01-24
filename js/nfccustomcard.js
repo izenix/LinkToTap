@@ -68,12 +68,12 @@ document.getElementById('customizeCardForm').addEventListener('input', function 
 
 function showLoading() {
 	// Show the loading indicator
-	document.getElementById('loadingIndicator').style.display = 'block';
+	document.getElementById('iloadingIndicator').style.display = 'block';
 }
 
 function hideLoading() {
 	// Hide the loading indicator
-	document.getElementById('loadingIndicator').style.display = 'none';
+	document.getElementById('iloadingIndicator').style.display = 'none';
 }
 
 
