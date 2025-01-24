@@ -43,37 +43,13 @@
 	<!-- modernizr css -->
 	<script src="js/vendor/modernizr-3.11.2.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+	<!--checkout css-->
+	<link rel="stylesheet" href="css/checkout.css">
 
-	<style>
-		.ship-container {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-			padding-bottom: 20px;
-		}
-
-		.title-1 {
-			margin: 0;
-		}
-
-		.radio-group {
-			display: flex;
-			gap: 20px;
-		}
-
-			.radio-group label {
-				display: flex;
-				align-items: center;
-			}
-
-			.radio-group input[type="radio"] {
-				margin-right: 5px;
-			}
-	</style>
 </head>
 <body>
 	<script src="js/cart.js"></script>
+
 
 	<!-- WRAPPER START -->
 	<div class="wrapper bg-dark-white">
@@ -312,7 +288,7 @@
 														<input id="phone" type="text" placeholder="Phone number here...">
 														<input id="companyName" type="text" placeholder="Company name here...">
 														<input id="slogan" type="text" placeholder="Slogan here...">
-														
+
 														<!-- Hidden Input for Google Places Autocomplete -->
 														<input id="autocomplete" type="text" style="display:none;" />
 														<!-- Textarea for Address Input -->
@@ -356,29 +332,29 @@
 														</thead>
 														<tbody id="checkoutproductscontainer">
 															<!-- <tr>
-																<td>Dummy Product Name  x 2</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Dummy Product Name  x 1</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Cart Subtotal</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Shipping and Handing</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr>
-															<tr>
-																<td>Vat</td>
-																<td class="text-end">Rs. 00.00</td>
-															</tr>
-															<tr>
-																<td>Order Total</td>
-																<td class="text-end">Rs. 999.00</td>
-															</tr> -->
+									<td>Dummy Product Name  x 2</td>
+									<td class="text-end">Rs. 999.00</td>
+								</tr>
+								<tr>
+									<td>Dummy Product Name  x 1</td>
+									<td class="text-end">Rs. 999.00</td>
+								</tr>
+								<tr>
+									<td>Cart Subtotal</td>
+									<td class="text-end">Rs. 999.00</td>
+								</tr>
+								<tr>
+									<td>Shipping and Handing</td>
+									<td class="text-end">Rs. 999.00</td>
+								</tr>
+								<tr>
+									<td>Vat</td>
+									<td class="text-end">Rs. 00.00</td>
+								</tr>
+								<tr>
+									<td>Order Total</td>
+									<td class="text-end">Rs. 999.00</td>
+								</tr> -->
 														</tbody>
 													</table>
 												</div>
@@ -416,6 +392,19 @@
 											</div>
 										</div>
 									</div>
+								</form>
+								<form id="payusubmit" action='https://test.payu.in/_payment' method='post'>
+									<input type="hidden" name="key" value="JP***g" />
+									<input type="hidden" name="txnid" value="t6svtqtjRdl4ws" />
+									<input type="hidden" name="productinfo" value="iPhone" />
+									<input type="hidden" name="amount" value="10" />
+									<input type="hidden" name="email" value="test@gmail.com" />
+									<input type="hidden" name="firstname" value="Ashish" />
+									<input type="hidden" name="lastname" value="Kumar" />
+									<input type="hidden" name="surl" value="https://apiplayground-response.herokuapp.com/" />
+									<input type="hidden" name="furl" value="https://apiplayground-response.herokuapp.com/" />
+									<input type="hidden" name="phone" value="9988776655" />
+									<input type="hidden" name="hash" value="eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972" />
 								</form>
 							</div>
 							<!-- check-out end -->
@@ -589,178 +578,6 @@
 	<!-- END QUICKVIEW PRODUCT -->
 	</div>
 	<!-- WRAPPER END -->
-
-	<script>
-
-		document.getElementById("customizeCardForm").addEventListener("submit", function (event) {
-			debugger;
-			event.preventDefault(); // Prevents traditional form submission
-
-
-
-			// Fetch form values
-			var name = document.getElementById("name").value;
-			var email = document.getElementById("email").value;
-			var phone = document.getElementById("phone").value;
-			var companyName = document.getElementById("companyName").value;
-			//var address = document.getElementById("address").value;
-
-
-
-			//Gift Card Order Information
-			var nameGift = document.getElementById("nameGift").value;
-			var emailGift = document.getElementById("emailGift").value;
-			var phoneGift = document.getElementById("phoneGift").value;
-			var companyNameGift = document.getElementById("companyNameGift").value;
-			var addressGift = document.getElementById("addressGift").value;
-
-
-
-			//var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
-
-			// Create a FormData object
-			var formData = new FormData();
-
-			// Append text data
-			var formData = {
-				name: name,
-				email: email,
-				phone: phone,
-				companyName: companyName,
-				//address: address,
-
-				nameGift: nameGift,
-				emailGift: emailGift,
-				phoneGift: phoneGift,
-				companyNameGift: companyNameGift,
-				addressGift: addressGift
-
-
-				//totalAmount: totalAmount
-			};
-
-
-			// Validate required fields (example: name, email, phone)
-			if (!name || !email || !phone) {
-				alert("Please fill in all the required form details");
-				return;
-			} // Send the data
-
-			console.log("Form Data (Minimal):", JSON.stringify(formData));
-
-			submitTrigger(JSON.stringify(formData));
-		});
-
-
-
-		function submitTrigger(inputData) {
-			debugger;
-			var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
-
-			var req = new XMLHttpRequest();
-			req.open("POST", flowUrl, true);
-			req.setRequestHeader('Content-Type', 'application/json');
-
-			req.onreadystatechange = function () {
-				if (req.readyState == 4) {
-					if (req.status == 200) {
-						/*alert("Your information has been submitted successfully.");*/
-						document.getElementById("customizeCardForm").reset();  // Reset form after success
-					} else {
-						console.log("Error Response Body:", req.responseText);  // Log the error response for debugging
-						/*alert("Error: " + req.status + " - " + req.statusText);*/
-					}
-				}
-			};
-
-			req.send(inputData);
-			alert("Your information has been submitted successfully.");
-
-			// Clear the form fields
-			document.getElementById("customizeCardForm").reset();
-		}
-
-
-
-
-		function initAutocomplete() {
-			// Create the autocomplete object
-			var autocomplete = new google.maps.places.Autocomplete(
-				document.getElementById('autocomplete'),
-				{ types: ['geocode'] } // Restrict to geographical location types
-			);
-
-			// Set up a listener on the autocomplete field to update the textarea
-			autocomplete.addListener('place_changed', function () {
-				var place = autocomplete.getPlace();
-
-				// If a place is selected, update the textarea with the formatted address
-				if (place && place.formatted_address) {
-					document.getElementById('address').value = place.formatted_address;
-				}
-			});
-
-			// Focus on the hidden input to trigger the address search
-			document.getElementById('address').addEventListener('focus', function () {
-				document.getElementById('autocomplete').style.display = 'block';
-				document.getElementById('autocomplete').focus();
-			});
-
-			// Hide autocomplete when the address is selected
-			document.getElementById('autocomplete').addEventListener('blur', function () {
-				document.getElementById('autocomplete').style.display = 'none';
-			});
-		}
-
-		// Initialize Google Places Autocomplete
-		google.maps.event.addDomListener(window, 'load', initAutocomplete);
-
-
-
-
-		//function toggleFields() {
-		//	debugger;
-  //          var checkbox = document.getElementById('enableFieldsCheckbox');
-
-  //          // Only target the fields in the shipping details fieldset
-  //          var fields = document.querySelectorAll('#shippingDetailsFieldset input, #shippingDetailsFieldset textarea');
-
-  //          // Enable or disable fields based on checkbox state
-  //          fields.forEach(function (field) {
-  //              field.disabled = !checkbox.checked;
-
-  //              // If the checkbox is unchecked, clear the field's value
-  //              if (!checkbox.checked) {
-  //                  field.value = ''; // Clear the value
-  //              }
-  //          });
-		//}
-
-
-        function toggleFields() {
-            debugger;
-            var checkbox = document.getElementById('enableFieldsCheckbox');
-            var giftFieldsContainer = document.getElementById('giftFieldsContainer');
-
-            // Show or hide the container with all the fields based on checkbox state
-            if (checkbox.checked) {
-                giftFieldsContainer.style.display = 'block'; // Show fields
-            } else {
-                giftFieldsContainer.style.display = 'none'; // Hide fields
-
-                // Clear the fields when hiding them
-                var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
-                fields.forEach(function (field) {
-                    field.value = ''; // Clear the value
-                });
-            }
-        }
-
-
-
-	</script>
-
-
 	<!-- all js here -->
 	<!-- jquery latest version -->
 	<script src="js/vendor/jquery-3.6.0.min.js"></script>
@@ -791,6 +608,8 @@
 	<!-- main js -->
 	<script src="js/main.min.js"></script>
 	<script src="js/httptriggers.js"></script>
+	<!-- Checkout JS-->
+	<script src="js/checkout.js"></script>
 
 </body>
 </html>
