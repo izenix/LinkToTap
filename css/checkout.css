@@ -1,0 +1,26 @@
+.ship-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.title-1 {
+    margin: 0;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+    .radio-group label {
+        display: flex;
+        align-items: center;
+    }
+
+    .radio-group input[type="radio"] {
+        margin-right: 5px;
+    }
+
