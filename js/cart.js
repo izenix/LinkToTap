@@ -22,7 +22,7 @@ function addToCart() {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert(`${name} has been added to your cart!`);
+    // alert(`${name} has been added to your cart!`);
 
     // Update mini-cart
     updateMiniCart();
@@ -153,7 +153,7 @@ function addToCartfromModal(id, name, price, image, quantity) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert(`${name} has been added to your cart!`);
+    // alert(`${name} has been added to your cart!`);
 
     // Update mini-cart and recalculate totals
     updateMiniCart();
@@ -244,7 +244,7 @@ function addToWishlist(event) {
 
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
 
-    alert(`${name} has been added to your wishlist!`);
+    // alert(`${name} has been added to your wishlist!`);
 
     // Update mini-cart
     updateMiniCart();
@@ -328,7 +328,7 @@ function addToCartfromWishlist(id, name, price, image, quantity) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
-    alert(`${name} has been added to your cart!`);
+    // alert(`${name} has been added to your cart!`);
 
     // Update mini-cart and recalculate totals
     updateMiniCart();
