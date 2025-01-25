@@ -187,10 +187,10 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 	//}
 
 	// Validate required fields (example: name, email, phone)
-	if (!name || !email || !phone) {
-		alert("Please fill in all the required form details");
-		return;
-	} // Send the data
+	//if (!name || !email || !phone) {
+	//	alert("Please fill in all the required form details");
+	//	return;
+	//} // Send the data
 
 	console.log("Form Data (Minimal):", JSON.stringify(formData));
 
@@ -239,7 +239,8 @@ getCartDetails();
 
 function submitTrigger(inputData) {
 	debugger;
-	var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+	//var flowUrl = "https://prod-04.centralindia.logic.azure.com:443/workflows/27caaa6ed33046bd9381661e652e38a1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=TQEqre6e0ki3S-NISzmvytxmOz24yU53fJu-C14_-qg";
+	var flowUrl = "https://prod-21.centralindia.logic.azure.com:443/workflows/d405891fbcc94d31bd6fe204056da022/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Bo7Ku5AN28DLpQfU0wB3hIPtKWVccDQmx3FWCDDx8lA";
 	const parsedData = JSON.parse(inputData);
 
 	const name = parsedData.name;
