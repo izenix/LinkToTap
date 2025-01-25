@@ -1,4 +1,7 @@
 function addToCart() {
+    debugger;
+    event.preventDefault();
+
     const productElement = event.target.closest(".single-product");
     const id = productElement.getAttribute("data-id"); // Use the unique ID
     const name = productElement.getAttribute("data-name");
@@ -21,6 +24,7 @@ function addToCart() {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} has been added to your cart!`);
 
     // alert(`${name} has been added to your cart!`);
 
@@ -34,6 +38,17 @@ function addToCart() {
     calculateminiCartTotals();
 
 }
+
+function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.className = "show";
+
+    // Hide the toast after 3 seconds
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, 3000);
+  }
 
 document.addEventListener("DOMContentLoaded", function () {
     // Populate cart and mini-cart on page load
@@ -136,6 +151,8 @@ function updateModalPrice(price, quantity) {
 }
 
 function addToCartfromModal(id, name, price, image, quantity) {
+    event.preventDefault();
+
     // Retrieve cart from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     
@@ -152,6 +169,7 @@ function addToCartfromModal(id, name, price, image, quantity) {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} has been added to your cart!`);
 
     // alert(`${name} has been added to your cart!`);
 
@@ -211,9 +229,11 @@ function removeFromCart(index) {
     cart.splice(index, 1); // Remove item at the specified index
     localStorage.setItem("cart", JSON.stringify(cart));
     //alert("Item removed from cart!");
+    // showToast(`Item removed from cart!`);
 
     // Reload the page to update the table
     window.location.reload();
+    
 }
 
 
@@ -221,6 +241,8 @@ function removeFromCart(index) {
 
 //Wishlist Start
 function addToWishlist(event) {
+    event.preventDefault();
+
     const productElement = event.target.closest(".single-product");
     const id = productElement.getAttribute("data-id"); // Use the unique ID
     const name = productElement.getAttribute("data-name");
@@ -243,6 +265,7 @@ function addToWishlist(event) {
     }
 
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    showToast(`${name} has been added to your wishlist!`);
 
     // alert(`${name} has been added to your wishlist!`);
 
@@ -311,6 +334,8 @@ function populateWishlistTable() {
 
 
 function addToCartfromWishlist(id, name, price, image, quantity) {
+    event.preventDefault();
+
     // Retrieve cart from localStorage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -327,6 +352,7 @@ function addToCartfromWishlist(id, name, price, image, quantity) {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} has been added to your cart!`);
 
     // alert(`${name} has been added to your cart!`);
 
@@ -342,6 +368,7 @@ function removeFromWishlist(index) {
     wishlist.splice(index, 1); // Remove item at the specified index
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
     //alert("Item removed from cart!");
+    // showToast(`Item removed from cart!`);
 
     // Reload the page to update the table
     window.location.reload();
@@ -427,6 +454,7 @@ function removeFromMiniCart(index) {
     cart.splice(index, 1); // Remove item at the specified index
     localStorage.setItem("cart", JSON.stringify(cart));
     //alert("Item removed from cart!");
+    // showToast(`Item removed from cart!`);
 
     // Update mini-cart and recalculate totals
     updateMiniCart();
