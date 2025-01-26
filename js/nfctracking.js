@@ -55,7 +55,7 @@
     var organizationURI = "https://izenixlearn.api.crm.dynamics.com";      // CRM URL
     var tenant = "izenixlearn.onmicrosoft.com";                            // Azure AD tenant
     var clientId = "78d9abf2-52c4-4f68-a69d-dfab8a564eab";                 // Client ID from Azure app registration
-    var pageUrl = "https://izenix.com/NFC/nfctracking.html";                // Redirect URL
+    var pageUrl = "https://izenix.com/NFC/features.html";                // Redirect URL
 
     var authContext, user, loginButton, logoutButton, getMonthButton, monthTable, monthTableBody, contactSelectDropdown, userLoginButton, userLogoutButton, getUsersButton, usersTable, getNFCTrackingDataButton, searchBar, searchBarMonth, nfctrackingsTable, nfctrackingsTableBody, usersTableBody, message, errorMessage;
 

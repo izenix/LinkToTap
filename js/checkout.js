@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 function showLoading() {
 	// Show the loading indicator
 	document.getElementById('iloadingIndicator').style.display = 'block';
@@ -155,7 +153,7 @@ function hideLoading() {
 //}
 
 
->>>>>>> f5c09b36ddc231d294c53b0cc1cea20c68db76e5
+/*>>>>>>> f5c09b36ddc231d294c53b0cc1cea20c68db76e5*/
 document.getElementById("customizeCardForm").addEventListener("submit", function (event) {
     debugger;
     event.preventDefault(); // Prevents traditional form submission
@@ -205,8 +203,9 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 
 function submitTrigger(inputData) {
     debugger;
-    var flowUrl = "https://prod-05.centralindia.logic.azure.com:443/workflows/abc288d5ed7f41cca6dcaf98b695d3a0/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=m8vXQ0NEiBMGhe6sOv4EQ4SNisnkNPva4klKK-lM3mA";
-    const parsedData = JSON.parse(inputData);
+    //var flowUrl = "https://prod-05.centralindia.logic.azure.com:443/workflows/abc288d5ed7f41cca6dcaf98b695d3a0/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=m8vXQ0NEiBMGhe6sOv4EQ4SNisnkNPva4klKK-lM3mA";
+	var flowUrl = "https://prod-16.centralindia.logic.azure.com:443/workflows/0deffc5449244070923e84ac4a589e6b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=7xGFxzqCRQqAoOaKmFDir6KOFw6KlNp50nvObsbH8gg";
+	const parsedData = JSON.parse(inputData);
 
 	const name = parsedData.name;
 	const email = parsedData.email;
@@ -339,20 +338,27 @@ google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
 
 
+
 function toggleFields() {
-	debugger;
 	var checkbox = document.getElementById('enableFieldsCheckbox');
 	var giftFieldsContainer = document.getElementById('giftFieldsContainer');
+	var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
 
-	// Show or hide the container with all the fields based on checkbox state
 	if (checkbox.checked) {
-		giftFieldsContainer.style.display = 'block'; // Show fields
-	} else {
-		giftFieldsContainer.style.display = 'none'; // Hide fields
+		// Show the container with all the fields
+		giftFieldsContainer.style.display = 'block';
 
-		// Clear the fields when hiding them
-		var fields = document.querySelectorAll('#giftFieldsContainer input, #giftFieldsContainer textarea');
+		// Enable all the fields
 		fields.forEach(function (field) {
+			field.disabled = false;
+		});
+	} else {
+		// Hide the container with all the fields
+		giftFieldsContainer.style.display = 'none';
+
+		// Disable and clear the fields
+		fields.forEach(function (field) {
+			field.disabled = true;
 			field.value = ''; // Clear the value
 		});
 	}
