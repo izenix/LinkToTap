@@ -5,7 +5,7 @@ function subscribeEmailTrigger(event) {
 
     // Prevent default form submission behavior if used with a form
     event.preventDefault();
-	showLoading(); // Show the loading indicator when form is submitted
+	showLoadingsubscribe(); // Show the loading indicator when form is submitted
 
     // URL of the Power Automate Flow
     var flowUrl = "https://prod-27.centralindia.logic.azure.com:443/workflows/838d81112d0e4ec4aa17c18a4b3ad6f3/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kQ_CL3sbnIx_H0v_-Gj0jKxC6me615D0TcXFkIuUYL4";
@@ -20,14 +20,14 @@ function subscribeEmailTrigger(event) {
     var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!emailInput) {
-        hideLoading();
+        hideLoadingsubscribe();
         responseElement.innerText = "Please enter your email address.";
         responseElement.style.color = "red"; // Set text color to red
         return;
     }
 
     if (!emailRegex.test(emailInput)) {
-        hideLoading();
+        hideLoadingsubscribe();
         responseElement.innerText = "Invalid email address.";
         responseElement.style.color = "red"; // Set text color to red
         return;
@@ -52,7 +52,7 @@ function subscribeEmailTrigger(event) {
                 try {
                     // Parse and handle the JSON response
                     var response = JSON.parse(req.responseText);
-                    hideLoading(); // Hide the loading indicator when response is received
+                    hideLoadingsubscribe(); // Hide the loading indicator when response is received
                     if (response.status === "success") {
                         // Display the success message
                         responseElement.innerText = response.message;
@@ -176,12 +176,12 @@ function sendMessageTrigger(event) {
     req.send(input);
 }
 
-function showLoading() {
+function showLoadingsubscribe() {
 	// Show the loading indicator
 	document.getElementById('loadingIndicator').style.display = 'block';
 }
 
-function hideLoading() {
+function hideLoadingsubscribe() {
 	// Hide the loading indicator
 	document.getElementById('loadingIndicator').style.display = 'none';
 }
