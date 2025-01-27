@@ -119,7 +119,7 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 	var designation = document.getElementById("designation").value;
 	var companyName = document.getElementById("companyName").value;
 	var slogan = document.getElementById("slogan").value;
-	var address = document.getElementById("address").value;
+	var address = document.getElementById("searchBox").value;
 
 	// Get the selected value from the dropdowns and map them to integers
 	var cardMaterialString = document.getElementById("cardMaterial").value;
@@ -130,10 +130,6 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 
 	var cardColorString = document.getElementById("cardColor").value;
 	var cardColor = cardColorMap[cardColorString];
-
-	// Fetch files (background and logo)
-	var background = document.getElementById("background").files[0];
-	var logo = document.getElementById("logo").files[0];
 
 	var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
 
@@ -146,94 +142,77 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 	var sloganGift = document.getElementById("sloganGift").value;
 	var addressGift = document.getElementById("addressGift").value;
 
+	// Fetch files (background and logo)
+	var background = document.getElementById("background").files[0];
+	var logo = document.getElementById("logo").files[0];
 
+	// Function to convert file to Base64 and return a Promise
+	function convertFileToBase64(file) {
+		return new Promise(function (resolve, reject) {
+			var reader = new FileReader();
+			reader.onloadend = function () {
+				resolve(reader.result);
+			};
+			reader.onerror = function (error) {
+				reject(error);
+			};
+			if (file) {
+				reader.readAsDataURL(file);
+			} else {
+				resolve(null); // No file to convert
+			}
+		});
+	}
 
-	// Create a FormData object
-	var formData = new FormData();
+	// Convert files to Base64 and then send form data
+	Promise.all([
+		convertFileToBase64(background),
+		convertFileToBase64(logo)
+	]).then(function ([backgroundBase64, logoBase64]) {
 
-	// Append text data
-	var formData = {
-		cardName: cardName,
-		name: name,
-		email: email,
-		phone: phone,
-		cardMaterial: cardMaterial,
-		cardColor: cardColor,
-		customCardColorPicker: customCardColorPicker,
-		textColor: textColor,
-		designation: designation,
-		companyName: companyName,
-		slogan: slogan,
-		totalAmount: totalAmount,
-		background: background,
-		logo: logo,
+		// Process the base64 strings to remove the data URL prefix
+		let strippedBackgroundBase64 = backgroundBase64 ? backgroundBase64.replace(/^data:image\/(png|jpeg);base64,/, "") : null;
+		let strippedLogoBase64 = logoBase64 ? logoBase64.replace(/^data:image\/(png|jpeg);base64,/, "") : null;
 
-		nameGift: nameGift,
-		emailGift: emailGift,
-		phoneGift: phoneGift,
-		designationGift: designationGift,
-		companyNameGift: companyNameGift,
-		sloganGift: sloganGift,
-		addressGift: addressGift
-	};
+		// Prepare form data as a JSON object
+		var formData = {
+			cardName: cardName,
+			name: name || "", 
+			email: email || "",
+			phone: phone || "",
+			cardMaterial: cardMaterial,
+			cardColor: cardColor,
+			customCardColorPicker: customCardColorPicker || "",
+			textColor: textColor,
+			designation: designation || "",
+			companyName: companyName || "",
+			slogan: slogan || "",
+			totalAmount: totalAmount || "",
+			background: strippedBackgroundBase64 || "", // Base64-encoded background image
+			logo: strippedLogoBase64 || "", // Base64-encoded logo
+			address: address || "",
 
+			nameGift: nameGift || "",
+			emailGift: emailGift || "",
+			phoneGift: phoneGift || "",
+			designationGift: designationGift || "",
+			companyNameGift: companyNameGift || "",
+			sloganGift: sloganGift || "",
+			addressGift: addressGift || ""
+		};
 
-	// Append files (only if they exist)
-	//if (background) {
-	//	formData.append("background", background); // Append the actual file
-	//}
-	//if (logo) {
-	//	formData.append("logo", logo); // Append the actual file
-	//}
+		console.log("Form Data (with Base64 images):", JSON.stringify(formData));
 
-	// Validate required fields (example: name, email, phone)
-	//if (!name || !email || !phone) {
-	//	alert("Please fill in all the required form details");
-	//	return;
-	//} // Send the data
-
-	console.log("Form Data (Minimal):", JSON.stringify(formData));
-
-	submitTrigger(JSON.stringify(formData));
+		// Send the data
+		submitTrigger(JSON.stringify(formData));
+	}).catch(function (error) {
+		console.error("Error converting files to Base64:", error);
+		alert("Failed to process files. Please try again.");
+	});
 });
 
 
 
-function getCartDetails() {
-	// Retrieve the cart data from localStorage
-	var cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-	if (cart.length === 0) {
-		console.log("Cart is empty.");
-		return;
-	}
-
-	// Loop through the cart and extract values into variables
-	for (var i = 0; i < cart.length; i++) {
-		var item = cart[i];
-		var id = item.id;
-		var name = item.name;
-		var price = item.price;
-		var image = item.image;
-		var quantity = item.quantity;
-
-		// You can use these variables as needed
-		console.log("ID:", id);
-		console.log("Name:", name);
-		console.log("Price:", price);
-		console.log("Image:", image);
-		console.log("Quantity:", quantity);
-
-		// Example: calculate subtotal for each item
-		var subtotal = price * quantity;
-		console.log("Subtotal:", subtotal);
-
-		// Perform other actions with these variables
-	}
-}
-
-// Call the function to execute
-getCartDetails();
 
 
 
@@ -355,3 +334,83 @@ function toggleFields() {
 		});
 	}
 }
+
+
+
+function getCartDetails() {
+	// Retrieve the cart data from localStorage
+	var cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+	if (cart.length === 0) {
+		console.log("Cart is empty.");
+		return;
+	}
+
+	// Loop through the cart and extract values into variables
+	for (var i = 0; i < cart.length; i++) {
+		var item = cart[i];
+		var id = item.id;
+		var name = item.name;
+		var price = item.price;
+		var image = item.image;
+		var quantity = item.quantity;
+
+		// You can use these variables as needed
+		console.log("ID:", id);
+		console.log("Name:", name);
+		console.log("Price:", price);
+		console.log("Image:", image);
+		console.log("Quantity:", quantity);
+
+		// Example: calculate subtotal for each item
+		var subtotal = price * quantity;
+		console.log("Subtotal:", subtotal);
+
+		// Perform other actions with these variables
+	}
+}
+
+// Call the function to execute
+getCartDetails();
+
+
+
+function loadMapScenario() {
+
+	// Load the AutoSuggest module
+	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+		callback: onLoadAutoSuggest,
+		errorCallback: onError
+	});
+}
+
+function onLoadAutoSuggest() {
+	// Create an options object for AutoSuggest
+	var options = {
+		maxResults: 5,  // Limit the number of suggestions
+	};
+
+	// Initialize the AutosuggestManager
+	var manager = new Microsoft.Maps.AutosuggestManager(options);
+
+	// Attach AutoSuggest to the input box and container
+	manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+}
+
+// Callback when a suggestion is selected
+function selectedSuggestion(suggestionResult) {
+	console.log(suggestionResult);
+
+	// Display selected result in the console or handle it
+	//alert(`You selected: ${suggestionResult.address.formattedAddress}`);
+}
+
+// Error handling function
+function onError(message) {
+	console.error("Bing Maps Error:", message);
+}
+
+
+
+
+

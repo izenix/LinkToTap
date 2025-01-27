@@ -63,79 +63,155 @@
     <link rel="stylesheet" href="css/nfctracking.css">
 	<link rel="stylesheet" href="css/nfccustomcardbg.css">
 
+  
+
+    <style>
+        /* Desktop view: hide mobile elements */
+        .desktop-view {
+            display: block;
+        }
+
+        .mobile-view {
+            display: none;
+        }
+
+        /* Mobile view: show mobile elements and hide desktop elements */
+        @media only screen and (max-width: 768px) {
+            .desktop-view {
+                display: none;
+            }
+
+            .mobile-view {
+                display: block;
+            }
+        }
+    </style>
 
 </head>
 <body>
 
     <!-- Buttons to toggle between NFC Tracking Data and Get Users -->
+   
+
     <header class="bg-white">
         <nav>
-
             <!-- MAIN-MENU START -->
             <div class="menu-toggle hamburger hamburger--emphatic d-none d-md-block">
                 <div class="hamburger-box">
                     <div class="hamburger-inner"></div>
                 </div>
             </div>
-            <div class="main-menu  d-none d-md-block">
+            <div class="main-menu d-none d-md-block">
                 <nav>
                     <ul>
-                        <li>
-                            <a href="index.html">home</a>
-
-                        </li>
-
+                        <li><a href="index.html">home</a></li>
                         <li>
                             <a href="#">Products</a>
                             <div class="sub-menu menu-scroll">
                                 <ul>
-                                    <!--<li class="menu-title">best brands</li>
-                 <li><a href="#">Doctors</a></li>
-                <li><a href="#">Lawyers</a></li>
-                <li><a href="#">Influencers</a></li>
-                <li><a href="#">Accountants</a></li>
-                <li><a href="#">Business Owners</a></li>
-                <li><a href="#">Others</a></li>
-                <li><a href="#">Premium Metal Black Cards</a></li>-->
                                     <li><a href="customcard.html">Custom Design</a></li>
                                     <li><a href="products.html">Our Products</a></li>
-
                                 </ul>
                             </div>
                         </li>
-                        <!-- <li><a href="#">accesories</a></li> -->
-                        <li><a href="#">blog</a></li>                       
-                        <li><a href="features.html">Features</a>
-
+                        <li><a href="#">blog</a></li>
+                        <li><a href="features.html">Features</a></li>
                         <li><a href="about.html">about us</a></li>
                         <li><a href="contact.html">contact</a></li>
                     </ul>
                 </nav>
             </div>
             <!-- MAIN-MENU END -->
-            <!-- NFC Text in the center -->
-            <div class="nav-left">
-
+            <!-- NFC Text in the center start -->
+            <div class="nav-left desktop-view">
                 <span class="nfc-title dropbtn text-light-black">NFC</span>
             </div>
 
             <!-- Buttons in the center side by side -->
-            <div class="button-container">
+            <div class="button-container desktop-view">
                 <button id="showUsersButton" class="text-black">Users</button>
                 <button id="showNFCButton" class="text-black">NFC Tracking Data</button>
                 <button id="showMonthWiseDataButton" class="text-black">Month Wise Data</button>
             </div>
 
             <!-- Authentication buttons on the right -->
-            <div class="auth-buttons">
+            <div class="auth-buttons desktop-view">
                 <span id="greetingMessage" class="text-gray"></span>
                 <button id="login" class="text-tan">Login</button>
                 <button id="logout" class="hidden">Logout</button>
             </div>
-
+            <!-- NFC Text in the center end -->
         </nav>
 
+        <!-- Mobile-menu start -->
+        <div class="mobile-menu-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 d-block d-md-none">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul>
+                                    <li><a href="index.html">home</a></li>
+                                    <li>
+                                        <a href="#">Products</a>
+                                        <div class="sub-menu menu-scroll">
+                                            <ul>
+                                                <li><a href="customcard.html">Custom Design</a></li>
+                                                <li><a href="products.html">Our Products</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="#">blog</a></li>
+                                    <li><a href="features.html">NFC Tracking</a></li>
+                                    <li><a href="about.html">about us</a></li>
+                                    <li><a href="contact.html">contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile-menu end -->
+        <!-- NFC Text in the center for mobile view start -->
+        <!--<div class="mobile-nfc-area mobile-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 d-block d-md-none text-center">
+                        <span class="nfc-title dropbtn text-light-black">NFC</span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+        <!-- Buttons in the center side by side for mobile view -->
+        <div class="mobile-button-container mobile-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 d-block d-md-none text-center">
+                        <button id="showUsersButton" class="text-black">Users</button>
+                        <button id="showNFCButton" class="text-black">NFC Tracking Data</button>
+                        <button id="showMonthWiseDataButton" class="text-black">Month Wise Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Authentication buttons on the right for mobile view -->
+        <div class="mobile-auth-buttons mobile-view">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 d-block d-md-none text-center">
+                        <span id="greetingMessage" class="text-gray"></span>
+                        <button id="login" class="text-tan">Login</button>
+                        <button id="logout" class="hidden">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- NFC Text in the center for mobile view end -->
     </header>
+
 
 
 
@@ -461,10 +537,6 @@
     </div>
     <!-- END QUICKVIEW PRODUCT -->
     <!-- WRAPPER END -->
-
-
-
-
     <!-- all js here -->
     <!-- jquery latest version -->
     <script src="js/vendor/jquery-3.6.0.min.js"></script>
