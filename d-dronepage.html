@@ -8,17 +8,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@azure/storage-blob@12.6.0/dist/azure-storage-blob.min.js"></script>
     <script src="https://unpkg.com/@azure/storage-blob@12.16.0/dist/index.browser.min.js"></script>
 
-
     <style>
+        /* General body and page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #f0f4f7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
         /* Header style */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: white;
-            padding: 5px;
-            color: #333;
+            background-color: #fff;
+            padding: 10px 20px;
+            width: 98%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
+
+            .header h1 {
+                font-size: 24px;
+                color: #333;
+                margin: 0;
+            }
 
         .logout-button {
             background-color: #f44336;
@@ -27,45 +49,101 @@
             border: none;
             cursor: pointer;
             font-size: 16px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
 
             .logout-button:hover {
                 background-color: #d32f2f;
             }
 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
+        /* Main Content */
         .container {
             display: flex;
             justify-content: space-between;
-            padding: 20px;
+            width: 90%;
+            margin-top: 100px;
             flex-wrap: wrap;
+            gap: 20px;
         }
 
+        /* Left: Live Drone Location (Google Maps Embed) */
         .iframe-container {
             width: 48%;
             height: 300px;
-            border: 2px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
-            margin-bottom: 20px;
+            overflow: hidden;
+            background-color: #fff;
         }
 
             .iframe-container iframe {
                 width: 100%;
                 height: 100%;
                 border: none;
-                border-radius: 8px;
             }
 
+        /* Search Bar */
+        .search-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+            input[type="text"]:focus {
+                border-color: #0077ff;
+            }
+
+        button {
+            background-color: #0077ff;
+            color: white;
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #005bb5;
+            }
+
+        /* File Section */
         .file-container {
             text-align: center;
             margin: 20px;
+            width: 100%;
+            max-width: 400px;
         }
 
             .file-container button {
@@ -74,9 +152,10 @@
                 background-color: #4CAF50;
                 color: white;
                 border: none;
-                border-radius: 5px;
+                border-radius: 8px;
                 cursor: pointer;
                 font-size: 16px;
+                transition: background-color 0.3s ease;
             }
 
                 .file-container button:hover {
@@ -91,89 +170,82 @@
             display: flex;
             justify-content: center;
             margin: 20px 0;
+            gap: 10px;
         }
 
-        .logout-button {
-            padding: 10px 20px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-            .logout-button:hover {
-                background-color: #e53935;
-            }
 
         #contentDisplay {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row; /* Ensures the content is arranged side by side */
+            align-items: center; /* Aligns the items vertically centered */
+            justify-content: space-around; /* Ensures equal space between items */
+            gap: 20px; /* Adds a gap between the content */
+            flex-wrap: wrap; /* Allows the items to wrap if the screen size is smaller */
+            padding: 20px;
         }
 
-        .photos img {
-            max-width: 200px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        .videos video {
-            width: 400px;
-            height: 250px;
-            margin: 10px;
-            border-radius: 8px;
-            border: 2px solid #ccc;
-        }
-
-        .documents a {
-            display: block;
-            margin: 10px;
-            color: #007bff;
-            text-decoration: none;
-        }
-
-            .documents a:hover {
-                text-decoration: underline;
-            }
-
-        .logout-container {
+        .photos, .videos, .documents {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
+            flex-direction: column; /* Ensures items inside each section are stacked vertically */
+            align-items: center; /* Centers the items horizontally */
+            gap: 10px;
         }
 
-            .logout-container h1 {
-                font-size: 24px;
-                margin: 0;
+            .photos img, .videos video, .documents a {
+                border-radius: 8px;
+                margin: 5px;
             }
 
-        .hidden {
+            .photos img {
+                max-width: 200px;
+            }
+
+            .videos video {
+                width: 400px;
+                height: 250px;
+            }
+
+            .documents a {
+                color: #007bff;
+                text-decoration: none;
+            }
+
+                .documents a:hover {
+                    text-decoration: underline;
+                }
+
+
+        /* Spinner */
+        #loadingSpinner {
             display: none;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
         }
 
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
 
+            .iframe-container {
+                width: 80%;
+                margin-bottom: 20px;
+            }
 
+            .search-container {
+                max-width: 100%;
+            }
 
-
-        
-
-
+            .file-container {
+                max-width: 90%;
+            }
+        }
     </style>
- 
-  
+
+
 </head>
 <body>
 
@@ -194,22 +266,31 @@
 
         <!-- Right: Drone Live Video (YouTube Embed) -->
         <!--<div class="iframe-container">
-        <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-                allowfullscreen
-                sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                    allowfullscreen
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
 
-    </div>-->
+        </div>-->
         <!-- Play Button -->
         <!-- YouTube Iframe -->
-        <div class="iframe-container">
+        <!--<div class="iframe-container">
             <iframe id="youtubeIframe"
-                   
                     src="https://www.youtube.com/embed/R_InO9bxuwU?enablejsapi=1"
                     allowfullscreen
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>  <!-- enablejsapi=1 is necessary to control the video via API -->
-            <button id="playButton">Play Video</button>
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>-->
+        <!-- enablejsapi=1 is necessary to control the video via API -->
+        <!--<button id="playButton">Play Video</button>
+        </div>-->
+
+        <div class="search-container">
+            <h2>Simple Search Engine</h2>
+            <div class="search-bar">
+                <input type="text" id="searchBar" placeholder="Enter URL (e.g., https://example.com)" />
+                <button onclick="goToURL()">Go</button>
+            </div>
         </div>
-        
+
+
     </div>
 
     <!-- File Section Toggle Button -->
@@ -232,97 +313,6 @@
 
     <!-- Include Azure Storage SDK from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@azure/storage-blob@12.26.0/dist/azure-storage-blob.min.js"></script>
-
-
-    <!--<script>
-        // Storage Account name, Container name, and SAS Token
-        const accountName = "linktotapdronedemo1";
-        const containerName = "publicfiles";
-        const sasToken = "sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c";
-
-        const apiUrl = 'https://linktotapdronedemo1.blob.core.windows.net/publicfiles?restype=container&comp=list&sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c';
-
-
-        // REST API URL to get the list of blobs in the container
-        //const apiUrl = `https://${accountName}.blob.core.windows.net/${containerName}?restype=container&comp=list${sasToken}`;
-
-        // Fetch blobs and show them based on their type
-        function fetchBlobs() {
-            document.getElementById("loadingSpinner").style.display = "block"; // Show loading spinner
-
-            fetch(apiUrl, {
-                method: "GET",
-                headers: {
-                    "x-ms-version": "2020-02-10" // Azure Storage API version
-                }
-            })
-                .then(response => response.text()) // Get the XML response as text
-                .then(xmlData => {
-                    // Parse the XML response
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(xmlData, "application/xml");
-
-                    // Get all blob elements
-                    const blobs = xmlDoc.getElementsByTagName("Blob");
-                    const blobList = [];
-
-                    // Loop through each blob and add its name to the blob list
-                    for (let i = 0; i < blobs.length; i++) {
-                        const blobName = blobs[i].getElementsByTagName("Name")[0].textContent;
-                        blobList.push(blobName);
-                    }
-
-                    document.getElementById("loadingSpinner").style.display = "none"; // Hide loading spinner
-                    window.blobList = blobList; // Store blobs globally for filtering
-                })
-                .catch(error => {
-                    console.error('Error fetching blobs:', error);
-                    document.getElementById("loadingSpinner").style.display = "none"; // Hide spinner on error
-                });
-        }
-
-
-        // Toggle the file section visibility
-        function toggleFileSection() {
-            const fileButtons = document.getElementById("fileButtons");
-            fileButtons.classList.toggle("hidden");
-            fetchBlobs(); // Fetch blobs when toggling
-        }
-
-        // Display content based on the button clicked
-        function showContent(type) {
-            const contentDisplay = document.getElementById("contentDisplay");
-            contentDisplay.innerHTML = ""; // Clear existing content
-
-            if (!window.blobList) {
-                contentDisplay.innerHTML = "No files found.";
-                return;
-            }
-
-            const filteredBlobs = window.blobList.filter(blob => {
-                if (type === 'images') return blob.match(/\.(jpg|jpeg|png|gif)$/i);
-                if (type === 'videos') return blob.match(/\.(mp4|avi|mov|mkv)$/i);
-                if (type === 'documents') return blob.match(/\.(pdf|docx|txt)$/i);
-                return false;
-            });
-
-            if (filteredBlobs.length === 0) {
-                contentDisplay.innerHTML = `No ${type} found.`;
-            } else {
-                filteredBlobs.forEach(blob => {
-
-                    // Correctly append the SAS token with '&' instead of '?'
-                    const blobUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${blob}?${sasToken}`;
-                    contentDisplay.innerHTML += `<p><a href="${blobUrl}" target="_blank">${blob}</a></p>`;
-
-                });
-            }
-        }
-
-
-    </script>-->
-
-
 
     <script>
         // Storage Account name, Container name, and SAS Token
@@ -436,21 +426,32 @@
         }
 
 
+        //Navigation Function
+        function goToURL() {
+            var input = document.getElementById("searchBar").value;
 
+            // Ensure the input starts with 'http://' or 'https://', if not, prepend 'https://'
+            if (!input.startsWith('http://') && !input.startsWith('https://')) {
+                input = 'https://' + input;
+            }
 
+            // Navigate to the entered URL
+            //window.location.href = input;
+            window.open(input, '_blank');
+        }
 
-
-
-
-
-
-
+        // Allow pressing Enter to trigger the search as well
+        document.getElementById("searchBar").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                goToURL();
+            }
+        });
 
 
 
         // Load YouTube Iframe API
         var tag = document.createElement('script');
-       
+
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -474,12 +475,6 @@
                 event.target.playVideo(); // Play the video when button is clicked
             });
         }
-
-
-
-
-
-
 
 
     </script>
