@@ -291,10 +291,13 @@
 														<input id="companyName" type="text" placeholder="Company name here...">
 														<input id="slogan" type="text" placeholder="Slogan here...">
 
-														<!-- Hidden Input for Google Places Autocomplete -->
-														<input id="autocomplete" type="text" style="display:none;" />
 														<!-- Textarea for Address Input -->
-														<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>
+														<!--<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>-->
+
+														<div id="searchBoxContainer" style="font-family: undefined;">
+															<input type="text" id="searchBox" placeholder="Your address here...">
+														</div>
+
 													</fieldset>
 
 												</div>
@@ -317,7 +320,12 @@
 															<input id="phoneGift" type="text" placeholder="Phone number here...">
 															<input id="companyNameGift" type="text" placeholder="Company name here...">
 															<input id="sloganGift" type="text" placeholder="Slogan here...">
-															<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..."></textarea>
+															<!--<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..."></textarea>-->
+
+															<div id="searchBoxContainerGift" style="font-family: undefined;">
+																<input type="text" id="searchBoxGift" placeholder="Your address here...">
+															</div>
+
 														</div>
 													</fieldset>
 
@@ -504,7 +512,7 @@
 										<!--<div class="loader"></div>-->
 										<p class="loader"></p>
 									</div>
-										<!--</div>-->
+									<!--</div>-->
 									<p class="text-center" id="emailresponseid"></p>
 								</form>
 							</div>
@@ -630,6 +638,9 @@
 	<script src="js/httptriggers.js"></script>
 	<!-- Checkout JS-->
 	<script src="js/checkout.js"></script>
+	<script type="text/javascript"></script>
+	<script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=AvoAm8hT1rowMfM2mKrXd6nwwVqEoXmVJAQKJyiN2OBMPS0F0bFWvPdfWunRMbF5&amp;callback=loadMapScenario" async="" defer=""></script>
+
 
 </body>
 </html>

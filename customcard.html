@@ -45,6 +45,21 @@
 	<!--nfccustomcardbd css-->
 	<link rel="stylesheet" href="css/nfccustomcardbg.css">
 
+	<style>
+        .search-box-style {
+            background: #f6f6f6 none repeat scroll 0 0;
+            border: medium none;
+            box-shadow: none;
+            color: #999;
+            height: 40px;
+            margin-bottom: 15px;
+            padding: 0 20px;
+            transition: all 0.5s ease 0s;
+            width: 100%;
+            outline: none;
+        }
+	</style>
+
 </head>
 <body>
 	<script src="js/cart.js"></script>
@@ -258,7 +273,7 @@
 
 
 														<div id="searchBoxContainer" style="font-family: undefined;">
-															<input type="text" id="searchBox" placeholder="Your address here...">
+															<input type="text" id="searchBox" class="search-box-style" placeholder="Your address here...">
 														</div>
 
 														<!--<textarea id="address" class="custom-textarea" placeholder="Your address here..."></textarea>-->
@@ -274,8 +289,8 @@
 																<label for="cardColor">Select your card color:</label>
 																<select id="cardColor" name="cardColor">
 																	<option value="" disabled selected>Select card color</option>
-																	<option value="Black">Black</option>
-																	<option value="White">White</option>
+																	<!--<option value="Black">Black</option>
+																	<option value="White">White</option>-->
 																	<option value="Custom">Custom</option>
 																</select>
 																<input type="color" id="customCardColorPicker" name="customCardColorPicker" style="display:none;">
@@ -314,10 +329,10 @@
 															<input type="text" id="sloganGift" placeholder="Slogan..." disabled>
 
 
-															<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..." disabled></textarea>
-															<!--<div id="searchBoxContaineri" style="font-family: undefined;">
-																<input type="text" id="searchBoxi" placeholder="Your address here...">
-															</div>-->
+															<!--<textarea id="addressGift" class="custom-textarea" placeholder="Your address here..." disabled></textarea>-->
+															<div id="searchBoxContainerGift" style="font-family: undefined;">
+																<input type="text" id="searchBoxGift" class="search-box-style" placeholder="Your address here...">
+															</div>
 
 														</div>
 													</fieldset>

@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drone Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/azure-storage/10.5.0/azure-storage.blob.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@azure/storage-blob@12.6.0/dist/azure-storage-blob.min.js"></script>
+    <script src="https://unpkg.com/@azure/storage-blob@12.16.0/dist/index.browser.min.js"></script>
+
+
     <style>
         /* Header style */
         .header {
@@ -154,7 +159,21 @@
                 font-size: 24px;
                 margin: 0;
             }
+
+        .hidden {
+            display: none;
+        }
+
+
+
+
+
+        
+
+
     </style>
+ 
+  
 </head>
 <body>
 
@@ -174,106 +193,305 @@
         </div>
 
         <!-- Right: Drone Live Video (YouTube Embed) -->
+        <!--<div class="iframe-container">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+                allowfullscreen
+                sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+
+    </div>-->
+        <!-- Play Button -->
+        <!-- YouTube Iframe -->
         <div class="iframe-container">
-            <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+            <iframe id="youtubeIframe"
+                   
+                    src="https://www.youtube.com/embed/R_InO9bxuwU?enablejsapi=1"
                     allowfullscreen
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-presentation"></iframe>  <!-- enablejsapi=1 is necessary to control the video via API -->
+            <button id="playButton">Play Video</button>
         </div>
+        
     </div>
 
     <!-- File Section Toggle Button -->
     <div class="file-container">
-        <button id="filesBtn">Files</button>
+        <button id="filesBtn" onclick="toggleFileSection()">Files</button>
         <div class="file-section hidden" id="fileButtons">
-            <button onclick="showContent('photos')">Photos</button>
+            <button onclick="showContent('images')">Photos</button>
             <button onclick="showContent('videos')">Recorded Videos</button>
             <button onclick="showContent('documents')">Documents</button>
         </div>
     </div>
 
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" style="display:none;">Loading files...</div>
+
     <!-- Section for displaying content -->
     <div class="file-container" id="contentDisplay"></div>
 
-    <script>
-        // Toggle file buttons visibility
-        document.getElementById('filesBtn').addEventListener('click', function () {
-            const fileButtons = document.getElementById('fileButtons');
-            fileButtons.classList.toggle('hidden');
-        });
 
-        // Fetch content based on type
-        function fetchContent(type) {
-            debugger;
-            let baseUrl = '';
-            if (type === 'photos') {
-                baseUrl = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/';
-            } else if (type === 'videos') {
-                baseUrl = 'https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/';
-            } else if (type === 'documents') {
-                baseUrl = 'https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/';
-            }
 
-            fetch(baseUrl, { mode: 'no-cors' })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+    <!-- Include Azure Storage SDK from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@azure/storage-blob@12.26.0/dist/azure-storage-blob.min.js"></script>
+
+
+    <!--<script>
+        // Storage Account name, Container name, and SAS Token
+        const accountName = "linktotapdronedemo1";
+        const containerName = "publicfiles";
+        const sasToken = "sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c";
+
+        const apiUrl = 'https://linktotapdronedemo1.blob.core.windows.net/publicfiles?restype=container&comp=list&sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c';
+
+
+        // REST API URL to get the list of blobs in the container
+        //const apiUrl = `https://${accountName}.blob.core.windows.net/${containerName}?restype=container&comp=list${sasToken}`;
+
+        // Fetch blobs and show them based on their type
+        function fetchBlobs() {
+            document.getElementById("loadingSpinner").style.display = "block"; // Show loading spinner
+
+            fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                    "x-ms-version": "2020-02-10" // Azure Storage API version
+                }
+            })
+                .then(response => response.text()) // Get the XML response as text
+                .then(xmlData => {
+                    // Parse the XML response
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlData, "application/xml");
+
+                    // Get all blob elements
+                    const blobs = xmlDoc.getElementsByTagName("Blob");
+                    const blobList = [];
+
+                    // Loop through each blob and add its name to the blob list
+                    for (let i = 0; i < blobs.length; i++) {
+                        const blobName = blobs[i].getElementsByTagName("Name")[0].textContent;
+                        blobList.push(blobName);
                     }
-                    return response.json();
+
+                    document.getElementById("loadingSpinner").style.display = "none"; // Hide loading spinner
+                    window.blobList = blobList; // Store blobs globally for filtering
                 })
-                .then(data => displayContent(type, data))
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error fetching blobs:', error);
+                    document.getElementById("loadingSpinner").style.display = "none"; // Hide spinner on error
+                });
         }
 
-        // Display content in the contentDisplay div
-        function displayContent(type, data) {
-            const contentDisplay = document.getElementById('contentDisplay');
-            contentDisplay.innerHTML = ''; // Clear existing content
 
-            if (type === 'photos') {
-                const photoDiv = document.createElement('div');
-                photoDiv.className = 'photos';
-                data.forEach(photo => {
-                    const img = document.createElement('img');
-                    img.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronephotos/${photo}`;
-                    img.alt = photo;
-                    photoDiv.appendChild(img);
+        // Toggle the file section visibility
+        function toggleFileSection() {
+            const fileButtons = document.getElementById("fileButtons");
+            fileButtons.classList.toggle("hidden");
+            fetchBlobs(); // Fetch blobs when toggling
+        }
+
+        // Display content based on the button clicked
+        function showContent(type) {
+            const contentDisplay = document.getElementById("contentDisplay");
+            contentDisplay.innerHTML = ""; // Clear existing content
+
+            if (!window.blobList) {
+                contentDisplay.innerHTML = "No files found.";
+                return;
+            }
+
+            const filteredBlobs = window.blobList.filter(blob => {
+                if (type === 'images') return blob.match(/\.(jpg|jpeg|png|gif)$/i);
+                if (type === 'videos') return blob.match(/\.(mp4|avi|mov|mkv)$/i);
+                if (type === 'documents') return blob.match(/\.(pdf|docx|txt)$/i);
+                return false;
+            });
+
+            if (filteredBlobs.length === 0) {
+                contentDisplay.innerHTML = `No ${type} found.`;
+            } else {
+                filteredBlobs.forEach(blob => {
+
+                    // Correctly append the SAS token with '&' instead of '?'
+                    const blobUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${blob}?${sasToken}`;
+                    contentDisplay.innerHTML += `<p><a href="${blobUrl}" target="_blank">${blob}</a></p>`;
+
                 });
-                contentDisplay.appendChild(photoDiv);
-            } else if (type === 'videos') {
-                const videoDiv = document.createElement('div');
-                videoDiv.className = 'videos';
-                data.forEach(video => {
-                    const videoElem = document.createElement('video');
-                    videoElem.src = `https://srv866-files.hstgr.io/6c3d598eeb2d29a0/files/public_html/dronerecvideos/${video}`;
-                    videoElem.controls = true;
-                    videoDiv.appendChild(videoElem);
-                });
-                contentDisplay.appendChild(videoDiv);
-            } else if (type === 'documents') {
-                const docDiv = document.createElement('div');
-                docDiv.className = 'documents';
-                data.forEach(doc => {
-                    const link = document.createElement('a');
-                    link.href = `https://srv866-files.hstgr.io/7bbffbd34f51c015/files/public_html/dronedocs/${doc}`;
-                    link.textContent = doc;
-                    link.target = '_blank';
-                    docDiv.appendChild(link);
-                });
-                contentDisplay.appendChild(docDiv);
             }
         }
 
-        // showContent function to trigger fetchContent based on the type
-        function showContent(type) {
-            fetchContent(type);  // Calls fetchContent to get the appropriate data
+
+    </script>-->
+
+
+
+    <script>
+        // Storage Account name, Container name, and SAS Token
+        const accountName = "linktotapdronedemo1";
+        const containerName = "publicfiles";
+        const sasToken = "sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c";
+
+        const apiUrl = 'https://linktotapdronedemo1.blob.core.windows.net/publicfiles?restype=container&comp=list&sv=2022-11-02&ss=bfqt&srt=co&sp=rwdlacupiytfx&se=2025-02-09T21:19:11Z&st=2025-01-29T13:19:11Z&spr=https&sig=hjdZAKjTlLsfP5Y4B10L8KfJQ8fQwFHg3iAZ0ET%2BYI8%3D&sr=c';
+
+        // Global variables to store counts
+        let totalImages = 0;
+        let totalVideos = 0;
+        let totalDocuments = 0;
+
+        // Fetch blobs and count the different types
+        function fetchBlobs() {
+            document.getElementById("loadingSpinner").style.display = "block"; // Show loading spinner
+
+            fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                    "x-ms-version": "2020-02-10" // Azure Storage API version
+                }
+            })
+                .then(response => response.text()) // Get the XML response as text
+                .then(xmlData => {
+                    // Parse the XML response
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlData, "application/xml");
+
+                    // Get all blob elements
+                    const blobs = xmlDoc.getElementsByTagName("Blob");
+                    const blobList = [];
+
+                    // Reset counts
+                    totalImages = 0;
+                    totalVideos = 0;
+                    totalDocuments = 0;
+
+                    // Loop through each blob and add its name to the blob list
+                    for (let i = 0; i < blobs.length; i++) {
+                        const blobName = blobs[i].getElementsByTagName("Name")[0].textContent;
+                        blobList.push(blobName);
+
+                        // Count images, videos, and documents
+                        if (blobName.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                            totalImages++;
+                        } else if (blobName.match(/\.(mp4|avi|mov|mkv)$/i)) {
+                            totalVideos++;
+                        } else if (blobName.match(/\.(pdf|docx|txt)$/i)) {
+                            totalDocuments++;
+                        }
+                    }
+
+                    document.getElementById("loadingSpinner").style.display = "none"; // Hide loading spinner
+                    window.blobList = blobList; // Store blobs globally for filtering
+
+                    // Log total counts
+                    console.log("Total Images:", totalImages);
+                    console.log("Total Videos:", totalVideos);
+                    console.log("Total Documents:", totalDocuments);
+
+                    // Update the counts on the UI buttons
+                    updateCounts();
+                })
+                .catch(error => {
+                    console.error('Error fetching blobs:', error);
+                    document.getElementById("loadingSpinner").style.display = "none"; // Hide spinner on error
+                });
         }
 
-        // Logout function
-        function logout() {
-            window.location.href = 'd-loginpage.html';
+        // Update the count display on the buttons
+        function updateCounts() {
+            document.getElementById("imageCount").innerText = `Images (${totalImages})`;
+            document.getElementById("videoCount").innerText = `Videos (${totalVideos})`;
+            document.getElementById("documentCount").innerText = `Documents (${totalDocuments})`;
         }
+
+        // Toggle the file section visibility
+        function toggleFileSection() {
+            const fileButtons = document.getElementById("fileButtons");
+            fileButtons.classList.toggle("hidden");
+            fetchBlobs(); // Fetch blobs when toggling
+        }
+
+        // Display content based on the button clicked
+        function showContent(type) {
+            const contentDisplay = document.getElementById("contentDisplay");
+            contentDisplay.innerHTML = ""; // Clear existing content
+
+            if (!window.blobList) {
+                contentDisplay.innerHTML = "No files found.";
+                return;
+            }
+
+            const filteredBlobs = window.blobList.filter(blob => {
+                if (type === 'images') return blob.match(/\.(jpg|jpeg|png|gif)$/i);
+                if (type === 'videos') return blob.match(/\.(mp4|avi|mov|mkv)$/i);
+                if (type === 'documents') return blob.match(/\.(pdf|docx|txt)$/i);
+                return false;
+            });
+
+            if (filteredBlobs.length === 0) {
+                contentDisplay.innerHTML = `No ${type} found.`;
+            } else {
+                filteredBlobs.forEach(blob => {
+                    const blobUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${blob}?${sasToken}`;
+                    contentDisplay.innerHTML += `<p><a href="${blobUrl}" target="_blank">${blob}</a></p>`;
+                });
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Load YouTube Iframe API
+        var tag = document.createElement('script');
+       
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+
+        // This function creates the <iframe> (and YouTube player) after the API code downloads
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtubeIframe', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        // Function to handle play event when player is ready
+        function onPlayerReady(event) {
+            debugger;
+            var playButton = document.getElementById("playButton");
+            playButton.addEventListener("click", function () {
+                event.target.playVideo(); // Play the video when button is clicked
+            });
+        }
+
+
+
+
+
+
+
+
     </script>
 
-</body>
+    <!-- HTML Structure for buttons and display -->
+    <button onclick="showContent('images')" id="imageCount">Images (0)</button>
+    <button onclick="showContent('videos')" id="videoCount">Videos (0)</button>
+    <button onclick="showContent('documents')" id="documentCount">Documents (0)</button>
 
+    <div id="loadingSpinner" style="display:none;">Loading...</div>
+    <div id="contentDisplay"></div>
+
+
+</body>
 </html>

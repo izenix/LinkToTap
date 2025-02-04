@@ -131,6 +131,23 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 	var cardColorString = document.getElementById("cardColor").value;
 	var cardColor = cardColorMap[cardColorString];
 
+	// Function to convert hex to RGB
+	function hexToRgb(hex) {
+		hex = hex.replace(/^#/, ''); // Remove the leading # if present
+		var bigint = parseInt(hex, 16);
+		var r = (bigint >> 16) & 255;
+		var g = (bigint >> 8) & 255;
+		var b = bigint & 255;
+		return "R" + r + " G" + g + " B" + b; // Format RGB as "Rxx Gxx Bxx"
+		//return [r, g, b]; // Return RGB as an array
+	}
+
+	// Convert the custom color picker value to RGB if "Custom" is selected
+	var customCardColorRGB = null;
+	if (cardColorString === "Custom") {
+		customCardColorRGB = hexToRgb(customCardColorPicker); // Convert hex to RGB
+	}
+
 	var totalAmount = document.getElementById("totalAmount").textContent.trim().replace('Rs. ', '');
 
 	//Gift Card Order Information
@@ -181,8 +198,8 @@ document.getElementById("customizeCardForm").addEventListener("submit", function
 			email: email || "",
 			phone: phone || "",
 			cardMaterial: cardMaterial,
-			cardColor: cardColor,
-			customCardColorPicker: customCardColorPicker || "",
+			customCardColorRGB: JSON.stringify(customCardColorRGB),
+			customCardColorPicker: JSON.stringify(customCardColorPicker) || "",
 			textColor: textColor,
 			designation: designation || "",
 			companyName: companyName || "",
@@ -375,8 +392,45 @@ getCartDetails();
 
 
 
-function loadMapScenario() {
+//function loadMapScenario() {
 
+//	// Load the AutoSuggest module
+//	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+//		callback: onLoadAutoSuggest,
+//		errorCallback: onError
+//	});
+//}
+
+//function onLoadAutoSuggest() {
+//	// Create an options object for AutoSuggest
+//	var options = {
+//		maxResults: 5,  // Limit the number of suggestions
+//	};
+
+//	// Initialize the AutosuggestManager
+//	var manager = new Microsoft.Maps.AutosuggestManager(options);
+
+//	// Attach AutoSuggest to the input box and container
+//	manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+//}
+
+//// Callback when a suggestion is selected
+//function selectedSuggestion(suggestionResult) {
+//	console.log(suggestionResult);
+
+//	// Display selected result in the console or handle it
+//	//alert(`You selected: ${suggestionResult.address.formattedAddress}`);
+//}
+
+//// Error handling function
+//function onError(message) {
+//	console.error("Bing Maps Error:", message);
+//}
+
+
+
+
+function loadMapScenario() {
 	// Load the AutoSuggest module
 	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
 		callback: onLoadAutoSuggest,
@@ -393,8 +447,15 @@ function onLoadAutoSuggest() {
 	// Initialize the AutosuggestManager
 	var manager = new Microsoft.Maps.AutosuggestManager(options);
 
-	// Attach AutoSuggest to the input box and container
-	manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+	// Attach AutoSuggest to both input boxes and containers
+	attachAutoSuggestToInput(manager, '#searchBox', '#searchBoxContainer');
+	attachAutoSuggestToInput(manager, '#searchBoxGift', '#searchBoxContainerGift');
+}
+
+// Function to attach AutoSuggest to input and container
+function attachAutoSuggestToInput(manager, inputId, containerId) {
+	console.log(`Attaching AutoSuggest to ${inputId} with container ${containerId}`);
+	manager.attachAutosuggest(inputId, containerId, selectedSuggestion);
 }
 
 // Callback when a suggestion is selected
@@ -410,7 +471,4 @@ function onError(message) {
 	console.error("Bing Maps Error:", message);
 }
 
-
-
-
-
+loadMapScenario();

@@ -363,3 +363,83 @@ function toggleFields() {
 		});
 	}
 }
+
+
+
+
+//function loadMapScenario() {
+
+//	// Load the AutoSuggest module
+//	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+//		callback: onLoadAutoSuggest,
+//		errorCallback: onError
+//	});
+//}
+
+//function onLoadAutoSuggest() {
+//	// Create an options object for AutoSuggest
+//	var options = {
+//		maxResults: 5,  // Limit the number of suggestions
+//	};
+
+//	// Initialize the AutosuggestManager
+//	var manager = new Microsoft.Maps.AutosuggestManager(options);
+
+//	// Attach AutoSuggest to the input box and container
+//	manager.attachAutosuggest('#searchBox', '#searchBoxContainer', selectedSuggestion);
+//}
+
+//// Callback when a suggestion is selected
+//function selectedSuggestion(suggestionResult) {
+//	console.log(suggestionResult);
+
+//	// Display selected result in the console or handle it
+//	//alert(`You selected: ${suggestionResult.address.formattedAddress}`);
+//}
+
+//// Error handling function
+//function onError(message) {
+//	console.error("Bing Maps Error:", message);
+//}
+
+
+
+function loadMapScenario() {
+	// Load the AutoSuggest module
+	Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
+		callback: onLoadAutoSuggest,
+		errorCallback: onError
+	});
+}
+
+function onLoadAutoSuggest() {
+	// Create an options object for AutoSuggest
+	var options = {
+		maxResults: 5,  // Limit the number of suggestions
+	};
+
+	// Initialize the AutosuggestManager
+	var manager = new Microsoft.Maps.AutosuggestManager(options);
+
+	// Attach AutoSuggest to both input boxes and containers
+	attachAutoSuggestToInput(manager, '#searchBox', '#searchBoxContainer');
+	attachAutoSuggestToInput(manager, '#searchBoxGift', '#searchBoxContainerGift');
+}
+
+// Function to attach AutoSuggest to input and container
+function attachAutoSuggestToInput(manager, inputId, containerId) {
+	manager.attachAutosuggest(inputId, containerId, selectedSuggestion);
+}
+
+// Callback when a suggestion is selected
+function selectedSuggestion(suggestionResult) {
+	console.log(suggestionResult);
+
+	// Display selected result in the console or handle it
+	//alert(`You selected: ${suggestionResult.address.formattedAddress}`);
+}
+
+// Error handling function
+function onError(message) {
+	console.error("Bing Maps Error:", message);
+}
